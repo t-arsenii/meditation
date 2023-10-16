@@ -2,12 +2,12 @@ import mongoose from "mongoose";
 
 const CombinationSchema = new mongoose.Schema({
     name: { type: String, required: true },
-    question1: { type: mongoose.Schema.Types.ObjectId, ref: 'Question' },
-    answer1: { type: mongoose.Schema.Types.ObjectId, ref: 'Answer' },
-    question2: { type: mongoose.Schema.Types.ObjectId, ref: 'Question' },
-    answer2: { type: mongoose.Schema.Types.ObjectId, ref: 'Answer' },
-    question3: { type: mongoose.Schema.Types.ObjectId, ref: 'Question' },
-    answer3: { type: mongoose.Schema.Types.ObjectId, ref: 'Answer' },
+    question1: { type: String, required: true },
+    answer1: { type: String, required: true },
+    question2: { type: String, required: true },
+    answer2: {type: String, required: true },
+    question3: { type: String, required: true },
+    answer3: { type: String, required: true},
 });
 
 export default mongoose.model('Combination', CombinationSchema);
