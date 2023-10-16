@@ -1,0 +1,150 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: linear-gradient(90deg, #6100C2, #CA95FF);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  .oval {
+    position: absolute;
+    bottom: 0;
+    left: -20px; 
+    width: 140%; 
+    height: 290px;
+    background-color: #471E70;
+    border-radius: 50% 50% 0 0;
+    overflow: hidden;
+    z-index: -1;
+  }
+  
+  
+  .centeredСontent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 15px;
+    margin-top: 0px;
+  }
+  
+  .registrationTitle {
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+    letter-spacing: 2px;
+  }
+  
+  .form {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  
+  .form label {
+    color: #5B5B5B;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .form input[type="email"],
+  .form input[type="password"],
+  .form input[type="password_repeat"],
+  .form input[type="pseudonym"] {
+    background-color: #D9D9D9;
+    width: 796px;
+    height: 50px;
+    padding: 10px;
+    border: none;
+    border-radius: 35px;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .formDivider {
+    margin-top: 15px;
+  }
+  
+  .form input[type="email"]::placeholder,
+  .form input[type="password"]::placeholder,
+  .form input[type="password_repeat"]::placeholder,
+  .form input[type="pseudonym"]::placeholder {
+    margin-right: 10px;
+    font-size: 20px;
+    color: #999;
+  }
+  
+  .termsAndConditions {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: #fff;
+    margin-top: 0px;
+    margin-left: -370px;
+  }
+  
+  .terms {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: #fff;
+  }
+  
+  .whiteText {
+    color: #FFFFFF;
+  }
+  
+  .grayText {
+    color: #A3A3A3;
+  }
+  
+  .termsAndConditions span.gray-text:hover {
+    color: #FFFFFF;
+  }
+  
+  .nextButton {
+    font-family: 'Inter', sans-serif;
+    font-size: 30px;
+    background: linear-gradient(90deg, #6100C2, #CA95FF);
+    color: #fff;
+    height: 70px;
+    width: 220px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .nextButton:hover {
+    background: linear-gradient(90deg, #1F1628, #6D4C8F);
+  }
+  
+  .lines {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .lineLeft,
+  .lineRight {
+    flex-grow: 1;
+    border: 1px solid #6D4C8F;
+    width: 400px;
+  }
+  
+  .or {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    color: #6D4C8F;
+    margin: 0 10px;
+  }
+  
+  .logoImages {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  a.whiteText.grayText:hover {
+    color: white;
+  }
+  
