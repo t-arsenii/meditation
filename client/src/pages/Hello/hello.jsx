@@ -1,16 +1,23 @@
 import React from 'react';
 import styles from './styles.module.css';
 import logoImage from './images/woman.png';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-function Hello() {
+
+const Hello = () => {
+  const navigate = useNavigate();
+  const handleRegistrationClick = () => {
+    navigate('/registration');
+  }
+
+  
   return (
     <div className={styles.body}>
       <div className={styles.oval}></div>
       <div className={styles.textContainer}>
         <p className={styles.welcomeText}>Witamy w SereneAstro</p>
         <p className={styles.subtext}>Rozpocznijmy przygodę w świecie medytacji i spokoju</p>
-        <Link to="/frontend/src/pages/Registration/registration.jsx" className={styles.startButton}>START</Link>
+        <button className={styles.startButton} onClick={handleRegistrationClick}>START</button>
         <p className={styles.accountText}>Masz konto? <a href="#">Logowanie</a></p>
       </div>
       <img src={logoImage} alt="woman" className={styles.topImage} />
