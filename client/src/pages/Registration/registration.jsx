@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './styles.module.css'; 
+
 import { useDispatch, useSelector } from 'react-redux'
 import { registerUser, checkIsAuth } from '../../redux/features/auth/authSlice'
 
@@ -21,6 +22,7 @@ function Registration() {
           console.log(error)
       }
   }
+
     return (
       <div className={styles.body}>
         <div className={styles.oval}></div>
@@ -34,40 +36,38 @@ function Registration() {
           <form className={styles.form}>
             <input type="password" id="password" name="password" placeholder="Hasło"  value={password} onChange={(e) => setPassword(e.target.value)}/>
           </form>
-  
-          <form className={styles.form}>
-            <input type="password_repeat" id="password_repeat" name="password_repeat" placeholder="Powtórz hasło" />
-          </form>
-  
           <form className={styles.form}>
             <input type="pseudonym" id="pseudonym" name="pseudonym" placeholder="Wymyśl pseudonim" value={username} onChange={(e) => setUsername(e.target.value)}/>
           </form>
   
           <div className={styles.termsAndConditions}>
-            <p>
-              Kontynuując zgadzasz się na nasze <span className="white-text"><span className="gray-text">Zasady i warunki</span></span>
-            </p>
+          <p>
+            Kontynuując zgadzasz się na nasze{' '}
+            <span className={`${styles.whiteText} ${styles.grayText}`}>
+              Zasady i warunki
+            </span>
+          </p>
           </div>
   
           <Link to="/test_start" className={styles.nextButton} onClick={handleSubmit}>Dalej</Link>
   
           <div className={styles.lines}>
-            <hr className="line-left" />
-            <span className={styles.or}>LUB</span>
-            <hr className="line-right" />
-          </div>
+                 <div className={styles.line}></div>
+                <span className={styles.or}>LUB</span>
+                <div className={styles.line}></div>
+         </div>
+ 
+
   
           <div className={styles.logoImages}>
-            <img src="./images/facebook.png" alt="Facebook" />
-            <img src="./images/google.png" alt="Google" />
-            <img src="./images/twitter.png" alt="Twitter" />
+            <img src={facebook} alt="Facebook" />
+            <img src={google} alt="Google" />
+            <img src={twitter} alt="Twitter" />
           </div>
   
           <div className={styles.terms}>
             <p>
-              Posiadasz już konto? <Link to="/login" className={`${styles.whiteText} ${styles.grayText}`}>
-  Posiadasz już konto? Zaloguj się
-</Link>
+              Posiadasz już konto? <Link to="/login" className={`${styles.whiteText} ${styles.grayText}`}> Zaloguj się </Link>
 
             </p>
           </div>
