@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styles from './styles.module.css';
 import logoImage from './images/woman.png';
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
 
 function Hello() {
-  
-
   return (
     <div className={styles.body}>
       <div className={styles.oval}></div>

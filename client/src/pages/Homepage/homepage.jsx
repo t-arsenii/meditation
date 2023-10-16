@@ -4,7 +4,7 @@ import logoImage from './images/logo.png';
 import { useNavigate } from 'react-router-dom';
 import { useSpring, animated } from 'react-spring';
 
-function MyComponent() {
+function Homepage() {
   const navigate = useNavigate();
   const [redirect, setRedirect] = useState(false);
 
@@ -30,4 +30,4 @@ function MyComponent() {
   );
 }
 
-export default MyComponent;
+export default Homepage;
