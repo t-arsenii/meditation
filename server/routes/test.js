@@ -1,10 +1,14 @@
 import { Router } from 'express'
-import { addQueAnswKomb } from '../controllers/test.js'
+import { insertQuestions } from '../controllers/test.js'
 import { checkAuth } from '../utils/checkAuth.js'
 const router = new Router()
-// Dodanie pytan odpowiedzi i kombinacji
+
+//Get all questions
+router.get('/questions')
+
+// insert questions
 // http://localhost:3002/api/test
-router.post('/',addQueAnswKomb)
+router.post('/questions',insertQuestions)
 
 //router.get('/', show)
 
