@@ -151,4 +151,8 @@ body {
   a.whiteText.grayText:hover {
     color: white;
   }
-  
+  .form input {
+
+    color: rgb(52, 12, 70);
+    font-size: 25px;
+  }
