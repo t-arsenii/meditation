@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './styles.module.css'; 
+import facebook from './images/facebook.png';
+import google from './images/google.png';
+import twitter from './images/twitter.png';
 
 import { useDispatch, useSelector } from 'react-redux'
 import { registerUser, checkIsAuth } from '../../redux/features/auth/authSlice'
