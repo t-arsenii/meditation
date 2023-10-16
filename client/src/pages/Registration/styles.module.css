@@ -124,11 +124,14 @@ body {
     display: flex;
     align-items: center;
     margin-top: 20px;
+    position: relative; /* Add this line */
   }
+  
   .line {
     flex-grow: 1;
     border-top: 1px solid #6D4C8F;
     margin: 0 10px;
+    position: relative; 
   }
   
   .or {

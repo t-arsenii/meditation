@@ -24,11 +24,6 @@ function Registration() {
           <form className={styles.form}>
             <input type="password" id="password" name="password" placeholder="Hasło" />
           </form>
-  
-          <form className={styles.form}>
-            <input type="password_repeat" id="password_repeat" name="password_repeat" placeholder="Powtórz hasło" />
-          </form>
-  
           <form className={styles.form}>
             <input type="pseudonym" id="pseudonym" name="pseudonym" placeholder="Wymyśl pseudonim" />
           </form>
