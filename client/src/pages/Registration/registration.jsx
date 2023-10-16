@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './styles.module.css'; 
+import facebook from './images/facebook.png';
+import google from './images/google.png';
+import twitter from './images/twitter.png';
 
 function Registration() {
     return (
@@ -40,15 +43,14 @@ function Registration() {
           </div>
   
           <div className={styles.logoImages}>
-            <img src="./images/facebook.png" alt="Facebook" />
-            <img src="./images/google.png" alt="Google" />
-            <img src="./images/twitter.png" alt="Twitter" />
+            <img src={facebook} alt="Facebook" />
+            <img src={google} alt="Google" />
+            <img src={twitter} alt="Twitter" />
           </div>
   
           <div className={styles.terms}>
             <p>
-              Posiadasz już konto? <Link to="/login" className={`${styles.whiteText} ${styles.grayText}`}>
-  Posiadasz już konto? Zaloguj się
+              Posiadasz już konto? <Link to="/login" className={`${styles.whiteText} ${styles.grayText}`}> Zaloguj się
 </Link>
 
             </p>
