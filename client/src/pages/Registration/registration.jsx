@@ -29,9 +29,12 @@ function Registration() {
           </form>
   
           <div className={styles.termsAndConditions}>
-            <p>
-              Kontynuując zgadzasz się na nasze <span className="white-text"><span className="gray-text">Zasady i warunki</span></span>
-            </p>
+          <p>
+            Kontynuując zgadzasz się na nasze{' '}
+            <span className={`${styles.whiteText} ${styles.grayText}`}>
+              Zasady i warunki
+            </span>
+          </p>
           </div>
   
           <button  className={styles.nextButton} onClick={handleTestClick}>Dalej</button>
