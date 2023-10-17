@@ -141,8 +141,12 @@ body {
   }
   
   .logoImages {
+    display: flex;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 60px;
+  }
+  .logoImages img {
+    margin-right: 20px; /* Додавання відстані між картинками, змініть на потрібне значення */
   }
   
   a {

@@ -27,7 +27,7 @@ body {
     align-items: center;
     text-align: center;
     margin: 0px;
-    margin-top: 50px;
+    margin-top: 20px;
   }
   
   .registrationTitle {
@@ -140,8 +140,12 @@ body {
   }
   
   .logoImages {
+    display: flex;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 60px;
+  }
+  .logoImages img {
+    margin-right: 20px; /* Додавання відстані між картинками, змініть на потрібне значення */
   }
   
   a {

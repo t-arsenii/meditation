@@ -52,7 +52,7 @@ function Registration() {
           </p>
           </div>
   
-          <Link to="/test_start" className={styles.nextButton} onClick={handleSubmit}>Dalej</Link>
+          <Link to="/starttest" className={styles.nextButton} onClick={handleSubmit}>Dalej</Link>
   
           <div className={styles.lines}>
                  <div className={styles.line}></div>
