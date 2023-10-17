@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styles from './styles.module.css'; 
-import img5 from './images/img5.png';
-import img6 from './images/img6.png';
-
+import img7 from './images/img7.png';
+import img8 from './images/img8.png';
+import img9 from './images/img9.png';
 
 function Pytanie1() {
     const [selectedBlock, setSelectedBlock] = useState(null);
@@ -12,7 +12,7 @@ function Pytanie1() {
     };
     const handleNextButtonClick = () => {
         if (selectedBlock !== null) {
-          window.location.href = '/question3';
+          window.location.href = '/endtest';
         } else {
           alert('Zanim przejdziesz dalej, wybierz element.');
         }
@@ -21,10 +21,10 @@ function Pytanie1() {
         <div className={styles.body}>
           <div className={styles.oval}></div>
           <div className={styles.centeredContent}>
-            <p>Pytanie 2</p>
+            <p>Pytanie 3</p>
           </div>
           <div className={styles.content}>
-            <p>Czy preferujesz medytację dynamiczną czy statyczną?</p>
+            <p>Jaki jest Twój poziom doświadczenia w medytacji?</p>
           </div>
           <div className={styles.blocks}>
             <div
@@ -32,8 +32,8 @@ function Pytanie1() {
               data-index="1"
               onClick={() => handleBlockClick(1)}
             >
-              <img src={img5} alt="Image 1" />
-              <p>Statyczna</p>
+              <img src={img7} alt="Image 1" />
+              <p>Początkujący</p>
             </div>
     
             <div
@@ -41,8 +41,16 @@ function Pytanie1() {
               data-index="2"
               onClick={() => handleBlockClick(2)}
             >
-              <img src={img6} alt="Image 2" />
-              <p>Dynamiczna</p>
+              <img src={img8} alt="Image 2" />
+              <p>Średniozaawansowany</p>
+            </div>
+            <div
+              className={`${styles.block} ${selectedBlock === 3 ? styles.selected : ''}`}
+              data-index="3"
+              onClick={() => handleBlockClick(3)}
+            >
+              <img src={img9} alt="Image 3" />
+              <p>Zaawansowany</p>
             </div>
        </div>
           <div className={styles.centeredButtonContainer}>

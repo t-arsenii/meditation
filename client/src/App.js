@@ -10,6 +10,7 @@ import StartTest from './pages/StartTest/starttest';
 import EndTest from './pages/EndTest/endtest';
 import Question1 from './pages/Question1/question1'
 import Question2 from './pages/Question2/question2'
+import Question3 from './pages/Question3/question3'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/endtest" element={<EndTest />} />
         <Route path="/question1" element={<Question1 />} />
         <Route path="/question2" element={<Question2 />} />
+        <Route path="/question3" element={<Question3 />} />
       </Routes>
     </Router>
   );
