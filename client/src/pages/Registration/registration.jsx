@@ -70,7 +70,8 @@ function Registration() {
   
           <div className={styles.terms}>
             <p>
-              Posiadasz już konto? <Link to="/login" className={`${styles.whiteText} ${styles.grayText}`}> Zaloguj się </Link>
+              Posiadasz już konto?      
+              <Link to="/logging" className={`${styles.whiteText} ${styles.grayText}`}> Zaloguj się </Link>
 
             </p>
           </div>
