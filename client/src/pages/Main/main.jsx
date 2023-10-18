@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './style.module.css'; 
+import styles from './styles.module.css'; 
 import forward from './images/forward.png'
 import main_img from './images/main_img.png'
 import woman_main from './images/woman_main.png'
