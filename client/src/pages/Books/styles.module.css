@@ -1,12 +1,9 @@
-body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    background: linear-gradient(90deg, #6100C2, #CA95FF);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Inter', sans-serif;
-    overflow: hidden;
-}
+/* styles.module.css */
 
+
+.title {
+    font-family:'Inter', sans-serif;
+    font-size: 30px;
+  }
+  
+  

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './style.module.css'; 
+import styles from './styles.module.css'; 
 import logo2 from './images/logo2.png'
 import home from './images/home.png'
 import music from './images/music.png'

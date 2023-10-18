@@ -34,11 +34,11 @@ function App() {
         <Route path="/question2" element={<Question2 />} />
         <Route path="/question3" element={<Question3 />} />
         <Route path="/main" element={<Main />} />
-        <Route path='./books' element={<Books />}/>
-        <Route path='./mood' element={<Mood />}/>
-        <Route path='./music' element={<Music />}/> 
-        <Route path='./chat' element={<Chat />}/> 
-        <Route path='./profil' element={<Profil />}/> 
+        <Route path='/books' element={<Books />}/>
+        <Route path='/mood' element={<Mood />}/>
+        <Route path='/music' element={<Music />}/> 
+        <Route path='/chat' element={<Chat />}/> 
+        <Route path='/profil' element={<Profil />}/> 
       </Routes>
     </Router>
   );

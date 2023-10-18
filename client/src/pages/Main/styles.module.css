@@ -1,26 +1,9 @@
-body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    background: linear-gradient(90deg, #6100C2, #CA95FF);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Inter', sans-serif;
-    overflow: hidden;
-}
-
-
-
-
-
-
 .sideText {
     position: absolute;
-    top: 2px; /* Відступ від верху */
-    left: 203px; /* Відступ від правого краю прямокутника */
-    color: #fff; /* Колір тексту */
-    font-size: 18px; /* Розмір шрифту */
+    top: 2px; 
+    left: 203px; 
+    color: #fff; 
+    font-size: 18px; 
 }
 .sideText p{
     font-family: 'Inter', sans-serif;
