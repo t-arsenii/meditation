@@ -7,7 +7,7 @@ body {
     justify-content: center;
     align-items: center;
     font-family: 'Inter', sans-serif;
-    overflow: auto;
+    overflow: hidden;
 }
 
 .leftRectangle {

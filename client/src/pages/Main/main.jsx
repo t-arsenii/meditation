@@ -55,6 +55,7 @@ function Main({ name }) {
           <p>Wyloguj się</p>
         </a>
       </div>
+      <div className={styles.main}>
       <div className={styles.sideText}>
         <p>{`Cześć, ${name}`}</p>
         <p className={styles.textNext}>Uczyń swój dzień lepszym</p>
@@ -104,7 +105,7 @@ function Main({ name }) {
             <img src={add} alt="Add Icon" />
           </div>
         </div>
-      </div>
+      </div></div>
     </div>
   );
 }
