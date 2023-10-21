@@ -51,7 +51,7 @@ function Registration() {
             </span>
           </p>
           </div>
-  
+           <div className={styles.contentDown}>
           <Link to="/starttest" className={styles.nextButton} onClick={handleSubmit}>Dalej</Link>
   
           <div className={styles.lines}>
@@ -73,7 +73,7 @@ function Registration() {
               Posiadasz już konto?      
               <Link to="/logging" className={`${styles.whiteText} ${styles.grayText}`}> Zaloguj się </Link>
 
-            </p>
+            </p></div>
           </div>
         </div>
       </div>

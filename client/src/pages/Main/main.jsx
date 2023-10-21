@@ -5,6 +5,7 @@ import main_img from './images/main_img.png'
 import woman_main from './images/woman_main.png'
 import add from './images/add.png'
 
+
 function Main({ name }) {
   return (
     <div className={styles.body}>
