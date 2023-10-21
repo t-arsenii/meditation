@@ -1,5 +1,5 @@
 import Question from "../models/Question.js"
-import Answer from "../models/Answer.js";
+
 import Combination from "../models/Combination.js";
 import User from "../models/User.js";
 import questions from "../data/questions.js";
