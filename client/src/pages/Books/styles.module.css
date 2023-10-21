@@ -1,0 +1,39 @@
+/* styles.module.css */
+body{
+    
+}
+.pageHeader {
+    text-align: center;
+    font-size: 3rem;
+    margin-top: 0px;
+  }
+  
+  .books {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+    margin-top: 50px;
+    margin-left: 190px;
+  }
+  
+  .book {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    height: 200px;
+  }
+  
+  .contentBook {
+    display: block;
+    margin-left: 35px;
+  }
+  
+  h3 {
+    font-size: 25px;
+  }
+  
+  p {
+    font-size: 20px;
+  }
+  

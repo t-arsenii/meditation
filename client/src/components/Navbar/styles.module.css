@@ -1,0 +1,68 @@
+
+.leftRectangle {
+    width: 183px;
+    height: 100%;
+    background-color: #471E70;
+    position: fixed;
+    left: 0;
+    top: 0; /* Додайте цей відступ для встановлення .leftRectangle зверху */
+}
+
+.textOverRectangle {
+    position: fixed;
+    top: 20px; /* Відступ від верху */
+    left: 20px; /* Відступ зліва */
+    color: #fff; /* Колір тексту */
+    font-size: 18px; /* Розмір шрифту */
+    /* Додайте інші стилі за потреби */
+}
+.logoutText {
+    
+    position: fixed;
+    bottom: 20px; /* Відступ знизу */
+    left: 20px; /* Відступ зліва */
+    color: #fff; /* Колір тексту */
+    font-size: 18px; /* Розмір шрифту */
+    display: flex;
+    align-items: center;
+}
+.logoutText img {
+    margin-right: 10px; /* Відступ між зображенням і текстом */
+}
+.sideText {
+    position: absolute;
+    top: 2px; /* Відступ від верху */
+    left: 203px; /* Відступ від правого краю прямокутника */
+    color: #fff; /* Колір тексту */
+    font-size: 18px; /* Розмір шрифту */
+}
+.sideText p{
+    font-family: 'Inter', sans-serif;
+    font-size: 25px; 
+}
+.textNext{
+    margin-top: -20px;
+    margin-left: 40px;
+}
+.textOver , .logoutText{
+    display: flex;
+    align-items: center;
+    width: auto; /* Автоматична ширина за змістом */  
+}
+.textOver img , .mainTextOver img {
+    margin-right: 10px;
+}
+.textOver:hover , .logoutText:hover{
+    background-color: #62259F; /* Колір фону при наведенні */
+    color: #fff; /* Колір тексту при наведенні */
+    border-radius: 20px;
+    padding-right: 20px;
+    
+}
+a{
+    text-decoration: none;
+    color: #fff;
+}
+
+
+

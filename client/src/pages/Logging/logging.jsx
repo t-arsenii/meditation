@@ -54,7 +54,7 @@ function Logging() {
               </span>
             </p>
             </div>
-    
+            <div className={styles.contentDown}>
             <Link to="/hello" className={styles.nextButton}  onClick={handleSubmit}>Dalej</Link>
     
             <div className={styles.lines}>
@@ -76,6 +76,7 @@ function Logging() {
               Nie masz konta?  <Link to="/registration" className={`${styles.whiteText} ${styles.grayText}`}> Zarejestruj się </Link>
   
               </p>
+            </div>
             </div>
           </div>
         </div>

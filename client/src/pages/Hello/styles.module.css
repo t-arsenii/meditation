@@ -1,6 +1,6 @@
 /* styles.module.css */
 
-.body {
+body {
     margin: 0;
     padding: 0;
     height: 100vh;
@@ -8,15 +8,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
   }
-  
   .oval {
     position: absolute;
     bottom: 0;
-    left: 20;
-    width: 140%;
-    height: 450px;
+    left: 0;
+    width: 100%;
+    height: 400px;
     background-color: #471E70;
     border-radius: 50% 50% 0 0;
     overflow: hidden;
