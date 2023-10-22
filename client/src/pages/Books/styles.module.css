@@ -1,11 +1,14 @@
 /* styles.module.css */
-body{
-    
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(90deg, #6100C2, #CA95FF);
 }
 .pageHeader {
     text-align: center;
     font-size: 3rem;
     margin-top: 0px;
+    margin-left: 170px;
   }
   
   .books {
@@ -21,19 +24,34 @@ body{
     align-items: center;
     width: 100%;
     max-width: 400px;
-    height: 200px;
+    height: 250px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    padding: 5px;
+    transition: background-color 0.3s;
   }
-  
+  .book:hover {
+    background-color: rgba(255, 255, 255, 0.5); /* Змініть колір на ваш вибір */
+  }
   .contentBook {
     display: block;
-    margin-left: 35px;
+    align-items: start;
+    margin-left: 30px;
   }
   
   h3 {
-    font-size: 25px;
+    font-size: 22px;
   }
   
   p {
-    font-size: 20px;
+    font-size: 18px;
+  }
+  .book a {
+    text-decoration: none;
+    color: black; 
+    transition: color 0.3s;
   }
   
+  .book a:hover {
+    color: white; 
+  }
