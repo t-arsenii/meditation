@@ -18,6 +18,7 @@ import Mood from './pages/Mood/mood'
 import Music from './pages/Music/music'
 import Chat from './pages/Chat/chat'
 import Profil from './pages/Profil/profil'
+import MusicUnfastened from './pages/MusicUnfastened/musicunfastened'
 
 function App() {
   return (
@@ -39,6 +40,8 @@ function App() {
         <Route path='/music' element={<Music />}/> 
         <Route path='/chat' element={<Chat />}/> 
         <Route path='/profil' element={<Profil />}/> 
+        <Route path='/musicunfastened' element={<MusicUnfastened />}/> 
+
       </Routes>
     </Router>
   );
