@@ -14,7 +14,7 @@ import Question3 from './pages/Question3/question3'
 import Main from './pages/Main/main'
 import Navbar from './components/Navbar/navbar'
 import Books from './pages/Books/books'
-import Mood from './pages/Mood/mood'
+import MoodCalendar from './pages/Mood/mood'
 import Music from './pages/Music/music'
 import Chat from './pages/Chat/chat'
 import Profil from './pages/Profil/profil'
@@ -36,7 +36,7 @@ function App() {
         <Route path="/question3" element={<Question3 />} />
         <Route path="/main" element={<Main />} />
         <Route path='/books' element={<Books />}/>
-        <Route path='/mood' element={<Mood />}/>
+        <Route path='/mood' element={<MoodCalendar />}/>
         <Route path='/music' element={<Music />}/> 
         <Route path='/chat' element={<Chat />}/> 
         <Route path='/profil' element={<Profil />}/> 

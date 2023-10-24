@@ -1,0 +1,50 @@
+.pageHeader{
+  color: white;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: normal;
+  margin-left: 150px;
+  margin-top: 0px;
+}
+.pageHeadertwo{
+  color: white;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: normal;
+  margin-left: 170px;
+  margin-top: 75px;
+  
+}
+/* Adjust the styles of the custom modal */
+.customModal {
+  width: 290px; /* Set the desired width */
+  max-width: 80%; /* Ensure it's responsive and doesn't exceed 80% of the screen width */
+  height: 200px; /* Set the desired height */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+}
+.customModalContent{
+  background: #e6ccff; /* Set the desired background color or image */
+  padding: 20px; /* Add padding for spacing inside the content */
+  border-radius: 8px; /* Add rounded corners if needed */
+  box-shadow: 0 2px 4px  #000000;
+  
+}
+.imageButton{
+  background: none; /* Remove the background */
+  border: none; /* Remove the border */
+  padding: 0; /* Remove any padding */
+  cursor: pointer;
+  position: absolute;
+  top: 10px; /* Adjust the top value to your desired position */
+  right: 10px
+}
+
+.customModalContent img {
+  cursor: pointer;
+  margin: 15px; /* Adjust the margin as needed for spacing */
+  
+}
