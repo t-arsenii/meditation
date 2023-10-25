@@ -9,8 +9,8 @@ import { checkIsAuth, loginUser } from '../../redux/features/auth/authSlice'
 import { toast } from 'react-toastify'
 
 function Logging() {
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
     const { status } = useSelector((state) => state.auth)
     const isAuth = useSelector(checkIsAuth)
@@ -19,12 +19,12 @@ function Logging() {
 
     useEffect(() => {
         if (status) toast(status)
-        if (isAuth) navigate('/hello')
-    }, [status, isAuth, navigate])
+        //if (isAuth) navigate('/hello')
+    }, [status])
 
     const handleSubmit = () => {
         try {
-            dispatch(loginUser({ username, password }))
+            dispatch(loginUser({ email, password }))
         } catch (error) {
             console.log(error)
         }
@@ -38,12 +38,12 @@ function Logging() {
             <h1 className={styles.registrationTitle}>Logowanie</h1>
     
             <form className={styles.form}>
-              <input type="email" id="email" name="email" placeholder="Email" value={username}
-                    onChange={(e) => setUsername(e.target.value)}/>
+              <input type="email" id="email" name="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}
+                    />
             </form>
             <form className={styles.form}>
-              <input type="password" id="password" name="password" placeholder="Hasło" value={password}
-                    onChange={(e) => setPassword(e.target.value)} />
+              <input type="password" id="password" name="password" placeholder="Hasło" value={password} onChange={(e) => setPassword(e.target.value)}
+                   />
             </form>
     
             <div className={styles.termsAndConditions}>
@@ -55,7 +55,7 @@ function Logging() {
             </p>
             </div>
             <div className={styles.contentDown}>
-            <Link to="/hello" className={styles.nextButton}  onClick={handleSubmit}>Dalej</Link>
+            <div className={styles.nextButton}  onClick={handleSubmit}>Dalej</div>
     
             <div className={styles.lines}>
                    <div className={styles.line}></div>

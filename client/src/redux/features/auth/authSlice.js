@@ -29,10 +29,10 @@ export const registerUser = createAsyncThunk(
  
  export const loginUser = createAsyncThunk(
      'auth/loginUser',
-     async ({ username, password }) => {
+     async ({ email, password }) => {
          try {
              const { data } = await axios.post('/auth/login', {
-                 username,
+                 email,
                  password,
              })
              if (data.token) {
