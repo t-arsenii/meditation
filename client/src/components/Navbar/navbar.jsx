@@ -34,9 +34,7 @@ function Main({ name }) {
         </div>
         <div className={styles.textOver}>
           <img src={music} alt="Music Icon" />
-          <a href="index.html">
           <Link to="/music"><p>Muzyka</p></Link>
-          </a>
         </div>
         <div className={styles.textOver}>
           <img src={chat} alt="Chat Icon" />
