@@ -1,0 +1,24 @@
+/* styles.module.css */
+@keyframes glow {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+.container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.star {
+  width: 50px; /* Customize the star size */
+  position: absolute;
+  animation: glow 2s ease-in-out infinite; /* Adjust the animation duration and easing as needed */
+}
