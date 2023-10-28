@@ -19,12 +19,13 @@ function Logging() {
 
     useEffect(() => {
         if (status) toast(status)
-        //if (isAuth) navigate('/hello')
-    }, [status])
+        if (isAuth) navigate('/main')
+    }, [status, isAuth, navigate])
 
     const handleSubmit = () => {
         try {
             dispatch(loginUser({ email, password }))
+           // navigate('/hello')
         } catch (error) {
             console.log(error)
         }

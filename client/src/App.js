@@ -19,16 +19,16 @@ import Music from './pages/Music/music'
 import Chat from './pages/Chat/chat'
 import Profil from './pages/Profil/profil'
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import { getMe } from './redux/features/auth/authSlice';
+//import { useEffect } from 'react';
+//import { getMe } from './redux/features/auth/authSlice';
 import MusicUnfastened from './pages/MusicUnfastened/musicunfastened'
 
 function App() {
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
-  useEffect(()=>{
-    dispatch(getMe())
-  }, [])
+  // useEffect(()=>{
+  //   dispatch(getMe())
+  // }, [])
   return (
     <Router>
       <Navbar />
