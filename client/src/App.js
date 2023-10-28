@@ -22,7 +22,7 @@ import { useDispatch } from 'react-redux';
 //import { useEffect } from 'react';
 //import { getMe } from './redux/features/auth/authSlice';
 import MusicUnfastened from './pages/MusicUnfastened/musicunfastened'
-
+import Questions from './pages/Questions/questions';
 function App() {
   // const dispatch = useDispatch()
 
@@ -49,6 +49,7 @@ function App() {
         <Route path='/chat' element={<Chat />}/> 
         <Route path='/profil' element={<Profil />}/> 
         <Route path='/musicunfastened' element={<MusicUnfastened />}/> 
+        <Route path='/questions' element={<Questions />}/> 
 
       </Routes>
     </Router>

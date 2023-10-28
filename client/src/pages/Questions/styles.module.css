@@ -1,0 +1,107 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: linear-gradient(90deg, #6100C2, #CA95FF);
+    display: flex;
+    flex-direction: column; /* Змінити на вертикальне розташування */
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.oval {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 170px; /* Висота пів-овала */
+    background-color: #471E70; /* Колір пів-овала */
+    border-radius: 50% 50% 0 0; /* Створення пів-овала */
+    overflow: hidden;
+    z-index: -1;
+}
+.centeredСontent {
+    display: flex;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    justify-content: center; /* Вирівнювання по горизонталі (центр) */
+    align-items: center; /* Вирівнювання по вертикалі (центр) */
+}
+.centeredСontent img {
+    width: 40px; /* Змініть це значення на бажаний розмір */
+    height: 40px; /* Змініть це значення на бажаний розмір */
+    margin-right: 20px; /* Відступ між картинкою і текстом */
+}
+
+
+.centeredContent p {
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+    font-size: 40px;
+    margin-top: 20px;
+    margin-left: 280px;
+    margin-right: 280px;
+    background-color: #471E70;
+    padding: 10px 130px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.content p{
+    font-family: 'Inter', sans-serif;
+    color: #fff; /* Змініть колір на білий */
+    font-size: 35px;
+    margin-top: 15px;
+    text-align: center;
+}
+.blocks{
+    display: flex;
+    text-align: center;
+    position: relative;
+}
+.block {
+    text-align: center; /* Вирівнювання тексту по центру */
+    margin: 20px ; /* Маржа між блоками зверху і знизу */
+    position: relative; /* Додати позицію для позиціонування */
+}
+
+.block img {
+    max-width: 100%; /* Зробіть, щоб картинка пристосовувалася до розміру блоку */
+}
+
+.block p {
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+    font-size: 18px;
+    margin-top: 20px; /* Змініть це значення на ваш смак */
+}
+.centeredButtonContainer {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+  }
+.nextButton {
+    font-family: 'Inter', sans-serif;
+    font-size: 30px;
+    background: linear-gradient(90deg, #6100C2, #CA95FF);
+    color: #fff;
+    height: 70px;
+    width: 220px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 50px;
+}
+.nextButton:hover {
+    background: linear-gradient(90deg, #1F1628, #6D4C8F);
+}
+
+.block.selected {
+    border: 5px solid #471E70;
+    background-color: #471E70;
+    border-radius: 10px;
+}
+ul {
+    list-style-type: none;
+}
