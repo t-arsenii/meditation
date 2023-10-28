@@ -19,7 +19,7 @@ export default function Questions() {
         <div className={styles.body}>
             <div className={styles.oval}></div>
             <div className={styles.centeredСontent}>
-                <p>Que1</p>
+                <p>Pytanie {question.id}</p>
             </div>
             <div className={styles.content}>
                 <p>{question.question}</p>
