@@ -45,7 +45,7 @@ export const registerUser = createAsyncThunk(
      },
  )
 
- export const getMe = createAsyncThunk('auth/loginUser', async () => {
+ export const getMe = createAsyncThunk('auth/me', async () => {
      try {
          const { data } = await axios.get('/auth/me')
          return data
