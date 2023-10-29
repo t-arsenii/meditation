@@ -102,15 +102,3 @@ body {
     background-color: #471E70;
     border-radius: 10px;
 }
-ul {
-    list-style-type: none;
-    display: flex;
-    flex-direction: row;
-}
-li {
-    background-color: #471E70;
-    
-    display: flex;
-    text-align: center;
-    position: relative;
-}
