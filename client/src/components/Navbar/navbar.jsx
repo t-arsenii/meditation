@@ -16,7 +16,7 @@ function Main({ name }) {
   //const isAuth = useSelector(checkIsAuth)
     const location = useLocation();
     const { pathname } = location;
-    const excludedPaths = ['/hello' , '/' , '/registration' , '/logging' , '/starttest' , '/endtest' , '/question1' , '/question2' , '/question3' ];
+    const excludedPaths = ['/hello' , '/' , '/registration' , '/logging' , '/starttest' , '/endtest' , '/question1' , '/question2' , '/question3' , '/questions' ];
 
     if (excludedPaths.includes(pathname)) {
         return null;

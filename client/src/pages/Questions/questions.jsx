@@ -45,7 +45,7 @@ export default function Questions() {
             </ul>
             </div>
             <div className={styles.centeredButtonContainer}>
-                <button className={styles.nextButton}>Next</button>
+                <button className={styles.nextButton}>Dalej</button>
             </div>
           </div>
     );
