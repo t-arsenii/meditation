@@ -10,8 +10,10 @@ import books from './images/books.png'
 import logout from './images/logout.png'
 import {useLocation} from 'react-router-dom'
 import { Link } from 'react-router-dom';
-
+import { useSelector } from 'react-redux';
+import { checkIsAuth } from '../../redux/features/auth/authSlice';
 function Main({ name }) {
+  //const isAuth = useSelector(checkIsAuth)
     const location = useLocation();
     const { pathname } = location;
     const excludedPaths = ['/hello' , '/' , '/registration' , '/logging' , '/starttest' , '/endtest' , '/question1' , '/question2' , '/question3' ];

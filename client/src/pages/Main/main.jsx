@@ -4,15 +4,26 @@ import forward from './images/forward.png'
 import main_img from './images/main_img.png'
 import woman_main from './images/woman_main.png'
 import add from './images/add.png'
-
-
-function Main({ name }) {
+import { useState, useEffect }  from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getMe } from '../../redux/features/auth/authSlice';
+function Main() {
+  const [username, setUsername] = useState('')
+  const dispatch = useDispatch();
+  //const { status } = useSelector((state) => state.auth);
+  useEffect(() => {
+    dispatch(getMe(username)).then((response) => {
+      setUsername(response.payload.username);
+    });
+  }, [username]);
+  
+ 
   return (
     <div className={styles.body}>
       <div className={styles.oval}></div>
       <div className={styles.main}>
       <div className={styles.sideText}>
-        <p>{`Cześć, ${name}`}</p>
+        <p>{`Cześć, ${username}`}</p>
         <p className={styles.textNext}>Uczyń swój dzień lepszym</p>
 
         <div className={styles.program}>

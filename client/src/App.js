@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Homepage from './pages/Homepage/homepage';
 import Hello from './pages/Hello/hello';
@@ -18,10 +18,22 @@ import MoodCalendar from './pages/Mood/mood'
 import Music from './pages/Music/music'
 import Chat from './pages/Chat/chat'
 import Profil from './pages/Profil/profil'
+import { useDispatch } from 'react-redux';
+//import { useEffect } from 'react';
+//import { getMe } from './redux/features/auth/authSlice';
 import MusicUnfastened from './pages/MusicUnfastened/musicunfastened'
+
 import Animation from './pages/Animation/animation'
 
+
+import Questions from './pages/Questions/questions';
+
 function App() {
+  // const dispatch = useDispatch()
+
+  // useEffect(()=>{
+  //   dispatch(getMe())
+  // }, [])
   return (
     <Router>
       <Navbar />
@@ -43,6 +55,7 @@ function App() {
         <Route path='/profil' element={<Profil />}/> 
         <Route path='/musicunfastened' element={<MusicUnfastened />}/> 
         <Route path='/animation' element={<Animation />}/> 
+        <Route path='/questions' element={<Questions />}/> 
 
       </Routes>
     </Router>

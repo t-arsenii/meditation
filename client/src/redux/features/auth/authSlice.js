@@ -29,10 +29,10 @@ export const registerUser = createAsyncThunk(
  
  export const loginUser = createAsyncThunk(
      'auth/loginUser',
-     async ({ username, password }) => {
+     async ({ email, password }) => {
          try {
              const { data } = await axios.post('/auth/login', {
-                 username,
+                 email,
                  password,
              })
              if (data.token) {
@@ -45,7 +45,7 @@ export const registerUser = createAsyncThunk(
      },
  )
 
- export const getMe = createAsyncThunk('auth/loginUser', async () => {
+ export const getMe = createAsyncThunk('auth/me', async () => {
      try {
          const { data } = await axios.get('/auth/me')
          return data
