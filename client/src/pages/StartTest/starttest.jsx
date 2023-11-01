@@ -19,7 +19,7 @@ function StartTest() {
       <button
         className={styles.startButton}
         onClick={() => {
-          window.location.href = '/question1';
+          window.location.href = '/questions';
         }}
       >
         START

@@ -16,10 +16,9 @@ const UserSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'SavedMeditation'
     }],
-    ResultProgram: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'ResultProgram'
-    }],
+    
+      result: { type : Array, default: []},
+    
   });
 
 export default mongoose.model('User', UserSchema)  

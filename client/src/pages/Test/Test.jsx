@@ -17,7 +17,7 @@ export default function Test() {
     const {que, trace } = useSelector(state => state.questions);
     const dispatch = useDispatch()
     useEffect(() =>{
-      console.log(result)
+      console.log(state)
     })
   
 

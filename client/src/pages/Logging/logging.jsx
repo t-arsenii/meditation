@@ -19,7 +19,9 @@ function Logging() {
 
     useEffect(() => {
         if (status) toast(status)
-        if (isAuth) navigate('/main')
+        //if (isAuth) navigate('/main')
+        if (isAuth) navigate('/questions')
+
     }, [status, isAuth, navigate])
 
     const handleSubmit = () => {
