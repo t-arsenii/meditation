@@ -38,7 +38,7 @@ export async function storeResult(req, res) {
       throw new Error('User not found');
     }
 
-    const { result } = req.body;
+    const { result } = req.body.result;
     user.result.push(result);
     await user.save();
 
