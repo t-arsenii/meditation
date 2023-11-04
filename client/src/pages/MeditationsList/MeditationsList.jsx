@@ -13,10 +13,13 @@ export const MeditationsList = () => {
         dispatch(getMeditations());
     }, [dispatch]);
 
+      const saveMeditation = (index) =>{
+
+      }
     return (    
       
-      <div className={styles.body}>
-        <div className={styles.blocksContainer}>
+       <div>
+      <div className={styles.body}></div>  <div className={styles.blocksContainer}>
             {meditations?.map((meditation, i) => (
                 <div className={styles.block} key={i}>
                     <img src={woman_main} alt="Meditation" />
@@ -27,7 +30,7 @@ export const MeditationsList = () => {
                 </div>
             ))}
         </div>
-      </div> 
+      </div>
         
     );
 }
