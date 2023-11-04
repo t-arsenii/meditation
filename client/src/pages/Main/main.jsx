@@ -6,16 +6,24 @@ import woman_main from './images/woman_main.png'
 import add from './images/add.png'
 import { useState, useEffect }  from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getMe } from '../../redux/features/auth/authSlice';
+import { checkIsAuth, getMe } from '../../redux/features/auth/authSlice';
+import { getMeditations } from '../../redux/features/meditationSlice';
+import { MeditationItem } from './MeditationItem';
 function Main() {
-  const [username, setUsername] = useState('')
-  const dispatch = useDispatch();
-  //const { status } = useSelector((state) => state.auth);
+
+   
+   const dispatch = useDispatch();
+   const {meditations, savedMeditations} = useSelector((state) => state.meditation)
+  // console.log(meditations)
+  const state = useSelector(state => state)
+ const username = useSelector(state => state.auth.user.username)
+  // //const { status } = useSelector((state) => state.auth);
+   
   useEffect(() => {
-    dispatch(getMe(username)).then((response) => {
-      setUsername(response.payload.username);
-    });
-  }, [username]);
+       dispatch(getMeditations())
+    }, [dispatch])
+   console.log(state);
+  
   
  
   return (
@@ -40,25 +48,20 @@ function Main() {
         </div>
 
         <div className={styles.blocksContainer}>
-          <div className={styles.block}>
-            <img src={woman_main} alt="Woman Main" />
-            <p>Medytacja skupiona</p>
-          </div>
+          
+           
+            {meditations?.map((meditation, i) => (
+              
+              <div className={styles.block}>
+                <MeditationItem i= {i} meditation={meditation}>
+                
+                </MeditationItem>
+                
+              </div>
+                      
+                    ))}
+         
 
-          <div className={styles.block}>
-            <img src="your_image_2.png" alt="Image 2" />
-            <p>Текст 2</p>
-          </div>
-
-          <div className={styles.block}>
-            <img src="your_image_3.png" alt="Image 3" />
-            <p>Текст 3</p>
-          </div>
-
-          <div className={styles.block}>
-            <img src="your_image_4.png" alt="Image 4" />
-            <p>Текст 4</p>
-          </div>
         </div>
         <div className={styles.accessible2}>
           <p>Zapisane medytacje</p>

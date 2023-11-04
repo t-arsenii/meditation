@@ -3,7 +3,7 @@ import Question from "../models/Question.js"
 import Combination from "../models/Combination.js";
 import User from "../models/User.js";
 import questions, {answers} from "../data/questions.js";
-import UserAnswer from "../models/UserAnswer.js";
+
 import Result from "../models/Result.js";
 //get questions from db
 export const getQuestions = async (req, res) => {
@@ -38,10 +38,18 @@ export async function storeResult(req, res) {
       throw new Error('User not found');
     }
 
-    const { result } = req.body.result;
-    user.result.push(result);
-    await user.save();
-
+    // const { result } = req.body.result;
+    // user.result.push(result);
+    // await user.save();
+     const { userId, result} = req.body;
+     const newResult = new Result({
+      username: user.username,
+      result,
+     })
+     await newResult.save();
+     await User.findByIdAndUpdate(req.body.userId, {
+      $push: { result: newResult },
+  })
     console.log('Result Saved Successfully...!');
     res.json({ msg: 'Result Saved Successfully...!' });
   } catch (error) {

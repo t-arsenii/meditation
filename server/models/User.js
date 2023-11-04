@@ -17,7 +17,12 @@ const UserSchema = new mongoose.Schema({
       ref: 'SavedMeditation'
     }],
     
-      result: { type : Array, default: []},
+    result: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Result',
+      },
+    ],
     
   });
 

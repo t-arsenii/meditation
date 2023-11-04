@@ -17,11 +17,12 @@ function EndTest() {
     if (auth && auth.user && auth.user._id) {
       dispatch(Action.setUserId(auth.user._id)); // Ustaw userId w Redux store
     }
-    console.log(userId); // Sprawdź, czy userId jest poprawnie ustawione
-    console.log(result);
+   // console.log(userId); 
+    //console.log(result);
     if (result && result.userId) {
       publishResult({ result, userId: result.userId }) // Dodaj userId do danych przekazywanych do publishResult
         .then((data) => {
+          console.log(state)
           console.log("Data published successfully", data);
         })
         .catch((error) => {
