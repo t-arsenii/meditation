@@ -16,10 +16,14 @@ const UserSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'SavedMeditation'
     }],
-    ResultProgram: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'ResultProgram'
-    }],
+    
+    result: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Result',
+      },
+    ],
+    
   });
 
 export default mongoose.model('User', UserSchema)  

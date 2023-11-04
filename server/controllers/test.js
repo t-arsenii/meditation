@@ -3,7 +3,7 @@ import Question from "../models/Question.js"
 import Combination from "../models/Combination.js";
 import User from "../models/User.js";
 import questions, {answers} from "../data/questions.js";
-import UserAnswer from "../models/UserAnswer.js";
+
 import Result from "../models/Result.js";
 //get questions from db
 export const getQuestions = async (req, res) => {
@@ -30,15 +30,35 @@ export const insertQuestions = async (req, res) => {
 
 //Store User answer post all result
 
-export const storeResult = async (req, res) => {
+export async function storeResult(req, res) {
   try {
-    const { username, result } = req.body;
-    await Result.create({ username, result });
-    res.json({ msg: 'User Answer Stored...!' });
+    const user = await User.findById(req.body.userId);
+
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    // const { result } = req.body.result;
+    // user.result.push(result);
+    // await user.save();
+     const { userId, result} = req.body;
+     const newResult = new Result({
+      username: user.username,
+      result,
+     })
+     await newResult.save();
+     await User.findByIdAndUpdate(req.body.userId, {
+      $push: { result: newResult },
+  })
+    console.log('Result Saved Successfully...!');
+    res.json({ msg: 'Result Saved Successfully...!' });
   } catch (error) {
-    res.json({ error });
+    console.error('Error:', error); // Log the error to the console
+    res.json({ error: error.message });
   }
-};
+}
+
+
 
 
 //Get Results

@@ -10,10 +10,12 @@ import books from './images/books.png'
 import logout from './images/logout.png'
 import {useLocation} from 'react-router-dom'
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import {useDispatch, useSelector } from 'react-redux';
 import { checkIsAuth } from '../../redux/features/auth/authSlice';
 function Main({ name }) {
-  //const isAuth = useSelector(checkIsAuth)
+  const isAuth = useSelector(checkIsAuth)
+  const dispatch = useDispatch()
+
     const location = useLocation();
     const { pathname } = location;
     const excludedPaths = ['/hello' , '/' , '/registration' , '/logging' , '/starttest' , '/endtest' , '/question1' , '/question2' , '/question3' , '/questions' ];
@@ -25,8 +27,7 @@ function Main({ name }) {
     <div className={styles.body}>
       <div className={styles.oval}></div>
       <div className={styles.leftRectangle}></div>
-
-      <div className={styles.textOverRectangle}>
+{isAuth && (<div className={styles.textOverRectangle}>
         <img src={logo2} alt="Logo" />
         <div className={styles.textOver}>
           <img src={home} alt="Home Icon" />
@@ -54,7 +55,8 @@ function Main({ name }) {
           <Link to="/books"><p>Książki</p></Link>
         </div>
       </div>
-
+)}
+      
       <div className={styles.logoutText}>
         <img src={logout} alt="Logout Icon" />
           <p>Wyloguj się</p>

@@ -12,7 +12,7 @@ router.get('/questions',getQuestions,checkAuth)
 router.post('/questions',insertQuestions)
 
 //post all results
-router.post('/results',storeResult )
+router.post('/results',storeResult,checkAuth )
 //get all results
 router.get('/results',getResult )
  export default router
