@@ -2,20 +2,42 @@ import React from 'react';
 import styles from './styles.module.css';
 import { getMeditations } from '../../redux/features/meditationSlice';
 import { useDispatch , useSelector} from 'react-redux';
-import { useEffect }  from 'react';
+import { useEffect , useState}  from 'react';
 import woman_main from './images/woman_main.png'
-
+import { insertSavedMeditations } from '../../redux/features/meditationSlice';
 export const MeditationsList = () => {
+  const state = useSelector(state => state)
+  const {meditations} = useSelector((state) => state.meditation);
+  const [selectedBlock, setSelectedBlock] = useState(null);
+  const user = useSelector((state) => state.auth.user._id)
+   //selectedBlock = useSelector(state => state.meditation)
+  
     const dispatch = useDispatch();
-    const {meditations} = useSelector((state) => state.meditation);
+    
 
     useEffect(() => {
         dispatch(getMeditations());
+        console.log(state)
     }, [dispatch]);
 
-      const saveMeditation = (index) =>{
-
+    function onChecked(selectedBlock){
+      //console.log(selectedBlock)
+      setSelectedBlock(selectedBlock);//wybyraje medytacju
+      console.log(selectedBlock)
+      console.log(user)
+ 
+    }
+    const saveMeditation = (index) => {
+      onChecked(index);
+      try {
+        const params = { meditationId: index, userId: user };
+        console.log("Params:", params); // Dodaj to, aby sprawdzić wartości params
+        dispatch(insertSavedMeditations(params));
+        console.log(state);
+      } catch (error) {
+        console.error(error);
       }
+    };
     return (    
       
        <div>
@@ -25,7 +47,11 @@ export const MeditationsList = () => {
                     <img src={woman_main} alt="Meditation" />
                     <p>{meditation.title}</p>
                     <p>{meditation.description}</p>
-                    <button>Zapisz</button>
+                    <button onClick={() => {
+                          
+                          saveMeditation(meditation._id);
+                          // Dodaj tutaj swoją dodatkową funkcjonalność onClick
+                        }}>Zapisz</button>
                     <button>Przycisk</button>
                 </div>
             ))}

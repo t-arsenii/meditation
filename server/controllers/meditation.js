@@ -53,7 +53,7 @@ export const insertSavedMeditations = async (req, res) => {
         })
       res.json({ msg: "Data Saved Successfully...!" });
     } catch (error) {
-      res.json({ error });
+      res.json({ msg: 'Error w controllers' });
     }
   };
 

@@ -24,6 +24,17 @@ export const getMeditations = createAsyncThunk('/meditations', async () => {
         console.log(error)
     }
 })
+export const insertSavedMeditations = createAsyncThunk(
+    '/meditationsSaved',
+    async (params) => {
+        try {
+            const { data } = await axios.post('/meditationsSaved', params)
+            return data
+        } catch (error) {
+            console.log("Error w slice")
+        }
+    },
+)
 export const meditationSlice = createSlice({
     name: 'meditation',
     initialState,
@@ -50,6 +61,18 @@ export const meditationSlice = createSlice({
             //state.popularPosts = action.payload.popularPosts
         },
         [getMeditations.rejected]: (state) => {
+            state.loading = false
+        },
+        // INsertSavedMeditation
+        [insertSavedMeditations.pending]: (state) => {
+            state.loading = true
+        },
+        [insertSavedMeditations.fulfilled]: (state, action) => {
+            state.loading = false
+            state.savedMeditations.push(action.payload)
+            //state.popularPosts = action.payload.popularPosts
+        },
+        [insertSavedMeditations.rejected]: (state) => {
             state.loading = false
         },
     },
