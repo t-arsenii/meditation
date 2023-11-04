@@ -14,15 +14,20 @@ export const MeditationsList = () => {
     }, [dispatch]);
 
     return (    
+      
+      <div className={styles.body}>
         <div className={styles.blocksContainer}>
             {meditations?.map((meditation, i) => (
                 <div className={styles.block} key={i}>
                     <img src={woman_main} alt="Meditation" />
                     <p>{meditation.title}</p>
                     <p>{meditation.description}</p>
+                    <button>Zapisz</button>
                     <button>Przycisk</button>
                 </div>
             ))}
         </div>
+      </div> 
+        
     );
 }
