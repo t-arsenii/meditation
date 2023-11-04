@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { checkIsAuth, getMe } from '../../redux/features/auth/authSlice';
 import { getMeditations } from '../../redux/features/meditationSlice';
 import { MeditationItem } from './MeditationItem';
+import { Link } from 'react-router-dom'
 function Main() {
 
    
@@ -43,7 +44,10 @@ function Main() {
         <div className={styles.accessible}>
           <p>Dostępne medytacje</p>
           <div className={styles.all}>
-            <p>Wszystko</p>
+           <Link to={`/meditationsList`}>
+           <p>Wszystko</p>
+            </Link> 
+           
           </div>
         </div>
 

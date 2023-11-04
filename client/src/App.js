@@ -24,6 +24,8 @@ import { useDispatch } from 'react-redux';
 import MusicUnfastened from './pages/MusicUnfastened/musicunfastened'
 import Questions from './pages/Questions/questions';
 import Test from './pages/Test/Test';
+import { MeditationsList } from './pages/MeditationsList/MeditationsList';
+
 function App() {
   // const dispatch = useDispatch()
 
@@ -51,6 +53,7 @@ function App() {
         <Route path='/profil' element={<Profil />}/> 
         <Route path='/musicunfastened' element={<MusicUnfastened />}/> 
         <Route path='/questions' element={<Test />}/> 
+        <Route path='/meditationsList'element={<MeditationsList/>}/>
 
       </Routes>
     </Router>
