@@ -78,6 +78,9 @@ export default function Questions({onChecked}) {
                   ))
                 }
             </div>
+            <div className={styles.centeredButtonContainer}>
+                <button className={styles.nextButton}>Dalej</button>
+            </div>
             
           </div>
     );

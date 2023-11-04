@@ -1,6 +1,6 @@
 /* Zaktualizowany kod CSS */
 .blocksContainer {
-    
+    overflow: auto;
     margin-left: 20%; /* Отступ сверху между контейнером и предыдущим контентом */
 }
 .block {
