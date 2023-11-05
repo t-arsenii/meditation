@@ -15,11 +15,19 @@ import { checkIsAuth } from '../../redux/features/auth/authSlice';
 function Main({ name }) {
   const isAuth = useSelector(checkIsAuth)
   const dispatch = useDispatch()
+  const user = useSelector((state) => state.auth.user)
+    // const navigate = useNavigate()
+    // useEffect(() => {
+    //     if (status) toast(status)
+    //     if (isAuth) navigate(`/main/${user._id}`)
+    //     //if (isAuth) navigate('/questions')
 
+    // }, [status, isAuth, navigate])
     const location = useLocation();
     const { pathname } = location;
     const excludedPaths = ['/hello' , '/' , '/registration' , '/logging' , '/starttest' , '/endtest' , '/question1' , '/question2' , '/question3' , '/questions' ];
-
+    
+  
     if (excludedPaths.includes(pathname)) {
         return null;
       }
@@ -31,7 +39,7 @@ function Main({ name }) {
         <img src={logo2} alt="Logo" />
         <div className={styles.textOver}>
           <img src={home} alt="Home Icon" />
-          <Link to="/main"><p>Główna</p></Link>
+          <Link to={`main/${user._id}`}><p>Główna</p></Link>
         </div>
         <div className={styles.textOver}>
           <img src={music} alt="Music Icon" />

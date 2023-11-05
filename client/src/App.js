@@ -53,7 +53,7 @@ function App() {
         <Route path="/question1" element={<Question1 />} />
         <Route path="/question2" element={<Question2 />} />
         <Route path="/question3" element={<Question3 />} />
-        <Route path="/main" element={<Main />} />
+        <Route path="/main/:userId" element={<Main />} />
         <Route path='/books' element={<Books />}/>
         <Route path='/mood' element={<MoodCalendar />}/>
         <Route path='/music' element={<Music />}/> 

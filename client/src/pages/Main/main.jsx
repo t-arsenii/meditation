@@ -7,25 +7,37 @@ import add from './images/add.png'
 import { useState, useEffect }  from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { checkIsAuth, getMe } from '../../redux/features/auth/authSlice';
-import { getMeditations } from '../../redux/features/meditationSlice';
+import { getMeditations, getSavedMeditations} from '../../redux/features/meditationSlice';
 import { MeditationItem } from './MeditationItem';
 import { Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom';
 function Main() {
-
-   
    const dispatch = useDispatch();
    const {meditations, savedMeditations} = useSelector((state) => state.meditation)
-  // console.log(meditations)
   const state = useSelector(state => state)
- const username = useSelector(state => state.auth.user.username)
-  // //const { status } = useSelector((state) => state.auth);
-   
-  useEffect(() => {
+  const username = useSelector(state => state.auth.user.username)
+  const { userId } = useParams();
+
+   useEffect(() => {
+    
        dispatch(getMeditations())
+       
     }, [dispatch])
+
+    useEffect(() => {
+      if (userId) {
+        dispatch(getSavedMeditations(userId));
+      }
+    }, [dispatch, userId]);
+    
+
    console.log(state);
-  
-  
+
+
+   function addMeditatio(){
+    
+
+  }
  
   return (
     <div className={styles.body}>
@@ -52,33 +64,33 @@ function Main() {
         </div>
 
         <div className={styles.blocksContainer}>
-          
-           
             {meditations?.map((meditation, i) => (
-              
               <div className={styles.block}>
                 <MeditationItem i= {i} meditation={meditation}>
-                
                 </MeditationItem>
-                
-              </div>
-                      
+              </div>     
                     ))}
-         
-
         </div>
         <div className={styles.accessible2}>
           <p>Zapisane medytacje</p>
           <div className={styles.all2}>
-            <p>Wszystko</p>
           </div>
         </div>
         <div className={styles.blocksContainer}>
           <div className={styles.blockAdd}>
-            <img src={add} alt="Add Icon" />
+          {
+          savedMeditations?.map((savedMeditation, i) => (
+            <div className={styles.block}>
+              <img src={woman_main} alt="Woman Main"></img>
+              {
+              savedMeditation.title
+            }
+            </div>
+          ))}  
           </div>
         </div>
-      </div></div>
+      </div>
+      </div>
     </div>
   );
 }

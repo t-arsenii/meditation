@@ -7,7 +7,7 @@ import woman_main from './images/woman_main.png'
 import { insertSavedMeditations } from '../../redux/features/meditationSlice';
 export const MeditationsList = () => {
   const state = useSelector(state => state)
-  const {meditations} = useSelector((state) => state.meditation);
+  const {meditations, savedMeditation} = useSelector((state) => state.meditation);
   const [selectedBlock, setSelectedBlock] = useState(null);
   const user = useSelector((state) => state.auth.user._id)
    //selectedBlock = useSelector(state => state.meditation)
@@ -30,9 +30,14 @@ export const MeditationsList = () => {
     const saveMeditation = (index) => {
       onChecked(index);
       try {
-        const params = { meditationId: index, userId: user };
+        const params = { userId: user };
         console.log("Params:", params); // Dodaj to, aby sprawdzić wartości params
-        dispatch(insertSavedMeditations(params));
+        if(savedMeditation && savedMeditation.length <= 3){  /**POprawyty na USE STATE?? */
+          dispatch(insertSavedMeditations(params));
+        }else{
+          console.log("Możesz zapisać tylko 4 medytacji")
+        }
+        
         console.log(state);
       } catch (error) {
         console.error(error);

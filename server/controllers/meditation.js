@@ -4,7 +4,7 @@ import meditation from "../data/meditation.js";
 import User from "../models/User.js";
 
 import Meditation from "../models/Meditation.js";
-import SavedMeditation from "../models/SavedMeditation..js";
+import SavedMeditation from "../models/SavedMeditation.js";
 //get questions from db
 export const getMeditations= async (req, res) => {
   try {
@@ -45,7 +45,7 @@ export const insertSavedMeditations = async (req, res) => {
             title: meditation.title,
             description: meditation.description,
             meditationId: meditation._id,
-            userId: req.userId,
+            userId: user._id,
         })
         await newSavedMeditation.save()
           await User.findByIdAndUpdate(req.body.userId, {
@@ -60,15 +60,20 @@ export const insertSavedMeditations = async (req, res) => {
   //Get user SavedMeditation
   export const getMySavedMeditations = async (req, res) => {
     try {
-        const user = await User.findById(req.body.userId)
-        const list = await Promise.all(
-            user.savedMeditations.map((savedMeditation) => {
-                return SavedMeditation.findById(savedMeditation._id)
-            }),
-        )
-
-        res.json(list)
+      const user = await User.findById(req.query.userId);
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+  
+      const list = await Promise.all(
+        user.savedMeditations.map((savedMeditation) => {
+          return SavedMeditation.findById(savedMeditation._id);
+        })
+      );
+  
+      res.json(list);
     } catch (error) {
-        res.json({ message: 'Coś poszło nie tak.' })
+      res.status(500).json({ message: 'Something went wrong' });
     }
-}
+  };
+  

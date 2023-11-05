@@ -11,15 +11,16 @@ import { toast } from 'react-toastify'
 function Logging() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-
+const state = useSelector((state)=> state)
     const { status } = useSelector((state) => state.auth)
     const isAuth = useSelector(checkIsAuth)
+    const user = useSelector((state) => state.auth.user)
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
-
     useEffect(() => {
         if (status) toast(status)
-        if (isAuth) navigate('/main')
+        if (isAuth) navigate(`/main/${user._id}`)
         //if (isAuth) navigate('/questions')
 
     }, [status, isAuth, navigate])
@@ -32,6 +33,7 @@ function Logging() {
             console.log(error)
         }
     }
+    console.log(state)
 
       return (
         <div className={styles.body}>
