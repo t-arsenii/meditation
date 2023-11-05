@@ -43,25 +43,28 @@ export const MeditationsList = () => {
         console.error(error);
       }
     };
-    return (    
-      
-       <div>
-      <div className={styles.body}></div>  <div className={styles.blocksContainer}>
-            {meditations?.map((meditation, i) => (
-                <div className={styles.block} key={i}>
-                    <img src={woman_main} alt="Meditation" />
-                    <p>{meditation.title}</p>
-                    <p>{meditation.description}</p>
-                    <button onClick={() => {
-                          
-                          saveMeditation(meditation._id);
-                          // Dodaj tutaj swoją dodatkową funkcjonalność onClick
-                        }}>Zapisz</button>
-                    <button>Przycisk</button>
-                </div>
-            ))}
+    return (
+      <div>
+        <div className={styles.body}></div>
+        <div className={styles.blocksContainer}>
+          {meditations?.map((meditation, i) => (
+            <div className={styles.block} key={i}>
+              <div className={styles.leftSide}>
+                <img src={woman_main} alt="Meditation" />
+              </div>
+              <div className={styles.rightSide}>
+                <p>{meditation.title}</p>
+                <p>{meditation.description}</p>
+                <button onClick={() => {
+                  saveMeditation(meditation._id);
+                  // Dodaj tutaj swoją dodatkową funkcjonalność onClick
+                }}>Zapisz</button>
+                <button>Przycisk</button>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-        
     );
+    
 }
