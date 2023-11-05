@@ -30,13 +30,13 @@ export const MeditationsList = () => {
     const saveMeditation = (index) => {
       onChecked(index);
       try {
-        const params = { userId: user };
+        const params = { meditationId:index, userId: user };
         console.log("Params:", params); // Dodaj to, aby sprawdzić wartości params
-        if(savedMeditation && savedMeditation.length <= 3){  /**POprawyty na USE STATE?? */
+       // if(savedMeditation && savedMeditation.length <= 3){  /**POprawyty na USE STATE?? */
           dispatch(insertSavedMeditations(params));
-        }else{
-          console.log("Możesz zapisać tylko 4 medytacji")
-        }
+       // }else{
+       //   console.log("Możesz zapisać tylko 4 medytacji")
+       // }
         
         console.log(state);
       } catch (error) {
