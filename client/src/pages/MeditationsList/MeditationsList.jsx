@@ -5,6 +5,7 @@ import { useDispatch , useSelector} from 'react-redux';
 import { useEffect , useState}  from 'react';
 import woman_main from './images/woman_main.png'
 import { insertSavedMeditations } from '../../redux/features/meditationSlice';
+import save from './images/save.png';
 export const MeditationsList = () => {
   const state = useSelector(state => state)
   const {meditations, savedMeditation} = useSelector((state) => state.meditation);
@@ -47,19 +48,22 @@ export const MeditationsList = () => {
       <div>
         <div className={styles.body}></div>
         <div className={styles.blocksContainer}>
+        <div className={styles.meditationall}>Dostępne medytacje</div>
           {meditations?.map((meditation, i) => (
             <div className={styles.block} key={i}>
               <div className={styles.leftSide}>
                 <img src={woman_main} alt="Meditation" />
               </div>
               <div className={styles.rightSide}>
-                <p>{meditation.title}</p>
+                <p  className={styles.title}>{meditation.title}</p>
                 <p>{meditation.description}</p>
-                <button onClick={() => {
+                <div className={styles.buttons}>
+                <button className={styles.button1} onClick={() => {
                   saveMeditation(meditation._id);
                   // Dodaj tutaj swoją dodatkową funkcjonalność onClick
-                }}>Zapisz</button>
-                <button>Przycisk</button>
+                }}><img src={save}/></button>
+                <button className={styles.button2}>Start</button>
+                </div>
               </div>
             </div>
           ))}

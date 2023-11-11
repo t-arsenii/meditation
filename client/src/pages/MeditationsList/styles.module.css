@@ -5,8 +5,9 @@
     justify-content: center;
     align-items: center;
     overflow: auto;
-    margin-top: 50px;
-    margin-left: 200px;
+    margin-top: 60px;
+    margin-left: 350px;
+    
   }
   
   .block {
@@ -17,21 +18,14 @@
     border-radius: 10px;
     padding: 20px;
     margin: 20px 0;
+
   }
-  
-  .block button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #471E70;
-    color: #fff;
-    cursor: pointer;
-    display: inline-block;
-  }
-  
-  .block button:hover {
+  .block .button2:hover {
     background-color: #6D4C8F;
+  }
+  .block .button1:hover {
+    
+    border-radius: 50px;
   }
   
   .block img {
@@ -54,12 +48,38 @@
     background-color: #fff;
     border-radius: 15px;
   }
-  
   .rightSide p {
-    font-family: 'Inter', sans-serif;
-    color: #000000;
-    font-size: 18px;
     margin-top: 20px;
     text-align: center;
   }
-  
+  .buttons{
+    display: flex;
+  }
+  button{
+    margin: 10px;
+  }
+  .button2{
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #471E70;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+  }
+  .button1{
+    background: none;
+    border: none;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+  .meditationall{
+    text-align: center;
+    font-size: 40px;
+    color: #fff;
+    margin-right: 150px;
+  }
+  .title{
+    font-size: 28px;
+  }

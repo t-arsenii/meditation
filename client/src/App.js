@@ -22,6 +22,7 @@ import { useDispatch } from 'react-redux';
 //import { useEffect } from 'react';
 //import { getMe } from './redux/features/auth/authSlice';
 import MusicUnfastened from './pages/MusicUnfastened/musicunfastened'
+import Animation from './pages/Animation/animation'
 
 
 
@@ -43,6 +44,7 @@ function App() {
   return (
     <Router>
       <Navbar />
+      
       <Routes>   
         <Route path="/" element={<Homepage />} />
         <Route path="/hello" element={<Hello />} />
@@ -60,14 +62,12 @@ function App() {
         <Route path='/chat' element={<Chat />}/> 
         <Route path='/profil' element={<Profil />}/> 
         <Route path='/musicunfastened' element={<MusicUnfastened />}/> 
-
+        <Route  path='/animation' element={ <Animation />}/>
         <Route path='/questions' element={<Test />}/> 
-        <Route path='/meditationsList'element={<MeditationsList/>}/>
-
-
-        
+        <Route path='/meditationsList'element={<MeditationsList/>}/>   
         <Route path='/questions' element={<Questions />}/> 
         <Route path='/questions' element={<Test />}/> 
+
       </Routes>
     </Router>
   );

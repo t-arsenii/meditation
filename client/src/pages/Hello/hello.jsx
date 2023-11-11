@@ -1,8 +1,7 @@
 import React from 'react';
 import styles from './styles.module.css';
 import logoImage from './images/woman.png';
-import { useNavigate } from 'react-router-dom';
-
+import { Link , useNavigate} from 'react-router-dom';
 
 const Hello = () => {
   const navigate = useNavigate();
@@ -18,7 +17,7 @@ const Hello = () => {
         <p className={styles.welcomeText}>Witamy w SereneAstro</p>
         <p className={styles.subtext}>Rozpocznijmy przygodę w świecie medytacji i spokoju</p>
         <button className={styles.startButton} onClick={handleRegistrationClick}>START</button>
-        <p className={styles.accountText}>Masz konto? <a href="#">Logowanie</a></p>
+        <p className={styles.accountText}>Masz konto? <Link to="/logging">Logowanie</Link> </p>
       </div>
       <img src={logoImage} alt="woman" className={styles.topImage} />
     </div>

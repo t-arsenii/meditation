@@ -8,10 +8,10 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "gridfs-stream": "^1.1.1",
     "object-assign": "^4.1.1",
     "vary": "^1.1.2"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

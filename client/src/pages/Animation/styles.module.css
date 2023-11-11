@@ -77,3 +77,78 @@
   transform-origin: right; /* Start animation from the right edge */
 }
 
+.textOverlay {
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10; /* Make sure the text is on top of the animation */
+}
+
+.textOverlay h1 {
+  font-size: 35px;
+  color: #fff;
+
+}
+
+.textOverlay p {
+  font-size: 32px;
+  color: #fff;
+  background-color: #471E70;
+  border-radius: 30px;
+  padding: 5px;
+}
+.audioControls {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+}
+
+.audioControlButton {
+  width: 40px;
+  height: 40px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+.customButton {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  /* Додайте інші стилі, які вам потрібні */
+}
+.disabledAnimation {
+  animation: none;
+}
+.subtitle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px;
+  font-size: 18px;
+  text-align: center;
+  z-index: 9999;
+}
+.fadeIn {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+  margin-top: 300px;
+  
+
+}
+
+.hidden {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  pointer-events: none;
+}
+
+
