@@ -4,6 +4,7 @@ import cors from 'cors';
 import authRoute from './routes/auth.js'
 import testRoute from './routes/test.js'
 import meditationRoute from './routes/meditation.js'
+import stepsRoute from './routes/steps.js'
 import dotenv from 'dotenv';
 dotenv.config();
 const app = express()
@@ -17,6 +18,7 @@ app.use(express.json())
 app.use('/api/auth', authRoute)
 app.use('/api/test', testRoute)
 app.use('/api', meditationRoute)
+app.use('/api', stepsRoute)
  async function start(){
     try {
         await mongoose.connect('mongodb+srv://test:test123@cluster0.chbpm7k.mongodb.net/')
