@@ -38,7 +38,8 @@ function Main() {
     
 
   }
- 
+  // <MeditationItem i= {i} meditation={meditation}>
+  //               </MeditationItem>
   return (
     <div className={styles.body}>
       <div className={styles.oval}></div>
@@ -66,10 +67,10 @@ function Main() {
         <div className={styles.blocksContainer}>
             {meditations?.map((meditation, i) => (
               <div className={styles.block}>
-                <MeditationItem i= {i} meditation={meditation}>
-                </MeditationItem>
-              </div>     
+                              <MeditationItem i= {i} meditation={meditation}></MeditationItem> 
+                              </div> 
                     ))}
+                    
         </div>
         <div className={styles.accessible2}>
           <p>Zapisane medytacje</p>

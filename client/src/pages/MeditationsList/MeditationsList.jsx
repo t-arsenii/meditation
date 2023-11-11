@@ -6,12 +6,13 @@ import { useEffect , useState}  from 'react';
 import woman_main from './images/woman_main.png'
 import { insertSavedMeditations } from '../../redux/features/meditationSlice';
 import save from './images/save.png';
+import { Link , useNavigate} from 'react-router-dom';
 export const MeditationsList = () => {
   const state = useSelector(state => state)
   const {meditations, savedMeditation} = useSelector((state) => state.meditation);
   const [selectedBlock, setSelectedBlock] = useState(null);
   const user = useSelector((state) => state.auth.user._id)
-   //selectedBlock = useSelector(state => state.meditation)
+  const navigate = useNavigate()
   
     const dispatch = useDispatch();
     
@@ -44,6 +45,9 @@ export const MeditationsList = () => {
         console.error(error);
       }
     };
+    function handleStart(index){
+      navigate(`/Medytacja/${index}`)
+    }
     return (
       <div>
         <div className={styles.body}></div>
@@ -62,7 +66,7 @@ export const MeditationsList = () => {
                   saveMeditation(meditation._id);
                   // Dodaj tutaj swoją dodatkową funkcjonalność onClick
                 }}><img src={save}/></button>
-                <button className={styles.button2}>Start</button>
+                <button className={styles.button2} onClick={() => {handleStart(meditation._id)}}>Start</button>
                 </div>
               </div>
             </div>
