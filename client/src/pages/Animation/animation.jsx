@@ -9,15 +9,15 @@ import Next from './images/Next.png';
 function Animation() {
 
   
-  const numStars = 170; // Number of stars you want to display
+  const numStars = 170; 
 
   const [cloudElements] = useState([]);
   const audioRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(false); // State to track audio playing status
-  const [audioPosition, setAudioPosition] = useState(0); // State to track audio position
-  const [starsAnimated, setStarsAnimated] = useState(true); // State to control star animations
-  const [isAudioLoaded, setIsAudioLoaded] = useState(false); // Stan do śledzenia stanu wczytywania audio
-  const [isAudioEnded, setIsAudioEnded] = useState(false); // Stan do śledzenia stanu zakończenia audio
+  const [isPlaying, setIsPlaying] = useState(false); 
+  const [audioPosition, setAudioPosition] = useState(0); 
+  const [starsAnimated, setStarsAnimated] = useState(true); 
+  const [isAudioLoaded, setIsAudioLoaded] = useState(false); 
+  const [isAudioEnded, setIsAudioEnded] = useState(false); 
   const [showNextButton, setShowNextButton] = useState(false);
   
   const starElements = [];
