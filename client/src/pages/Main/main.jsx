@@ -50,10 +50,12 @@ function Main() {
 
         <div className={styles.program}>
           
+          <div className={styles.programnext}>
           <p>Rozpocznij 7-dniowy program</p>
-          <Link to={`/program`}><img src={forward} alt="Forward Icon" className={styles.forward} /></Link>
+          <Link to={`/program`}><img src={forward} alt="Forward Icon" className={styles.forward} /></Link></div>
+          <img src={main_img} alt="Main Image" className={styles.mainImg} />
         </div>
-        <img src={main_img} alt="Main Image" className={styles.mainImg} />
+       
 
         <div className={styles.accessible}>
           <p>Dostępne medytacje</p>
@@ -66,34 +68,32 @@ function Main() {
         </div>
 
         <div className={styles.blocksContainer}>
-            {meditations?.map((meditation, i) => (
-              <div className={styles.block}>
-                              <MeditationItem i= {i} meditation={meditation}></MeditationItem> 
-                              </div> 
-                    ))}
-                    
-        </div>
-        <div className={styles.accessible2}>
-          <p>Zapisane medytacje</p>
-          <div className={styles.all2}>
-          </div>
-        </div>
-        <div className={styles.blocksContainer}>
-          <div className={styles.blockAdd}>
-          {
-          savedMeditations?.map((savedMeditation, i) => (
-            <div className={styles.block}>
-              <img src={woman_main} alt="Woman Main"></img>
-              {
-              savedMeditation.title
-            }
-            </div>
-          ))}  
-          </div>
-        </div>
+                        {meditations?.slice(0, 5).map((meditation, i) => (
+                            <div className={` ${styles.blockCommon}`} key={i}>
+                                <MeditationItem i={i} meditation={meditation}></MeditationItem>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className={styles.accessible2}>
+                        <p>Zapisane medytacje</p>
+                        <div className={styles.all2}>
+                        </div>
+                    </div>
+                    <div className={styles.blockContainer}>
+                        {savedMeditations?.map((savedMeditation, i) => (
+                            <div key={i} className={` ${styles.blockCommon}`}>
+                                <img src={woman_main} alt="Woman Main" />
+                                {savedMeditation.title}
+                            </div>
+    ))}
+  </div>
+</div>
+
       </div>
       </div>
-    </div>
+     
+    
   );
 }
 

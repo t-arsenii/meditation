@@ -28,130 +28,110 @@ body{
     align-items: center;
     margin-left: 10px;
     margin-top: 30px;
+    padding-right: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px; 
+    padding-left: 20px;
+    border-radius: 15px;
+    
+    width: 920px;
+    height: 100px;
+}
+.programnext{
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    margin-top: 30px;
     background-color: #62259F;
     padding-right: 10px;
     padding-top: 2px;
-    padding-bottom: 2px; /* Відступ знизу */
+    padding-bottom: 2px; 
     padding-left: 20px; 
     border-radius: 15px;
     border: 2px solid #FFF;
-}
-.forward{
-    margin-left: 40px;
+    width: 420px;
+    height: 100px;
 }
 
+.forward{
+    margin-left: 30px;
+}
+
+
 .mainImg {
-    position: absolute;
-    top: -50px; /* Відступ від верху */
-    right: -520px; /* Відступ справа */
-    width: 550px; /* Ширина изображения */
-    height: auto; /* Автоматическая высота */
+    position: relative;
+    top: -50px; 
+    right: -120px; 
+    width: 550px; 
 }
 .accessible{
     display: flex;
     align-items: center;
-    margin-top: 30px;  
+    margin-top: 50px;
+   
 }
 
 .all {
     position: absolute;
-    left: 1100px; /* Сдвигаем текст "Wszystko" вправо на 200 пикселей */
-    color: #828181;
-    
+    left: 1100px; 
+    color: #828181;   
 }
-/* Стили для контейнера блоков */
-/* Стили для контейнера блоков */
+
 .blocksContainer {
-    position: relative; /* Делаем контейнер относительно позиционированным */
     display: flex;
-    margin-top: 20px; /* Отступ сверху между контейнером и предыдущим контентом */
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%; 
+    margin-top: 20px;   
+    margin-left: 0px;
+}
+.blockContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%; 
+    margin-top: 20px;   
+    margin-left: 0px;
 }
 
-/* Стили для блоков "block" */
-.block {
-    width:100%; /* Увеличиваем ширину на 100 пикселей */
-    max-width: 280px;
-    height: auto; /* Увеличиваем высоту на 100 пикселей */
-    background-color: #6225A0;
-    position: absolute; /* Абсолютное позиционирование блоков */
-    color: #fff;
-    border-radius: 10px;
-    display: flex; /* Используем flex-контейнер */
-    flex-direction: column; /* Отображаем содержимое вертикально */
-    align-items: center; /* Выравниваем контент по центру по вертикали */
-    justify-content: center; 
-}
 
-.block:nth-child(1) {
-    left: 0;
-    top: 0;
-}
-
-.block:nth-child(2) {
-    left: 320px; /* Оставляем смещение для второго блока */
-    top: 0;
-}
-
-.block:nth-child(3) {
-    left: 640px; /* Оставляем смещение для третьего блока */
-    top: 0;
-}
-
-.block:nth-child(4) {
-    left: 960px; /* Оставляем смещение для четвертого блока */
-    top: 0;
-}
-
-.block img {
-    width: 140px; /* Размер изображения внутри блока */
-    height: auto;
-    margin-top: 20px;
-    margin-bottom: 5px; /* Отступ между изображением и текстом */
-}
-.block p{
-    text-align: center;
-}
 .accessible2 {
     display: flex;
     align-items: center;
-    margin-top: 270px; 
+    margin-top: 20px; 
 }
 
 .all2 {
     position: absolute;
     color: #828181;
-    left: 1100px; /* Adjust the left margin to separate it from the previous block */
+    left: 1100px; 
     
 }
-.blockAdd{
-    margin-left: 40px;
-    margin-bottom: 20px;
-}
-/* Добавлен стиль для адаптивности */
-@media screen and (max-width: 768px) {
-    .textOverRectangle {
-        display: none; /* Скрываем боковую панель на узких экранах */
-    }
-    .sideText {
-        left: 0; /* Перемещаем контент влево на всю ширину экрана */
-        width: 100%; /* Ширина контента на всю ширину экрана */
-    }
-    .blocksContainer {
-        flex-direction: column; /* Отображаем блоки вертикально на узких экранах */
-        margin-top: 10px; /* Увеличиваем отступ между блоками */
-    }
-    .block {
-        width: 90%; /* Уменьшаем ширину блоков на узких экранах */
-        margin: 10px auto; /* Выравниваем блоки по центру по горизонтали */
-    }
-    .block img {
-        width: 100%; /* Растягиваем изображение на всю ширину блока */
-        height: auto;
-    }
-    .accessible, .accessible2 {
-        margin-top: 10px; /* Увеличиваем отступ между блоками доступных медитаций */
-    }
+
+.blockCommon {
+    position: relative;
+    width: 250px; 
+    margin-top: 20px;
+    margin-bottom: 5px;
+    background-color: #6225A0; 
+    border-radius: 20px; 
+    overflow: hidden; 
+    text-align: center;
 }
 
+.blockCommon img {
+    width: 100%; 
+    height: auto;
+}
 
-
+.blockCommon p {
+    padding: 10px;
+    text-align: center; 
+    color: #fff; 
+    background-color: #62259F; 
+    margin: 0; 
+    font-size: 25px;
+    bottom: 0; 
+    width: 100%;
+    text-align: center;
+}
