@@ -26,10 +26,10 @@ body{
 .program{
     display: flex;
     align-items: center;
-    margin-left: 30px;
+    margin-left: 10px;
     margin-top: 30px;
     background-color: #62259F;
-    padding-right: 60px;
+    padding-right: 10px;
     padding-top: 2px;
     padding-bottom: 2px; /* Відступ знизу */
     padding-left: 20px; 

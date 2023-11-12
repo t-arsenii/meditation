@@ -49,8 +49,9 @@ function Main() {
         <p className={styles.textNext}>Uczyń swój dzień lepszym</p>
 
         <div className={styles.program}>
+          
           <p>Rozpocznij 7-dniowy program</p>
-          <img src={forward} alt="Forward Icon" className={styles.forward} />
+          <Link to={`/program`}><img src={forward} alt="Forward Icon" className={styles.forward} /></Link>
         </div>
         <img src={main_img} alt="Main Image" className={styles.mainImg} />
 
