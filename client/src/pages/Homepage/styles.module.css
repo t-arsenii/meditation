@@ -15,24 +15,24 @@ body{
 }
 
 .logoImage {
-    max-width: 700px; /* Розмір вашого логотипу */
-    opacity: 0; /* Початковий стан прозорості */
-    filter: blur(10px); /* Початковий стан розмитості */
+    max-width: 700px; 
+    opacity: 0; 
+    filter: blur(10px); 
     animation: fadeIn 2s ease-in-out forwards, blurIn 2s ease-in-out forwards;
 }
 
 .companyName{
-    font-size: 64px; /* Розмір тексту */
-    font-family: 'Inter', sans-serif; /* Встановлення шрифту Inter Regular */
+    font-size: 64px; 
+    font-family: 'Inter', sans-serif; 
     font-weight: 300;
     color: #fff;
     margin-top: 20px;
-    opacity: 0; /* Початковий стан прозорості */
+    opacity: 0; 
     animation: fadeIn 2s ease-in-out 3s forwards;
     letter-spacing: 5px;
 }
 
-/* Определение анимации появления (fadeIn) */
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -42,7 +42,7 @@ body{
   }
 }
 
-/* Определение анимации размытия (blurIn) */
+
 @keyframes blurIn {
   from {
     filter: blur(10px);
