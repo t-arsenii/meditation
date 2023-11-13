@@ -3,6 +3,7 @@ import axios from '../../utils/axios'
 const initialState = {
     meditations: [],
     savedMeditations: [],
+    oneMeditation:{},
     loading: false,  
 }
 export const insertMeditations = createAsyncThunk(
@@ -19,6 +20,14 @@ export const insertMeditations = createAsyncThunk(
 export const getMeditations = createAsyncThunk('/meditations', async () => {
     try {
         const { data } = await axios.get('/meditations')
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+})
+export const getOneMeditation = createAsyncThunk('/oneMeditation', async (meditationId) => {
+    try {
+        const { data } = await axios.get(`${meditationId}`,meditationId)
         return data
     } catch (error) {
         console.log(error)
@@ -81,6 +90,18 @@ export const meditationSlice = createSlice({
             //state.savedMeditations = action.payload.savedMeditations
         },
         [getMeditations.rejected]: (state) => {
+            state.loading = false
+        },
+          // get One meditations
+          [getOneMeditation.pending]: (state) => {
+            state.loading = true
+        },
+        [getOneMeditation.fulfilled]: (state, action) => {
+            state.loading = false
+            state.meditations = action.payload
+            //state.savedMeditations = action.payload.savedMeditations
+        },
+        [getOneMeditation.rejected]: (state) => {
             state.loading = false
         },
         // INsertSavedMeditation

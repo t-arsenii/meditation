@@ -1,13 +1,14 @@
 import { Router } from 'express'
 import { checkAuth } from '../utils/checkAuth.js'
-import { getMeditations, getMySavedMeditations, insertMeditations, insertSavedMeditations, removeSavedMeditation , insertAudioToMeditations} from '../controllers/meditation.js'
+import { getMeditations, getMySavedMeditations, insertMeditations, insertSavedMeditations, removeSavedMeditation , insertAudioToMeditations, getOneMeditation} from '../controllers/meditation.js'
 import {upload} from '../multer/multer.js'
 
 const router = new Router()
 
 //Get all meditations
 router.get('/meditations',getMeditations)
-
+//Get One meditation
+router.get('/:meditationId',getOneMeditation)
 // insert meditations
 // http://localhost:3002/api/test
 router.post('/meditations',insertMeditations)

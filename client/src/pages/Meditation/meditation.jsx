@@ -1,14 +1,32 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useDispatch , useSelector} from 'react-redux';
 import styles from './styles.module.css';
 import star from './images/star.png';
 import Play from './images/Play.png';
 import Stop from './images/Stop.png';
-import yourAudioFile from './audio/atmospherepiano.mp3';
+//import yourAudioFile from './audio/atmospherepiano.mp3';
 import Next from './images/Next.png';
+import { getOneMeditation } from '../../redux/features/meditationSlice';
+import { useParams } from 'react-router-dom';
+function Meditation() {
+  const state = useSelector(state => state)
+  const {meditations, savedMeditation} = useSelector((state) => state.meditation);
+  const { meditationId } = useParams();
+  console.log(state);
+  console.log(meditationId);
+  let yourAudioFile;
+ let meditationOne ;
+meditations.forEach((meditation, i) => {
+  // Użyj tutaj składni warunkowej
+  if (meditation._id === meditationId) {
+    // Tutaj użyj yourAudioFile
+    meditationOne = meditation;
+    yourAudioFile = meditation.audio.filename; //ЦЕ НАЗВА АУДИО ФАЙЛА!!!!!!!!!!
+  }
+});
+console.log(meditationOne);
+console.log(yourAudioFile);
 
-function Animation() {
-
-  
   const numStars = 170; 
 
   const [cloudElements] = useState([]);
@@ -56,7 +74,7 @@ function Animation() {
     const handleCanPlayThrough = () => {
       setIsAudioLoaded(true);
     };
-
+console.log(`AUDIO ${audio}`)
     const handleEnded = () => {
       setIsPlaying(false);
       setStarsAnimated(true);
@@ -94,11 +112,10 @@ function Animation() {
       {cloudElements}
       
     
-
       <div className={styles.textOverlay}>
-        <h1>Medytacja skupiona</h1>
-      </div>
-      
+  <h1>{meditationOne.title}</h1>
+</div>
+
 
       <div className={styles.audioControls}>
         {isAudioLoaded && (
@@ -117,4 +134,4 @@ function Animation() {
   );
 }
 
-export default Animation;
+export default Meditation;

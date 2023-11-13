@@ -13,7 +13,7 @@ import path from 'path';
 const connectionUri = 'mongodb+srv://test:test123@cluster0.chbpm7k.mongodb.net/';
 const dbName = 'test';  // Replace with your actual database name
 
-//get questions from db
+//get meditations from db
 export const getMeditations= async (req, res) => {
   try {
    
@@ -25,6 +25,18 @@ export const getMeditations= async (req, res) => {
 }
 }
 
+//get One meditations from db
+export const getOneMeditation= async (req, res) => {
+  try {
+    const meditation = await Meditation.findById(req.params.meditationId)
+   
+   
+      res.json(meditation)
+  
+} catch (error) {
+  res.json({ error })
+}
+}
 // Dodanie medytacji
 export const insertMeditations = async (req, res) => {
   try {
