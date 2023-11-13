@@ -1,0 +1,55 @@
+/* styles.module.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: white; /* Білий фон */
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    padding: 20px;
+  }
+  
+  .header {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: rgb(255, 255, 255); /* Чорний колір тексту */
+    margin-top: 20px;
+  }
+  
+  .block {
+    width: 1000px;
+    height: 100px;
+    background-color: #471E70; /* Фіолетовий колір блоку */
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    color: white; /* Білий колір тексту в блоку */
+    font-weight: bold;
+    margin-top: 10px;
+    border-radius: 15px;
+    
+  }
+  .innerBlock {
+    width: 60%;
+    height: 80%;
+    background-color: white; /* Білий фон внутрішнього блоку */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    color: #471E70;
+    margin-left: 20px;
+    font-size: 25px;
+  }
+
+  
+  

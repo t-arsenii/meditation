@@ -23,7 +23,11 @@ import { useDispatch } from 'react-redux';
 //import { getMe } from './redux/features/auth/authSlice';
 import MusicUnfastened from './pages/MusicUnfastened/musicunfastened'
 import Animation from './pages/Animation/animation'
+
 import { Meditation } from './pages/Meditation/meditation';
+
+
+import Program from './pages/Program/program'
 
 
 
@@ -68,7 +72,11 @@ function App() {
         <Route path='/meditationsList'element={<MeditationsList/>}/>   
         <Route path='/questions' element={<Questions />}/> 
         <Route path='/questions' element={<Test />}/> 
+
         <Route path='/meditation/:meditationId'element={<Meditation/>}/>  
+
+
+        <Route path='/program' element={<Program />}/>
 
       </Routes>
     </Router>
