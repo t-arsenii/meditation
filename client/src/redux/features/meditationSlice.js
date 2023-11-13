@@ -43,7 +43,14 @@ export const getSavedMeditations = createAsyncThunk('meditationsSaved', async (u
       console.log(error);
     }
   });
-  
+  export const removeSavedMeditation = createAsyncThunk('meditationsSaved/removemeditationsSaved', async (params) => {
+    try {
+        const { data } = await axios.delete(`${params.savedMeditationId}?id=${params.id}`, params.id, params.savedMeditationId)
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+})
 
 export const meditationSlice = createSlice({
     name: 'meditation',
@@ -98,6 +105,19 @@ export const meditationSlice = createSlice({
             //state.popularPosts = action.payload.popularPosts
         },
         [getSavedMeditations.rejected]: (state) => {
+            state.loading = false
+        },
+          // remove SavedMeditation
+          [removeSavedMeditation.pending]: (state) => {
+            state.loading = true
+        },
+        [removeSavedMeditation.fulfilled]: (state, action) => {
+            state.loading = false
+            state.savedMeditations = state.savedMeditations.filter(
+                (savedMeditations) => savedMeditations._id !== action.payload._id,
+            )
+        },
+        [removeSavedMeditation.rejected]: (state) => {
             state.loading = false
         },
     },

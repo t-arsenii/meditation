@@ -7,7 +7,7 @@ import add from './images/add.png'
 import { useState, useEffect }  from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { checkIsAuth, getMe } from '../../redux/features/auth/authSlice';
-import { getMeditations, getSavedMeditations} from '../../redux/features/meditationSlice';
+import { getMeditations, getSavedMeditations, removeSavedMeditation} from '../../redux/features/meditationSlice';
 import { MeditationItem } from './MeditationItem';
 import { Link } from 'react-router-dom'
 import { useParams } from 'react-router-dom';
@@ -17,7 +17,8 @@ function Main() {
   const state = useSelector(state => state)
   const username = useSelector(state => state.auth.user.username)
   const { userId } = useParams();
-
+  const [selectedBlock, setSelectedBlock] = useState(null);
+//console.log(`PARAMS TO ${userId}`)
    useEffect(() => {
     
        dispatch(getMeditations())
@@ -31,12 +32,27 @@ function Main() {
     }, [dispatch, userId]);
     
 
-   console.log(state);
+   //console.log(state);
 
+   
+   function onChecked(selectedBlock){
+    //console.log(selectedBlock)
+    setSelectedBlock(selectedBlock);//wybyraje medytacju
+    console.log(`Selected Meitation ${selectedBlock}`)
+    //console.log(user)
 
-   function addMeditatio(){
-    
+  }
 
+   const handleRemove = (savedMeditationId) => {
+    onChecked(savedMeditationId);
+    try {
+      const params = {id: userId, savedMeditationId: savedMeditationId}
+      dispatch(removeSavedMeditation(params))
+      console.log(`Meditation id ${savedMeditationId}`)
+    } catch (error) {
+      console.log(error)
+    }
+    console.log(state);
   }
   // <MeditationItem i= {i} meditation={meditation}>
   //               </MeditationItem>
@@ -86,6 +102,7 @@ function Main() {
               {
               savedMeditation.title
             }
+            <button className={styles.button2} onClick={() => {handleRemove(savedMeditation._id)}}>Usun</button>
             </div>
           ))}  
           </div>

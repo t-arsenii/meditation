@@ -46,7 +46,7 @@ export const MeditationsList = () => {
       }
     };
     function handleStart(index){
-      navigate(`/Medytacja/${index}`)
+      navigate(`/meditation/${index}`)
     }
     return (
       <div>
