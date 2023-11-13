@@ -86,21 +86,14 @@ function Animation() {
     setIsPlaying(!isPlaying);
     setStarsAnimated(!isPlaying);
   };
-  const handleNextButtonClick = () => {
-    // Реалізуй логіку для переходу на наступний крок або дію, яку потрібно виконати після аудіо
-    console.log('Далі');
-  };
+  
  
   return (
     <div className={styles.container}>
       {starElements}
       {cloudElements}
       
-      {isAudioLoaded && !isPlaying && isAudioEnded && (
-  <button onClick={handleNextButtonClick} className={styles.nextButton}>
-    <img src={Next} alt="Next" className={styles.fadeIn} />
-  </button>
-)}
+    
 
       <div className={styles.textOverlay}>
         <h1>Medytacja skupiona</h1>
