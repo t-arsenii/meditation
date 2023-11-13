@@ -99,9 +99,10 @@ function Main() {
                     <div className={styles.blockContainer}>
                         {savedMeditations?.map((savedMeditation, i) => (
                             <div key={i} className={` ${styles.blockCommon}`}>
+                               <button className={styles.button2} onClick={() => {handleRemove(savedMeditation._id)}}>Usun</button>
                                 <img src={woman_main} alt="Woman Main" />
                                 {savedMeditation.title}
-                                <button className={styles.button2} onClick={() => {handleRemove(savedMeditation._id)}}>Usun</button>
+                               
                             </div>
     ))}
   </div>
