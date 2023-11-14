@@ -14,13 +14,13 @@ router.get('/:meditationId',getOneMeditation)
 router.post('/meditations',insertMeditations)
 
 //dodanie zapisanej medytacji do user
-router.post('/meditationsSaved',insertSavedMeditations)
+router.post('/',insertSavedMeditations)
 
 //Dodanie auio do medytacji
 router.post('/audioMeditationsSaved', upload.single('audio'),insertAudioToMeditations)
 
 //Get user SavedMeditation
-router.get('/meditationsSaved',getMySavedMeditations)
+router.get('/',getMySavedMeditations)
 
 //Delete SavedMeditation
 router.delete('/:savedMeditationId',removeSavedMeditation)

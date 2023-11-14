@@ -6,7 +6,7 @@ import Play from './images/Play.png';
 import Stop from './images/Stop.png';
 //import yourAudioFile from './audio/atmospherepiano.mp3';
 import Next from './images/Next.png';
-import { getOneMeditation } from '../../redux/features/meditationSlice';
+
 import { useParams } from 'react-router-dom';
 function Meditation() {
   const state = useSelector(state => state)

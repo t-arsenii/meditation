@@ -128,11 +128,13 @@ export const insertSavedMeditations = async (req, res) => {
             meditationId: meditation._id,
             userId: user._id,
         })
+        
         await newSavedMeditation.save()
           await User.findByIdAndUpdate(req.body.userId, {
             $push: { savedMeditations: newSavedMeditation },
         })
       res.json({ msg: "Data Saved Successfully...!" });
+      console.log(newSavedMeditation);
     } catch (error) {
       res.json({ msg: 'Error w controllers' });
     }

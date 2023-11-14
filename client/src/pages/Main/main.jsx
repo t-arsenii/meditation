@@ -30,7 +30,7 @@ function Main() {
         dispatch(getSavedMeditations(userId));
       }
     }, [dispatch, userId]);
-    
+    console.log(savedMeditations);
 
    //console.log(state);
 
@@ -105,6 +105,7 @@ function Main() {
                                
                             </div>
     ))}
+    
   </div>
 </div>
 
