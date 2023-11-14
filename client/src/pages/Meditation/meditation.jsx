@@ -4,10 +4,9 @@ import styles from './styles.module.css';
 import star from './images/star.png';
 import Play from './images/Play.png';
 import Stop from './images/Stop.png';
-//import yourAudioFile from './audio/atmospherepiano.mp3';
-import Next from './images/Next.png';
 import { getOneMeditation } from '../../redux/features/meditationSlice';
 import { useParams } from 'react-router-dom';
+
 function Meditation() {
   const state = useSelector(state => state)
   const {meditations, savedMeditation} = useSelector((state) => state.meditation);
@@ -37,6 +36,9 @@ console.log(yourAudioFile);
   const [isAudioLoaded, setIsAudioLoaded] = useState(false); 
   const [isAudioEnded, setIsAudioEnded] = useState(false); 
   const [showNextButton, setShowNextButton] = useState(false);
+  const [audioDuration, setAudioDuration] = useState(0);
+  const [highlightAudio, setHighlightAudio] = useState(false);
+
   
   const starElements = [];
   for (let i = 0; i < numStars; i++) {
@@ -91,7 +93,7 @@ console.log(`AUDIO ${audio}`)
       audio.removeEventListener('canplaythrough', handleCanPlayThrough);
       audio.removeEventListener('ended', handleEnded);
     };
-  }, []);
+  }, [yourAudioFile]);
 
   const handleTogglePlay = () => {
     if (isPlaying) {
@@ -104,7 +106,36 @@ console.log(`AUDIO ${audio}`)
     setIsPlaying(!isPlaying);
     setStarsAnimated(!isPlaying);
   };
-  
+  useEffect(() => {
+    const handleTimeUpdate = () => {
+      setAudioPosition(audioRef.current.currentTime);
+    };
+
+    const handleLoadedMetadata = () => {
+      setAudioDuration(audioRef.current.duration);
+    };
+
+    const handlePlay = () => {
+      setIsPlaying(true);
+      setHighlightAudio(true);
+    };
+
+    const handlePause = () => {
+      setIsPlaying(false);
+      setHighlightAudio(false);
+    };
+    audioRef.current.addEventListener('timeupdate', handleTimeUpdate);
+    audioRef.current.addEventListener('loadedmetadata', handleLoadedMetadata);
+    audioRef.current.addEventListener('play', handlePlay);
+    audioRef.current.addEventListener('pause', handlePause);
+
+    return () => {
+      audioRef.current.removeEventListener('timeupdate', handleTimeUpdate);
+      audioRef.current.removeEventListener('loadedmetadata', handleLoadedMetadata);
+      audioRef.current.removeEventListener('play', handlePlay);
+      audioRef.current.removeEventListener('pause', handlePause);
+    };
+  }, []);
  
   return (
     <div className={styles.container}>
@@ -117,17 +148,18 @@ console.log(`AUDIO ${audio}`)
 </div>
 
 
-      <div className={styles.audioControls}>
-        {isAudioLoaded && (
-          <button onClick={handleTogglePlay} className={styles.customButton}>
-            <img
-              src={isPlaying ? Stop : Play}
-              alt={isPlaying ? 'Stop' : 'Play'}
-              className={styles.controlIcon}
-            />
-          </button>
-        )}
-      </div>
+<div className={styles.audioControls}>
+   {isAudioLoaded && (
+      <button onClick={handleTogglePlay} className={styles.customButton}>
+         <img
+            src={isPlaying ? Stop : Play}
+            alt={isPlaying ? 'Stop' : 'Play'}
+            className={styles.controlIcon}
+         />
+      </button>
+   )}
+</div>
+
 
       <audio ref={audioRef} src={yourAudioFile} />
     </div>

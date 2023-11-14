@@ -1,9 +1,7 @@
 /* styles.module.css */
 
 /* Загальні стилі сторінки */
-.body {
-    background: linear-gradient(90deg, #6100C2, #CA95FF);
-  }
+
   
   .oval {
     position: absolute;

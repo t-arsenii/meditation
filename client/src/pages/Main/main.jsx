@@ -11,6 +11,7 @@ import { getMeditations, getSavedMeditations, removeSavedMeditation} from '../..
 import { MeditationItem } from './MeditationItem';
 import { Link } from 'react-router-dom'
 import { useParams } from 'react-router-dom';
+
 function Main() {
    const dispatch = useDispatch();
    const {meditations, savedMeditations} = useSelector((state) => state.meditation)
@@ -67,7 +68,7 @@ function Main() {
         <div className={styles.program}>
           
           <div className={styles.programnext}>
-          <p>Rozpocznij 7-dniowy program</p>
+          <p>Rozpocznij 5-dniowy program</p>
           <Link to={`/program`}><img src={forward} alt="Forward Icon" className={styles.forward} /></Link></div>
           <img src={main_img} alt="Main Image" className={styles.mainImg} />
         </div>
@@ -96,16 +97,7 @@ function Main() {
                         <div className={styles.all2}>
                         </div>
                     </div>
-                    <div className={styles.blockContainer}>
-                        {savedMeditations?.map((savedMeditation, i) => (
-                            <div key={i} className={` ${styles.blockCommon}`}>
-                               <button className={styles.button2} onClick={() => {handleRemove(savedMeditation._id)}}>Usun</button>
-                                <img src={woman_main} alt="Woman Main" />
-                                {savedMeditation.title}
-                               
-                            </div>
-    ))}
-  </div>
+                    
 </div>
 
       </div>
