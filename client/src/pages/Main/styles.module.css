@@ -1,13 +1,4 @@
-body{
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    background: linear-gradient(90deg, #6100C2, #CA95FF);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: auto;
-}
+
 .sideText {
     position: absolute;
     top: 2px; 
@@ -117,7 +108,10 @@ body{
     border-radius: 20px; 
     overflow: hidden; 
     text-align: center;
+    margin-right: 10px; /* Додавання відстані між блоками */
+    margin-bottom: 10px; /* Додавання відстані між блоками */
 }
+
 
 .blockCommon img {
     width: 100%; 

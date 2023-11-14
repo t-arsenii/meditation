@@ -10,7 +10,7 @@ import bad from './images/bad.png'
 function MoodCalendar() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [moodData, setMoodData] = useState({}); // Store mood data for each date
+  const [moodData, setMoodData] = useState({}); 
 
   const handleDateChange = (date) => {
     setSelectedDate(date);

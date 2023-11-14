@@ -80,7 +80,6 @@ function Music() {
       });
 
       audioRef.addEventListener('ended', () => {
-        // Викликати функцію для переходу до наступної пісні, коли поточна закінчилася
         playNextSong();
       });
     }
@@ -88,16 +87,13 @@ function Music() {
 
   const handleSelectSong = (song) => {
     if (audioRef) {
-      // Stop the current audio
+  
       audioRef.pause();
       audioRef.currentTime = 0;
       setSelectedSong(song);
       audioRef.src = song.audio;
-  
-      // Load and play the new audio
       audioRef.load();
       audioRef.play().catch((error) => {
-        // Handle any play errors here
         console.error("Error while playing audio:", error);
       });
   
@@ -115,38 +111,30 @@ function Music() {
   const playAudio = () => {
     if (audioRef) {
       if (audioRef.paused) {
-        // If audio is paused, start playing or resume
         audioRef.play().catch((error) => {
-          // Handle any play errors here
           console.error("Error while playing audio:", error);
         });
       } else {
-        // If audio is playing, pause it
         audioRef.pause();
       }
       setIsPlaying(!audioRef.paused);
     }
   };
-  
-  
-  
 
   const skipForward = () => {
     if (audioRef) {
-      audioRef.currentTime += 10; // Перемотати вперед на 10 секунд
+      audioRef.currentTime += 10; 
     }
   };
 
   const skipBackward = () => {
     if (audioRef) {
-      audioRef.currentTime -= 10; // Перемотати назад на 10 секунд
+      audioRef.currentTime -= 10; 
     }
   };
   const handleSearch = (e) => {
     const text = e.target.value;
     setSearchText(text);
-  
-    // Фільтрувати пісні за введеним текстом
     const filtered = songsData.filter((song) =>
       song.title.toLowerCase().includes(text.toLowerCase())
     );
@@ -196,9 +184,6 @@ function Music() {
   </ul>
 </div>
 
-
-
-
 </div>
 
           
@@ -237,7 +222,7 @@ function Music() {
   
       )}
       <div className={styles.slider}>
-  {selectedSong && ( // Відображати лише при наявності вибраної пісні
+  {selectedSong && ( 
     <input
       type="range"
       min="0"
