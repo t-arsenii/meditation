@@ -10,7 +10,8 @@ import bad from './images/bad.png'
 function MoodCalendar() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [moodData, setMoodData] = useState({}); 
+  const [moodData, setMoodData] = useState({});
+  const [selectedMood, setSelectedMood] = useState(''); 
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -19,11 +20,38 @@ function MoodCalendar() {
 
   const closeModal = () => {
     setIsModalOpen(false);
+    setSelectedMood(''); // Очищаємо обрану емоцію при закритті модального вікна
   };
 
   const handleMoodSelection = (mood) => {
-    // Update the mood data for the selected date
+    // Оновлюємо обрану емоцію та додаємо до стану moodData
+    setSelectedMood(mood);
     setMoodData({ ...moodData, [selectedDate.toDateString()]: mood });
+  };
+
+  const saveMoodToDatabase = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/api/addMood', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          date: selectedDate,
+          mood: selectedMood,
+        }),
+      });
+
+      if (response.status === 201) {
+        console.log('Mood record added successfully');
+      } else {
+        console.error('Failed to add mood record');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      closeModal();
+    }
   };
 
   const tileContent = ({ date, view }) => {

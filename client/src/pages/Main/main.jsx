@@ -85,7 +85,7 @@ function Main() {
         </div>
 
         <div className={styles.blocksContainer}>
-            {meditations?.slice(0, 5).map((meditation, i) => (
+            {meditations?.slice(0, 4).map((meditation, i) => (
                             <div className={` ${styles.blockCommon}`} key={i}>
                                 <MeditationItem i={i} meditation={meditation}></MeditationItem>
                             </div>
