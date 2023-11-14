@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose'
 
 const moodSchema = new mongoose.Schema({
   username: String,
@@ -7,6 +7,4 @@ const moodSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 });
 
-const MoodModel = mongoose.model('Mood', moodSchema);
-
-module.exports = MoodModel;
+export default mongoose.model('Mood', moodSchema) 

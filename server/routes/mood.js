@@ -1,7 +1,7 @@
-const express = require('express');
-const router = express.Router();
-const moodController = require('../controllers/mood');
+import { Router } from 'express'
+import { addMoodRecord } from '../controllers/mood.js';
+const router = new Router()
 
-router.post('/addMood', moodController.addMoodRecord);
+router.post('/addMood', addMoodRecord);
 
-module.exports = router;
+export default router

@@ -1,6 +1,7 @@
-const MoodModel = require('../models/Mood');
+import Mood from "../models/Mood.js";
+import User from "../models/User.js";
 
-const addMoodRecord = async (req, res) => {
+export const addMoodRecord = async (req, res) => {
   const user = await User.findById(req.body.userId);
   
   if (!user) {
@@ -9,7 +10,7 @@ const addMoodRecord = async (req, res) => {
   const { date, mood } = req.body;
 
   try {
-    const newMoodD = new MoodModel({ 
+    const newMoodD = new Mood({ 
       username: user.username,
       date, 
       mood,
@@ -26,6 +27,4 @@ const addMoodRecord = async (req, res) => {
   }
 };
 
-module.exports = {
-  addMoodRecord,
-};
+
