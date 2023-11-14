@@ -2,10 +2,9 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from '../../utils/axios'
 const initialState = {
     meditations: [],
-    savedMeditations: [],
-    oneMeditation:{},
-    loading: false,  
-}
+    savedMeditations: [], // Make sure it's initialized as an array
+    loading: false,
+};
 export const insertMeditations = createAsyncThunk(
     'meditations/insertMeditations',
     async (params) => {
@@ -25,19 +24,13 @@ export const getMeditations = createAsyncThunk('/meditations', async () => {
         console.log(error)
     }
 })
-export const getOneMeditation = createAsyncThunk('/oneMeditation', async (meditationId) => {
-    try {
-        const { data } = await axios.get(`${meditationId}`,meditationId)
-        return data
-    } catch (error) {
-        console.log(error)
-    }
-})
+
 export const insertSavedMeditations = createAsyncThunk(
     '/meditationsSaved',
     async (params) => {
         try {
-            const { data } = await axios.post('/meditationsSaved', params)
+            const { data } = await axios.post('/', params)
+            console.log(`Data InsertSavedd ${data}`)
             return data
         } catch (error) {
             console.log("Error w slice")
@@ -46,7 +39,8 @@ export const insertSavedMeditations = createAsyncThunk(
 )
 export const getSavedMeditations = createAsyncThunk('meditationsSaved', async (userId) => {
     try {
-      const { data } = await axios.get(`/meditationsSaved?userId=${userId}`);
+      const { data } = await axios.get(`/?userId=${userId}`);
+      console.log(`Data ${data}`)
       return data;
     } catch (error) {
       console.log(error);
@@ -92,18 +86,6 @@ export const meditationSlice = createSlice({
         [getMeditations.rejected]: (state) => {
             state.loading = false
         },
-          // get One meditations
-          [getOneMeditation.pending]: (state) => {
-            state.loading = true
-        },
-        [getOneMeditation.fulfilled]: (state, action) => {
-            state.loading = false
-            state.meditations = action.payload
-            //state.savedMeditations = action.payload.savedMeditations
-        },
-        [getOneMeditation.rejected]: (state) => {
-            state.loading = false
-        },
         // INsertSavedMeditation
         [insertSavedMeditations.pending]: (state) => {
             state.loading = true
@@ -121,9 +103,8 @@ export const meditationSlice = createSlice({
             state.loading = true
         },
         [getSavedMeditations.fulfilled]: (state, action) => {
-            state.loading = false
-            state.savedMeditations = action.payload
-            //state.popularPosts = action.payload.popularPosts
+            state.loading = false;
+            state.savedMeditations = action.payload; // Ensure that action.payload is an array
         },
         [getSavedMeditations.rejected]: (state) => {
             state.loading = false

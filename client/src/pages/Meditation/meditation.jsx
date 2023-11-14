@@ -4,7 +4,13 @@ import styles from './styles.module.css';
 import star from './images/star.png';
 import Play from './images/Play.png';
 import Stop from './images/Stop.png';
+
+
+import Next from './images/Next.png';
+
+
 import { getOneMeditation } from '../../redux/features/meditationSlice';
+
 import { useParams } from 'react-router-dom';
 
 function Meditation() {
