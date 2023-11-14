@@ -1,17 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Calendar from 'react-calendar';
-import './Calendar.css'
+import './Calendar.css';
 import Modal from 'react-modal';
 import styles from './styles.module.css';
-import close from './images/close.png'
-import good from './images/good.png'
-import bad from './images/bad.png'
+import close from './images/close.png';
+import good from './images/good.png';
+import bad from './images/bad.png';
+import { fetchMoodData, selectMoodData, addMoodRecord } from '../../redux/features/moodSlice';
+
 
 function MoodCalendar() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [moodData, setMoodData] = useState({});
-  const [selectedMood, setSelectedMood] = useState(''); 
+  const [selectedMood, setSelectedMood] = useState('');
+
+  // Rename state variable to avoid conflict
+  const localMoodData = useState({});
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -20,13 +25,19 @@ function MoodCalendar() {
 
   const closeModal = () => {
     setIsModalOpen(false);
-    setSelectedMood(''); // Очищаємо обрану емоцію при закритті модального вікна
+    setSelectedMood('');
   };
 
+  const dispatch = useDispatch();
+  const moodData = useSelector(selectMoodData);
+
+  useEffect(() => {
+    dispatch(fetchMoodData());
+  }, [dispatch]);
+
   const handleMoodSelection = (mood) => {
-    // Оновлюємо обрану емоцію та додаємо до стану moodData
-    setSelectedMood(mood);
-    setMoodData({ ...moodData, [selectedDate.toDateString()]: mood });
+    dispatch(addMoodRecord(selectedDate, mood));
+    closeModal();
   };
 
   const saveMoodToDatabase = async () => {
@@ -56,7 +67,7 @@ function MoodCalendar() {
 
   const tileContent = ({ date, view }) => {
     if (view === 'month') {
-      const mood = moodData[date.toDateString()];
+      const mood = localMoodData[date.toDateString()]; // Use the local variable
       if (mood === 'good') {
         return <div style={{ color: 'green' }}>😄</div>;
       } else if (mood === 'bad') {
