@@ -23,6 +23,12 @@ const UserSchema = new mongoose.Schema({
         ref: 'Result',
       },
     ],
+    mood: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Mood',
+      },
+    ],
     
   });
 
