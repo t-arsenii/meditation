@@ -3,7 +3,6 @@ import axios from '../../utils/axios'
 const initialState = {
     meditations: [],
     savedMeditations: [],
-    oneMeditation:{},
     loading: false,  
 }
 export const insertMeditations = createAsyncThunk(
