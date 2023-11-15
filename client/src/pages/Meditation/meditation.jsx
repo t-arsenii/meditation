@@ -29,6 +29,7 @@ meditations.forEach((meditation, i) => {
     yourAudioFile = meditation.audio.filename; //ЦЕ НАЗВА АУДИО ФАЙЛА!!!!!!!!!!
   }
 });
+const aa = `.\Animation\audio\${yourAudioFile}`;
 console.log(meditationOne);
 console.log(yourAudioFile);
 
