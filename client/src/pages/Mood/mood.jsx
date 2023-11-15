@@ -42,7 +42,7 @@ function MoodCalendar() {
 
   const saveMoodToDatabase = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/addMood', {
+      const response = await fetch('http://localhost:3002/api/addMood', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -66,14 +66,20 @@ function MoodCalendar() {
   };
 
   const tileContent = ({ date, view }) => {
+    console.log('Data:', moodData); // Log moodData to see its value
+  
     if (view === 'month') {
-      const mood = localMoodData[date.toDateString()]; // Use the local variable
+      const mood = moodData && moodData[date.toDateString()];
+  
+      console.log('Mood:', mood); // Log mood to see its value
+  
       if (mood === 'good') {
         return <div style={{ color: 'green' }}>😄</div>;
       } else if (mood === 'bad') {
         return <div style={{ color: 'red' }}>😞</div>;
       }
     }
+  
     return null;
   };
 
@@ -106,7 +112,7 @@ function MoodCalendar() {
           <img
     src={good}
     alt="Dobry Nastrój"
-    onClick={() => handleMoodSelection('good')}
+    onClick={() => handleMoodSelection('good') && saveMoodToDatabase() }
     className={moodData[selectedDate.toDateString()] === 'good' ? styles.selectedMood : ''}
   />
   <img

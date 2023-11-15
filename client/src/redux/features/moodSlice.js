@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const SERVER_URL = 'http://localhost:3000';
+const SERVER_URL = 'http://localhost:3002';
 
 const moodSlice = createSlice({
   name: 'mood',
@@ -12,8 +12,13 @@ const moodSlice = createSlice({
   },
   reducers: {
     setMoodData: (state, action) => {
-      state.moodData = action.payload;
-    },
+      // Assuming action.payload is an array of mood records
+      const moodDataObject = action.payload.reduce((acc, moodRecord) => {
+        acc[moodRecord.date] = moodRecord.mood;
+        return acc;
+      }, {});
+      state.moodData = moodDataObject;
+    },    
     setLoading: (state, action) => {
       state.loading = action.payload;
     },
