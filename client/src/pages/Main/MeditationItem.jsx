@@ -6,7 +6,7 @@ export const MeditationItem = ({ meditation }) => {
    
     
     return (
-        <Link to={`/Medytacja/${meditation._id}`}>
+        <Link to={`/meditation/${meditation._id}`}>
            <div className={styles.block}>
                 
                 <img src={woman_main} alt="Woman Main"></img>

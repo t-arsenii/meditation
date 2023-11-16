@@ -4,7 +4,7 @@ import img1 from './images/img1.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { usePublishResult } from '../../hooks/setResult';
 import * as Action from '../../redux/features/result_reducer'
-
+import { Link , useNavigate} from 'react-router-dom';
 function EndTest() {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
@@ -12,13 +12,15 @@ function EndTest() {
 
   const publishResult = usePublishResult(); // Wywołaj hook w komponencie
 
+  const user = useSelector((state) => state.auth.user)
+  const navigate = useNavigate()
   useEffect(() => {
     const { auth, result } = state;
     if (auth && auth.user && auth.user._id) {
       dispatch(Action.setUserId(auth.user._id)); // Ustaw userId w Redux store
     }
    // console.log(userId); 
-    //console.log(result);
+    console.log(state);
     if (result && result.userId) {
       publishResult({ result, userId: result.userId }) // Dodaj userId do danych przekazywanych do publishResult
         .then((data) => {
@@ -47,7 +49,7 @@ function EndTest() {
       <button
         className={styles.startButton}
         onClick={() => {
-          window.location.href = '/main';
+          navigate(`/main/${user._id}`)
         }}
       >
         START
