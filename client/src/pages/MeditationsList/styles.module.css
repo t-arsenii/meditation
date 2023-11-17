@@ -29,9 +29,7 @@
   }
   
   .block img {
-    max-width: 100%;
-    height: auto;
-    margin-right: 20px;
+   
   }
   
   .leftSide {
@@ -54,13 +52,13 @@
   }
   .buttons{
     display: flex;
-    
+ 
   }
   button{
     margin: 10px;
   }
   .button2{
-    margin-top: 20px;
+    
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -68,11 +66,11 @@
     color: #fff;
     cursor: pointer;
     display: inline-block;
+  
   }
   .button1{
     background: none;
-    border: none;
-    margin-top: 20px;
+    border: none;   
     cursor: pointer;
     background-color: #6225A0;
   }

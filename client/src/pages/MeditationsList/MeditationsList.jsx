@@ -3,7 +3,7 @@ import styles from './styles.module.css';
 import { getMeditations } from '../../redux/features/meditationSlice';
 import { useDispatch , useSelector} from 'react-redux';
 import { useEffect , useState}  from 'react';
-import woman_main from './images/woman_main.png'
+import woman_main from './images/woman_main.png';
 import { insertSavedMeditations } from '../../redux/features/meditationSlice';
 import save from './images/save.png';
 import { Link , useNavigate} from 'react-router-dom';
@@ -17,7 +17,19 @@ export const MeditationsList = () => {
   const navigate = useNavigate()
   
   const dispatch = useDispatch();
-  const [savedMeditationIds, setSavedMeditationIds] = useState([]);
+  const [savedMeditationIds, setSavedMeditationIds] = useState(
+    JSON.parse(localStorage.getItem('savedMeditationIds')) || []
+  );
+  const [selectedMeditationId, setSelectedMeditationId] = useState(
+    localStorage.getItem('selectedMeditationId') || null
+  );
+  useEffect(() => {
+    localStorage.setItem('selectedMeditationId', selectedMeditationId);
+  }, [selectedMeditationId]);
+
+  useEffect(() => {
+    localStorage.setItem('savedMeditationIds', JSON.stringify(savedMeditationIds));
+  }, [savedMeditationIds]);
 
     useEffect(() => {
         dispatch(getMeditations());
@@ -31,25 +43,44 @@ export const MeditationsList = () => {
       console.log(user)
  
     }
+   
+    
     const saveMeditation = async (index) => {
-      onChecked(index);
       try {
         const params = { meditationId: index, userId: user };
-        console.log("Params:", params);
-    
+  
+        // Dispatch the insertSavedMeditations action
         await dispatch(insertSavedMeditations(params));
-    
+  
         // Retrieve the updated savedMeditations after dispatching the insertSavedMeditations action
-        const updatedSavedMeditation = await dispatch(getSavedMeditations(user));
-    
-        // Update the local state with the updated savedMeditations
-        setSavedMeditationIds(updatedSavedMeditation.map((m) => m.meditationId));
-    
+        const response = await dispatch(getSavedMeditations(user));
+  
+        if (Array.isArray(response.payload)) {
+          // Update the local state with the updated savedMeditations
+          setSavedMeditationIds(response.payload.map((m) => m.meditationId));
+  
+          // Check if the selected meditation is among the saved meditations
+          if (savedMeditationIds.includes(index)) {
+            // If it is saved, update the selectedMeditationId state
+            setSelectedMeditationId(index);
+          } else {
+            // If it is not saved, reset selectedMeditationId to null (button should be purple)
+            setSelectedMeditationId(null);
+          }
+        } else {
+          console.error("Invalid format for saved meditations data:", response);
+        }
+  
         console.log(state);
       } catch (error) {
         console.error(error);
       }
     };
+    
+    
+    
+    
+    
     
     function handleStart(index){
       navigate(`/meditation/${index}`)
@@ -63,7 +94,10 @@ export const MeditationsList = () => {
       // Оновити список збережених медитацій при завантаженні компонента
       dispatch(getMeditations());
     }, [dispatch]);
-    
+    console.log('selectedBlock:', selectedBlock);
+console.log('savedMeditationIds:', savedMeditationIds);
+
+
     return (
       <div>
         <div className={styles.body}></div>
@@ -81,11 +115,14 @@ export const MeditationsList = () => {
                 <button
                   style={{
                     backgroundColor:
-                      selectedBlock === meditation._id
-                        ? savedMeditationIds.includes(meditation._id)
-                          ? '#00ff00'
-                          : '#6225A0'
-                        : '#6225A0',
+                      savedMeditationIds.includes(meditation._id)
+                        ? '#c44141' // Button is saved
+                        : '#471E70', // Default color
+                    borderRadius: '10px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
                   }}
                   onClick={() => {
                     saveMeditation(meditation._id);
@@ -93,6 +130,7 @@ export const MeditationsList = () => {
                 >
                   <img src={save} alt="Save" />
                 </button>
+
 
                 <button className={styles.button2} onClick={() => {handleStart(meditation._id)}}>Start</button>
                 </div>
