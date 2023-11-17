@@ -1,7 +1,8 @@
 import { Router } from 'express'
 import { checkAuth } from '../utils/checkAuth.js'
-import { getMeditations, getMySavedMeditations, insertMeditations, insertSavedMeditations, removeSavedMeditation , insertAudioToMeditations, getOneMeditation} from '../controllers/meditation.js'
+import { getMeditations, getMySavedMeditations, insertMeditations, insertSavedMeditations, removeSavedMeditation , insertAudioToMeditations, getOneMeditation , streamAudio} from '../controllers/meditation.js'
 import {upload} from '../multer/multer.js'
+
 
 const router = new Router()
 
@@ -25,3 +26,8 @@ router.get('/',getMySavedMeditations)
 //Delete SavedMeditation
 router.delete('/:savedMeditationId',removeSavedMeditation)
  export default router
+
+ //router.get('/stream/:meditationId/audio', streamAudio);
+
+ router.get('/stream/:fileId', streamAudio);
+

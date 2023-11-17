@@ -1,9 +1,14 @@
+//redux meditationSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from '../../utils/axios'
 const initialState = {
     meditations: [],
     savedMeditations: [], // Make sure it's initialized as an array
     loading: false,
+    audio: {
+        isPlaying: false,
+        fileId: null,
+      },
 };
 export const insertMeditations = createAsyncThunk(
     'meditations/insertMeditations',
@@ -54,14 +59,33 @@ export const getSavedMeditations = createAsyncThunk('meditationsSaved', async (u
         console.log(error)
     }
 })
-
+export const streamAudio = createAsyncThunk(
+    'meditations/streamAudio',
+    async (fileId, { dispatch }) => {
+      try {
+        // Make an API request to the streamAudio route
+        await axios.get(`/meditations/stream/${fileId}`);
+        // Dispatch an action to update the audio state
+        dispatch(setAudioPlaying({ isPlaying: true, fileId }));
+      } catch (error) {
+        console.log('Error streaming audio:', error);
+      }
+    }
+  );
+  
 export const meditationSlice = createSlice({
     name: 'meditation',
     initialState,
     reducers: {
-        setUserId : (state, action) => {
-        state.userId = action.payload
-    }},
+        setUserId: (state, action) => {
+          state.userId = action.payload;
+        },
+        setAudioPlaying: (state, action) => {
+          state.audio.isPlaying = action.payload.isPlaying;
+          state.audio.fileId = action.payload.fileId;
+        },
+},
+    
     extraReducers: {
         // InsertMeditation
         [insertMeditations.pending]: (state) => {
@@ -122,9 +146,21 @@ export const meditationSlice = createSlice({
         [removeSavedMeditation.rejected]: (state) => {
             state.loading = false
         },
+        [streamAudio.pending]: (state) =>{
+            state.loading = true;
+        },
+        [streamAudio.fulfilled]: (state) =>{
+            state.loading = false;
+        },
+        [streamAudio.rejected]: (state) =>{
+            state.loading = false;
+        },
     },
+    
 })
 
-export const { setUserId} = meditationSlice.actions;
+
+
+export const { setUserId , setAudioPlaying} = meditationSlice.actions;
 
 export default meditationSlice.reducer

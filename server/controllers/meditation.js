@@ -13,6 +13,8 @@ import path from 'path';
 const connectionUri = 'mongodb+srv://test:test123@cluster0.chbpm7k.mongodb.net/';
 const dbName = 'test';  // Replace with your actual database name
 
+import { gfs } from '../multer/multer.js';
+
 //get meditations from db
 export const getMeditations= async (req, res) => {
   try {
@@ -106,6 +108,9 @@ const database = client.db(dbName);
     res.json({ msg: "Audio Saved Successfully...!" });
   } catch (error) {
     res.json({ error });
+  }finally {
+    // Close the MongoDB client connection
+    await client.close();
   }
 };
 //dodanie zapisanej medytacji do user
@@ -177,3 +182,24 @@ export const insertSavedMeditations = async (req, res) => {
         res.json({ message: 'Coś poszło nie tak.' })
     }
 }
+
+export const streamAudio = async (req, res) => {
+  try {
+    const fileId = req.params.fileId;
+    console.log('File ID:', fileId);
+
+    if (!gfs) {
+      console.log('GridFSBucket is not initialized');
+      return res.status(500).json({ error: 'GridFSBucket is not initialized' });
+    }
+
+    const audioStream = gfs.createReadStream({ _id: mongoose.Types.ObjectId(fileId) });
+    console.log('Audio Stream:', audioStream);
+
+    audioStream.pipe(res);
+  } catch (error) {
+    console.log('Error streaming audio:', error);
+    res.status(500).json({ error: 'Error streaming audio' });
+  }
+};
+
