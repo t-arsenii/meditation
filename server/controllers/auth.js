@@ -11,10 +11,15 @@ export const register = async (req, res) => {
         console.log(req.body);
 
         const isUsed = await User.findOne({ username })
-
+        const isUsedEmail = await User.findOne({ email })
         if (isUsed) {
             return res.json({
                 message: 'Ten username już jest zajęty.',
+            })
+        }
+        if (isUsedEmail) {
+            return res.json({
+                message: 'Ten email już jest zajęty.',
             })
         }
         console.log(email, password, username);

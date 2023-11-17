@@ -115,35 +115,52 @@ const database = client.db(dbName);
 };
 //dodanie zapisanej medytacji do user
 export const insertSavedMeditations = async (req, res) => {
+  try {
+      const user = await User.findById(req.body.userId);
+      const meditation = await Meditation.findById(req.body.meditationId);
 
-    try {
-        const user = await User.findById(req.body.userId);
-        const meditation = await Meditation.findById(req.body.meditationId);
-        //const {title, description} = req.body
-        if (!user) {
-            throw new Error('User not found Meditation not saved');
-          } 
-          if (!meditation) {
-            throw new Error('Meditation not found Meditation not saved');
-          } 
-          const newSavedMeditation = new SavedMeditation({
-            username: user.username,
-            title: meditation.title,
-            description: meditation.description,
-            meditationId: meditation._id,
-            userId: user._id,
-        })
-        
-        await newSavedMeditation.save()
-          await User.findByIdAndUpdate(req.body.userId, {
-            $push: { savedMeditations: newSavedMeditation },
-        })
-      res.json({ msg: "Data Saved Successfully...!" });
+      if (!user) {
+          throw new Error('User not found. Meditation not saved.');
+      } 
+      if (!meditation) {
+          throw new Error('Meditation not found. Meditation not saved.');
+      }
+
+      console.log('Checking existing saved meditation...');
+      const existingSavedMeditation = await SavedMeditation.findOne({
+         userId: user._id,
+          meditationId: meditation._id,
+      });
+
+      if (existingSavedMeditation) {
+          console.log('Meditation is already saved for the user.');
+          throw new Error('Meditation is already saved for the user.');
+      }
+
+      console.log('Saving new meditation...');
+      const newSavedMeditation = new SavedMeditation({
+          username: user.username,
+          title: meditation.title,
+          description: meditation.description,
+          meditationId: meditation._id,
+          userId: user._id,
+      });
+
+      await newSavedMeditation.save();
+
+      console.log('Updating user document...');
+      await User.findByIdAndUpdate(req.body.userId, {
+          $push: { savedMeditations: newSavedMeditation },
+      });
+
+      res.json({ msg: 'Data Saved Successfully...!' });
       console.log(newSavedMeditation);
-    } catch (error) {
-      res.json({ msg: 'Error w controllers' });
-    }
-  };
+  } catch (error) {
+      console.error('Error in controllers:', error.message);
+      res.json({ msg: 'Error in controllers', error: error.message });
+  }
+};
+
 
   //Get user SavedMeditation
   export const getMySavedMeditations = async (req, res) => {

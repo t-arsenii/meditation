@@ -6,6 +6,7 @@ import testRoute from './routes/test.js'
 import meditationRoute from './routes/meditation.js'
 import stepsRoute from './routes/steps.js'
 import moodRoute from './routes/mood.js'
+import programRoute from './routes/program.js'
 import dotenv from 'dotenv';
 dotenv.config();
 const app = express()
@@ -21,6 +22,7 @@ app.use('/api/test', testRoute)
 app.use('/api', meditationRoute)
 app.use('/api', stepsRoute)
 app.use('/api' , moodRoute)
+app.use('/api/programs',programRoute)
  async function start(){
     try {
         await mongoose.connect('mongodb+srv://test:test123@cluster0.chbpm7k.mongodb.net/')
