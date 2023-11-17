@@ -115,7 +115,9 @@ console.log('savedMeditationIds:', savedMeditationIds);
                 <button
                   style={{
                     backgroundColor:
-                      savedMeditationIds.includes(meditation._id)
+                      selectedMeditationId === meditation._id
+                        ? '#c44141' // Button is selected
+                        : savedMeditationIds.includes(meditation._id)
                         ? '#c44141' // Button is saved
                         : '#471E70', // Default color
                     borderRadius: '10px',
