@@ -7,6 +7,8 @@ import woman_main from './images/woman_main.png'
 import { insertSavedMeditations } from '../../redux/features/meditationSlice';
 import save from './images/save.png';
 import { Link , useNavigate} from 'react-router-dom';
+import { getSavedMeditations } from '../../redux/features/meditationSlice';
+
 export const MeditationsList = () => {
   const state = useSelector(state => state)
   const {meditations, savedMeditation} = useSelector((state) => state.meditation);
@@ -14,8 +16,8 @@ export const MeditationsList = () => {
   const user = useSelector((state) => state.auth.user._id)
   const navigate = useNavigate()
   
-    const dispatch = useDispatch();
-    
+  const dispatch = useDispatch();
+  const [savedMeditationIds, setSavedMeditationIds] = useState([]);
 
     useEffect(() => {
         dispatch(getMeditations());
@@ -29,25 +31,39 @@ export const MeditationsList = () => {
       console.log(user)
  
     }
-    const saveMeditation = (index) => {
+    const saveMeditation = async (index) => {
       onChecked(index);
       try {
-        const params = { meditationId:index, userId: user };
-        console.log("Params:", params); // Dodaj to, aby sprawdzić wartości params
-       // if(savedMeditation && savedMeditation.length <= 3){  /**POprawyty na USE STATE?? */
-          dispatch(insertSavedMeditations(params));
-       // }else{
-       //   console.log("Możesz zapisać tylko 4 medytacji")
-       // }
-        
+        const params = { meditationId: index, userId: user };
+        console.log("Params:", params);
+    
+        await dispatch(insertSavedMeditations(params));
+    
+        // Retrieve the updated savedMeditations after dispatching the insertSavedMeditations action
+        const updatedSavedMeditation = await dispatch(getSavedMeditations(user));
+    
+        // Update the local state with the updated savedMeditations
+        setSavedMeditationIds(updatedSavedMeditation.map((m) => m.meditationId));
+    
         console.log(state);
       } catch (error) {
         console.error(error);
       }
     };
+    
     function handleStart(index){
       navigate(`/meditation/${index}`)
     }
+    useEffect(() => {
+      if (savedMeditation) {
+        setSavedMeditationIds(savedMeditation.map((m) => m.meditationId));
+      }
+    }, [savedMeditation]);
+    useEffect(() => {
+      // Оновити список збережених медитацій при завантаженні компонента
+      dispatch(getMeditations());
+    }, [dispatch]);
+    
     return (
       <div>
         <div className={styles.body}></div>
@@ -62,10 +78,22 @@ export const MeditationsList = () => {
                 <p  className={styles.title}>{meditation.title}</p>
                 <p>{meditation.description}</p>
                 <div className={styles.buttons}>
-                <button className={styles.button1} onClick={() => {
-                  saveMeditation(meditation._id);
-                  // Dodaj tutaj swoją dodatkową funkcjonalność onClick
-                }}><img src={save}/></button>
+                <button
+                  style={{
+                    backgroundColor:
+                      selectedBlock === meditation._id
+                        ? savedMeditationIds.includes(meditation._id)
+                          ? '#00ff00'
+                          : '#6225A0'
+                        : '#6225A0',
+                  }}
+                  onClick={() => {
+                    saveMeditation(meditation._id);
+                  }}
+                >
+                  <img src={save} alt="Save" />
+                </button>
+
                 <button className={styles.button2} onClick={() => {handleStart(meditation._id)}}>Start</button>
                 </div>
               </div>

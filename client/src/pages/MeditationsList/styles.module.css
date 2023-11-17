@@ -54,6 +54,7 @@
   }
   .buttons{
     display: flex;
+    
   }
   button{
     margin: 10px;
@@ -73,6 +74,7 @@
     border: none;
     margin-top: 20px;
     cursor: pointer;
+    background-color: #6225A0;
   }
   .meditationall{
     text-align: center;
@@ -83,3 +85,7 @@
   .title{
     font-size: 28px;
   }
+  .likedButton {
+    background-color: red !important; /* Set your desired color for liked button */
+  }
+  

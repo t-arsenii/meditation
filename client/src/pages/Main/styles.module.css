@@ -129,3 +129,15 @@
     width: 100%;
     text-align: center;
 }
+.close{
+    background: none; /* Remove the background */
+    border: none; /* Remove the border */
+  
+  
+}
+.button2{
+    background: none; /* Remove the background */
+    border: none; /* Remove the border */
+    cursor: pointer;
+    margin-left: 170px;
+}

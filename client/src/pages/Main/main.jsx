@@ -11,6 +11,7 @@ import { getMeditations, getSavedMeditations, removeSavedMeditation} from '../..
 import { MeditationItem } from './MeditationItem';
 import { Link } from 'react-router-dom'
 import { useParams } from 'react-router-dom';
+import close from './images/close.png';
 
 function Main() {
    const dispatch = useDispatch();
@@ -101,7 +102,7 @@ function Main() {
                     <div className={styles.blockContainer}>
                         {savedMeditations?.map((savedMeditation, i) => (
                             <div key={i} className={` ${styles.blockCommon}`}>
-                               <button className={styles.button2} onClick={() => {handleRemove(savedMeditation._id)}}>Usun</button>
+                               <button className={styles.button2} onClick={() => {handleRemove(savedMeditation._id)}}><img src={close} className={styles.close}/></button>
                                 <img src={woman_main} alt="Woman Main" />
                                 {savedMeditation.title}
                                
