@@ -78,7 +78,7 @@ function Navbar({ name }) {
       
       <div className={styles.logoutText}>
         <img src={logoutImg} alt="Logout Icon" />
-        <button onClick={logoutHandler}>Wyloguj się</button>
+        <button onClick={logoutHandler} className={styles.buttonLog}>Wyloguj się</button>
           {/* <p>Wyloguj się</p> */}
       </div>
      </div>
