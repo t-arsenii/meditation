@@ -13,7 +13,7 @@ export const MeditationsList = () => {
   const state = useSelector(state => state)
   const {meditations, savedMeditation} = useSelector((state) => state.meditation);
   const [selectedBlock, setSelectedBlock] = useState(null);
-  const user = useSelector((state) => state.auth.user._id)
+  const user = useSelector((state) => state.auth.user?._id)
   const navigate = useNavigate()
   
   const dispatch = useDispatch();
@@ -109,15 +109,15 @@ console.log('savedMeditationIds:', savedMeditationIds);
                 <img src={woman_main} alt="Meditation" />
               </div>
               <div className={styles.rightSide}>
-                <p  className={styles.title}>{meditation.title}</p>
+                <p  className={styles.title}>{meditation?.title}</p>
                 <p>{meditation.description}</p>
                 <div className={styles.buttons}>
                 <button
                   style={{
                     backgroundColor:
-                      selectedMeditationId === meditation._id
+                      selectedMeditationId === meditation?._id
                         ? '#c44141' // Button is selected
-                        : savedMeditationIds.includes(meditation._id)
+                        : savedMeditationIds.includes(meditation?._id)
                         ? '#c44141' // Button is saved
                         : '#471E70', // Default color
                     borderRadius: '10px',
@@ -127,14 +127,14 @@ console.log('savedMeditationIds:', savedMeditationIds);
                     cursor: 'pointer',
                   }}
                   onClick={() => {
-                    saveMeditation(meditation._id);
+                    saveMeditation(meditation?._id);
                   }}
                 >
                   <img src={save} alt="Save" />
                 </button>
 
 
-                <button className={styles.button2} onClick={() => {handleStart(meditation._id)}}>Start</button>
+                <button className={styles.button2} onClick={() => {handleStart(meditation?._id)}}>Start</button>
                 </div>
               </div>
             </div>

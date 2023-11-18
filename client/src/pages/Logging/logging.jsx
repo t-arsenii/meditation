@@ -19,9 +19,10 @@ const state = useSelector((state)=> state)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     useEffect(() => {
-        if (status) toast(status)
+        //if (status) toast(status)
         if (isAuth) navigate(`/main/${user._id}`)
         //if (isAuth) navigate('/questions')
+       // if (isAuth) navigate(`/main`)
 
     }, [status, isAuth, navigate])
 

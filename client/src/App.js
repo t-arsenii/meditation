@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Homepage from './pages/Homepage/homepage';
 import Hello from './pages/Hello/hello';
@@ -18,8 +18,8 @@ import MoodCalendar from './pages/Mood/mood'
 import Music from './pages/Music/music'
 import Chat from './pages/Chat/chat'
 import Profil from './pages/Profil/profil'
-import { useDispatch } from 'react-redux';
-//import { useEffect } from 'react';
+import { useDispatch ,useSelector} from 'react-redux';
+import { useEffect } from 'react';
 //import { getMe } from './redux/features/auth/authSlice';
 import MusicUnfastened from './pages/MusicUnfastened/musicunfastened'
 import Animation from './pages/Animation/animation'
@@ -28,13 +28,14 @@ import Program from './pages/Program/program'
 import Questions from './pages/Questions/questions';
 import Test from './pages/Test/Test';
 import { MeditationsList } from './pages/MeditationsList/MeditationsList';
-
+import { getMe } from './redux/features/auth/authSlice';
 function App() {
-  // const dispatch = useDispatch()
-
-  // useEffect(()=>{
-  //   dispatch(getMe())
-  // }, [])
+  
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(getMe())
+  }, [dispatch])
+ 
   return (
     <Router>
       <Navbar />
@@ -50,6 +51,8 @@ function App() {
         <Route path="/question2" element={<Question2 />} />
         <Route path="/question3" element={<Question3 />} />
         <Route path="/main/:userId" element={<Main />} />
+        {/* <Route path="/main" element={<Main />} /> */}
+
         <Route path='/books' element={<Books />}/>
         <Route path='/mood' element={<MoodCalendar />}/>
         <Route path='/music' element={<Music />}/> 
