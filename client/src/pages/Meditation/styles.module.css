@@ -172,6 +172,7 @@
   transform: translateX(-50%);
   display: flex;
   align-items: center;
+
 }
 
 .customButton {
@@ -202,4 +203,15 @@
 /* Add any other styles as needed */
 .debugButton {
   border: 2px solid red; /* Add a border to make it visible */
+}
+.customButton2{
+  background: none;
+  border: none;
+  font-size: 20px;
+  margin-left: 50px;
+  background-color: #471E70;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 10px;
 }

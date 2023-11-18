@@ -1,17 +1,37 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch , useSelector} from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from './styles.module.css';
 import star from './images/star.png';
 import Play from './images/Play.png';
 import Stop from './images/Stop.png';
+import M1 from './audio/M1.MP3';
+import M2 from './audio/M2.MP3';
+import M3 from './audio/M3.MP3';
+import M4 from './audio/M4.MP3';
+import M5 from './audio/M5.MP3';
 
 
-import Next from './images/Next.png';
+const songsData = [
+  {
+    audio: new Audio(M1),
+  },
+  {
+    audio: new Audio(M2),
+  },
+  {
+    audio: new Audio(M3),
+  },
+  {
+    audio: new Audio(M4),
+  },
+  {
+    audio: new Audio(M5),
+  },
+];
 
 
-import { getOneMeditation } from '../../redux/features/meditationSlice';
-
-import { useParams } from 'react-router-dom';
 
 function Meditation() {
   const state = useSelector(state => state)
@@ -44,7 +64,10 @@ console.log(yourAudioFile);
   const [showNextButton, setShowNextButton] = useState(false);
   const [audioDuration, setAudioDuration] = useState(0);
   const [highlightAudio, setHighlightAudio] = useState(false);
+  const [isFinished, setIsFinished] = useState(false);
+  const navigate = useNavigate();
 
+  
   
   const starElements = [];
   for (let i = 0; i < numStars; i++) {
@@ -66,7 +89,15 @@ console.log(yourAudioFile);
     );
   }
 
-
+  meditations.forEach((meditation, i) => {
+    // Use a conditional statement to check if the current meditation matches the provided ID
+    if (meditation._id === meditationId) {
+      meditationOne = meditation;
+      // Access the audio file from the songsData array using the current index
+      yourAudioFile = songsData[i].audio.src;
+    }
+  });
+  
 
   useEffect(() => {
     if (isPlaying) {
@@ -101,75 +132,91 @@ console.log(`AUDIO ${audio}`)
     };
   }, [yourAudioFile]);
 
+  
+ 
+
+  const [currentMeditationIndex, setCurrentMeditationIndex] = useState(0);
+
+  useEffect(() => {
+    const currentAudio = songsData[currentMeditationIndex].audio;
+    audioRef.current = currentAudio;
+
+    const handleCanPlayThrough = () => {
+      setIsAudioLoaded(true);
+    };
+
+    const handleEnded = () => {
+      setIsPlaying(false);
+      setStarsAnimated(true);
+      setIsAudioEnded(true);
+      setShowNextButton(true);
+    };
+
+    currentAudio.addEventListener('canplaythrough', handleCanPlayThrough);
+    currentAudio.addEventListener('ended', handleEnded);
+
+    return () => {
+      currentAudio.removeEventListener('canplaythrough', handleCanPlayThrough);
+      currentAudio.removeEventListener('ended', handleEnded);
+    };
+  }, [currentMeditationIndex]);
+
   const handleTogglePlay = () => {
+    const currentAudio = songsData[currentMeditationIndex].audio;
+
     if (isPlaying) {
-      audioRef.current.pause();
+      currentAudio.pause();
     } else {
-      audioRef.current.currentTime = 0;
-      audioRef.current.play();
+      currentAudio.currentTime = 0;
+      currentAudio.play();
     }
 
     setIsPlaying(!isPlaying);
     setStarsAnimated(!isPlaying);
   };
-  useEffect(() => {
-    const handleTimeUpdate = () => {
-      setAudioPosition(audioRef.current.currentTime);
-    };
 
-    const handleLoadedMetadata = () => {
-      setAudioDuration(audioRef.current.duration);
-    };
+  const handleFinish = () => {
+    setIsFinished(true);
+    navigate('/meditationsList');
+    
+  };
 
-    const handlePlay = () => {
-      setIsPlaying(true);
-      setHighlightAudio(true);
-    };
-
-    const handlePause = () => {
-      setIsPlaying(false);
-      setHighlightAudio(false);
-    };
-    audioRef.current.addEventListener('timeupdate', handleTimeUpdate);
-    audioRef.current.addEventListener('loadedmetadata', handleLoadedMetadata);
-    audioRef.current.addEventListener('play', handlePlay);
-    audioRef.current.addEventListener('pause', handlePause);
-
-    return () => {
-      audioRef.current.removeEventListener('timeupdate', handleTimeUpdate);
-      audioRef.current.removeEventListener('loadedmetadata', handleLoadedMetadata);
-      audioRef.current.removeEventListener('play', handlePlay);
-      audioRef.current.removeEventListener('pause', handlePause);
-    };
-  }, []);
- 
   return (
     <div className={styles.bodyBlock}>
-    <div className={styles.container}>
-      {starElements}
-      {cloudElements}
-      
-    
-      <div className={styles.textOverlay}>
-  <h1>{meditationOne.title}</h1>
-</div>
+      <div className={styles.container}>
+        {starElements}
+        {cloudElements}
 
+        <div className={styles.textOverlay}>
+          <h1>{meditationOne.title}</h1>
+        </div>
 
-<div className={styles.audioControls}>
-   {isAudioLoaded && (
-      <button onClick={handleTogglePlay} className={styles.customButton}>
-         <img
-            src={isPlaying ? Stop : Play}
-            alt={isPlaying ? 'Stop' : 'Play'}
-            className={styles.controlIcon}
-         />
-      </button>
-   )}
-</div>
+        <div className={styles.audioControls}>
+          {isAudioLoaded && (
+            <>
+              <button onClick={handleTogglePlay} className={styles.customButton}>
+                <img
+                  src={isPlaying ? Stop : Play}
+                  alt={isPlaying ? 'Stop' : 'Play'}
+                  className={styles.controlIcon}
+                />
+              </button>
+              {isFinished ? (
+                <button className={styles.customButton2} disabled>
+                  Finish
+                </button>
+              ) : (
+                <button onClick={handleFinish} className={styles.customButton2}>
+                  Finish
+                </button>
+              )}
+            </>
+          )}
+        </div>
 
-
-      <audio ref={audioRef} src={yourAudioFile} />
-    </div></div>
+        <audio ref={audioRef} src={meditationOne.audio.src} />
+      </div>
+    </div>
   );
 }
 
