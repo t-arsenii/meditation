@@ -1,15 +1,19 @@
-import React from 'react';
+import { useState, useEffect }  from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import styles from './styles.module.css';
 import edit from './images/edit.png';
 
 function Profil() {
+
+  const user = useSelector(state => state.auth.user)
+
   return (
     <div className={styles.bodyBlock}>
      <div className={styles.profil}>Profil</div>
      <div className={styles.infoUser}>
          <div className={styles.imageUser}><p>img</p></div>
          <div className={styles.name}>
-          <p >alicja01</p>
+          <p>{user?.username }</p>
           <div className={styles.edit}><img  src={edit}/></div>
           </div>
      </div>
