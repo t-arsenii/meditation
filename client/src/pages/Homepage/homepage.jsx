@@ -18,7 +18,7 @@ function Homepage() {
   }, []);
 
   return (
-    <div>
+    <div className={styles.bodyBlock}>
       {redirect && navigate('/hello')}
       <animated.div style={fadeInProps}>
         <div id="logo-container" className={`${styles.logoContainer} logoContainer`}>

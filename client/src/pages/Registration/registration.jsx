@@ -27,7 +27,7 @@ function Registration() {
   }
 
     return (
-      <div className={styles.body}>
+      <div className={styles.bodyBlock}>
         <div className={styles.oval}></div>
   
         <div className={styles.centeredСontent}>

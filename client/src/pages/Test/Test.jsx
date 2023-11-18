@@ -58,6 +58,7 @@ export default function Test() {
      }
 
   return (
+    <div className={styles.bodyBlock}>
     <div className='container'>
       <h1 className='title text-light'>Quiz Application</h1>
 
@@ -70,6 +71,6 @@ export default function Test() {
             </div>
             
        
-    </div> 
+    </div> </div>
   )
 }

@@ -1,0 +1,67 @@
+
+.profil{
+    font-size: 3rem;
+    color: white;
+    margin-left: 480px;
+}
+
+.infoUser{
+    display: flex;
+    margin-top: 20px;
+  }
+.name{
+    margin-left: 40px;
+    display: flex;
+}
+.name p , .imageUser p , .awards p , .achievement p{
+    font-size: 30px;
+    color: white;
+}
+.edit{
+    margin-left: 20px;
+    margin-top: 30px;
+}
+.noneAwards {
+    color: white;
+    display: flex;
+    align-items: center; /* Вирівнюйте текст по вертикалі по центру */
+    justify-content: center; /* Вирівнюйте текст по горизонталі по центру */
+    height: 100%; /* Забезпечте повну висоту для центрування */
+  }
+.blockAwards{
+    position: relative;
+    width: 250px;
+    height: 250px; 
+    margin-top: 20px;
+    background-color: #6225A0; 
+    border-radius: 20px; 
+    overflow: hidden; 
+    text-align: center;
+    margin-right: 55px; 
+    margin-bottom: 25px;
+
+}
+.achievementInfo{
+    display: flex;
+}
+.achievementFinish , .achievementLevel{
+    margin-left: 20px;
+    position: relative;
+    width: 150px;
+    height: 150px; 
+    margin-top: 20px;
+    background-color: #6225A0; 
+    border-radius: 20px; 
+    overflow: hidden; 
+    text-align: center;
+    margin-right: 55px; 
+    margin-bottom: 25px;
+}
+.level , .finish{
+    display: flex;
+    align-items: center; /* Вирівнюйте текст по вертикалі по центру */
+    justify-content: center; /* Вирівнюйте текст по горизонталі по центру */
+    height: 100%;
+    color: white;
+}
+

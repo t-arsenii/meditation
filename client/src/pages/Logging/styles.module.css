@@ -1,5 +1,14 @@
 
-
+.bodyBlock{
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background: linear-gradient(90deg, #6100C2, #CA95FF);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
 .oval {
   position: absolute;
   bottom: 0;
@@ -8,8 +17,8 @@
   height: 300px;
   background-color: #471E70;
   border-radius: 50% 50% 0 0;
-  overflow: hidden;
   z-index: -1;
+  overflow: hidden;
 }
 
 .centeredСontent {

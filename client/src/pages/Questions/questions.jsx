@@ -48,8 +48,9 @@ export default function Questions({onChecked}) {
   //  if(serverError) return <h3>serverError</h3> 
 
     return (
-        <div className={styles.body}>
-            <div className={styles.oval}></div>
+      
+        <div className={styles.bodyBlock}>
+            
             <div className={styles.centeredСontent}>
                 {/* <p>Pytanie {questions.id}</p> */}
             </div>
