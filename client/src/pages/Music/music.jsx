@@ -142,8 +142,8 @@ function Music() {
   };
 
   return (
-    <div>
-      <div className={styles.body}></div>
+    
+      <div className={styles.bodyBlock}>
       <div className={styles.oval}></div>
       <div className={styles.pageHeader}>Muzyka</div>
       <div className={styles.searchApp}>

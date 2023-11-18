@@ -6,6 +6,7 @@ export const MeditationItem = ({ meditation }) => {
    
     
     return (
+      
         <Link to={`/meditation/${meditation._id}`}>
            <div className={styles.block}>
                 

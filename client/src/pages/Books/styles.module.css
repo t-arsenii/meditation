@@ -1,5 +1,14 @@
 /* styles.module.css */
-
+.bodyBlock{
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background: linear-gradient(90deg, #6100C2, #CA95FF);
+  
+  justify-content: center;
+  align-items: center;
+  overflow:auto;
+}
 .pageHeader {
     text-align: center;
     font-size: 3rem;

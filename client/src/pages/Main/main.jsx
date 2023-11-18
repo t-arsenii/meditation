@@ -59,7 +59,7 @@ function Main() {
   // <MeditationItem i= {i} meditation={meditation}>
   //               </MeditationItem>
   return (
-    <div className={styles.body}>
+    <div className={styles.bodyBlock}>
       <div className={styles.oval}></div>
       <div className={styles.main}>
       <div className={styles.sideText}>

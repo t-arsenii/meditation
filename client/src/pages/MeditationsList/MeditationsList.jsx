@@ -96,8 +96,8 @@ useEffect(() => {
 }, [savedMeditation]);
 
     return (
-      <div>
-        <div className={styles.body}></div>
+      
+        <div className={styles.bodyBlock}>
         <div className={styles.blocksContainer}>
         <div className={styles.meditationall}>Dostępne medytacje</div>
           {meditations?.map((meditation, i) => (
@@ -136,8 +136,8 @@ useEffect(() => {
               </div>
             </div>
           ))}
-        </div>
-      </div>
+        </div></div>
+     
     );
     
 }

@@ -4,7 +4,7 @@ import edit from './images/edit.png';
 
 function Profil() {
   return (
-    <div>
+    <div className={styles.bodyBlock}>
      <div className={styles.profil}>Profil</div>
      <div className={styles.infoUser}>
          <div className={styles.imageUser}><p>img</p></div>

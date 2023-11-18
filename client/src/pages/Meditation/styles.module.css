@@ -1,5 +1,12 @@
 /* styles.module.css */
-
+.bodyBlock{
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(90deg, #6100C2, #CA95FF);
+  justify-content: center;
+  align-items: center;
+  overflow:hidden;
+}
 @keyframes glow {
   0% {
     opacity: 0.5;

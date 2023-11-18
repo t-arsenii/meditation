@@ -1,13 +1,25 @@
-
+.bodyBlock{
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(90deg, #6100C2, #CA95FF); 
+  justify-content: center;
+  align-items: center;
+ 
+}
 .profil{
     font-size: 3rem;
     color: white;
     margin-left: 480px;
+    align-items: center;
+    justify-content: center;
+    margin-left: 800px;
+ 
 }
 
 .infoUser{
     display: flex;
     margin-top: 20px;
+    margin-left: 220px;
   }
 .name{
     margin-left: 40px;
@@ -16,6 +28,9 @@
 .name p , .imageUser p , .awards p , .achievement p{
     font-size: 30px;
     color: white;
+}
+.awards p , .achievement p{
+    margin-left: 220px;
 }
 .edit{
     margin-left: 20px;
@@ -39,10 +54,12 @@
     text-align: center;
     margin-right: 55px; 
     margin-bottom: 25px;
+    margin-left: 220px;
 
 }
 .achievementInfo{
     display: flex;
+    margin-left: 220px;
 }
 .achievementFinish , .achievementLevel{
     margin-left: 20px;

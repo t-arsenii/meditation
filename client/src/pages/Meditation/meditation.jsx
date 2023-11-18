@@ -144,6 +144,7 @@ console.log(`AUDIO ${audio}`)
   }, []);
  
   return (
+    <div className={styles.bodyBlock}>
     <div className={styles.container}>
       {starElements}
       {cloudElements}
@@ -168,7 +169,7 @@ console.log(`AUDIO ${audio}`)
 
 
       <audio ref={audioRef} src={yourAudioFile} />
-    </div>
+    </div></div>
   );
 }
 

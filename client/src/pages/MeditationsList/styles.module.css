@@ -1,13 +1,15 @@
-.blocksContainer {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
-    overflow: auto;
-    margin-top: 60px;
-    margin-left: 350px;
-    
+.bodyBlock{
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(90deg, #6100C2, #CA95FF); 
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+}
+
+.blocksContainer { 
+    margin-top: 20px;
+    margin-left: 350px;  
   }
   
   .block {
