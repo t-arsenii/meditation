@@ -12,27 +12,36 @@ import { MeditationItem } from './MeditationItem';
 import { Link } from 'react-router-dom'
 import { useParams } from 'react-router-dom';
 import close from './images/close.png';
+import { to } from 'react-spring';
 
 function Main() {
+  
    const dispatch = useDispatch();
    const {meditations, savedMeditations} = useSelector((state) => state.meditation)
   const state = useSelector(state => state)
-  const username = useSelector(state => state.auth.user.username)
-  const { userId } = useParams();
   const [selectedBlock, setSelectedBlock] = useState(null);
-//console.log(`PARAMS TO ${userId}`)
+const isAuth = useSelector(checkIsAuth)
+const token = useSelector(state => state.auth.token)
+const user = useSelector(state => state.auth.user)
+ const { userId } = useParams();
+//console.log(token)
+ // console.log(isAuth)
+ const [savedMeditationIds, setSavedMeditationIds] = useState(
+  JSON.parse(localStorage.getItem('savedMeditationIds')) || []
+);
+  console.log(state)
    useEffect(() => {
     
        dispatch(getMeditations())
        
     }, [dispatch])
 
-    useEffect(() => {
-      if (userId) {
-        dispatch(getSavedMeditations(userId));
-      }
-    }, [dispatch, userId]);
-    console.log(savedMeditations);
+    // useEffect(() => {
+    //   if (userId) {
+    //     dispatch(getSavedMeditations(userId));
+    //   }
+    // }, [dispatch, userId]);
+    // console.log(savedMeditations);
 
    //console.log(state);
 
@@ -44,18 +53,30 @@ function Main() {
     //console.log(user)
 
   }
-
-   const handleRemove = (savedMeditationId) => {
+  const handleRemove = async (savedMeditationId,meditationId) => {
     onChecked(savedMeditationId);
     try {
-      const params = {id: userId, savedMeditationId: savedMeditationId}
-      dispatch(removeSavedMeditation(params))
-      console.log(`Meditation id ${savedMeditationId}`)
+      const params = { id: userId, savedMeditationId: savedMeditationId };
+      await dispatch(removeSavedMeditation(params));
+      console.log(meditationId)
+      const indexOfMeditationToRemove = savedMeditationIds.indexOf(meditationId);
+      if (indexOfMeditationToRemove !== -1) {
+        savedMeditationIds.splice(indexOfMeditationToRemove, 1);
+       localStorage.setItem('savedMeditationIds', JSON.stringify(savedMeditationIds));
+      }
+      console.log(`Meditation id ${savedMeditationId} removed`);
     } catch (error) {
-      console.log(error)
+      console.log('Error:', error);
     }
-    console.log(state);
-  }
+    console.log('Current state:', state);
+  };
+  
+  useEffect(() => {
+    // Dodaj ponowne załadowanie medytacji po usunięciu do zależności useEffect
+    if (userId) {
+      dispatch(getSavedMeditations(userId));
+    }
+  }, [dispatch, userId, savedMeditations]);
   // <MeditationItem i= {i} meditation={meditation}>
   //               </MeditationItem>
   return (
@@ -63,7 +84,9 @@ function Main() {
       <div className={styles.oval}></div>
       <div className={styles.main}>
       <div className={styles.sideText}>
-        <p>{`Cześć, ${username}`}</p>
+      {/* <p>{`Cześć, ${user || 'Guest'}`}</p> */}
+
+        <p>{`Cześć, ${user?.username || 'Guest'}`}</p>
         <p className={styles.textNext}>Uczyń swój dzień lepszym</p>
 
         <div className={styles.program}>
@@ -76,7 +99,7 @@ function Main() {
        
 
         <div className={styles.accessible}>
-          <p>Dostępne medytacje</p>
+        <p>Dostępne medytacje</p>
           <div className={styles.all}>
            <Link to={`/meditationsList`}>
            <p>Wszystko</p>
@@ -94,20 +117,21 @@ function Main() {
                     </div>
 
                     <div className={styles.accessible2}>
-                        <p>Zapisane medytacje</p>
+                         <p>Zapisane medytacje</p>
                         <div className={styles.all2}>
                         </div>
                     </div>
 
                     <div className={styles.blockContainer}>
-                        {savedMeditations?.map((savedMeditation, i) => (
-                            <div key={i} className={` ${styles.blockCommon}`}>
-                               <button className={styles.button2} onClick={() => {handleRemove(savedMeditation._id)}}><img src={close} className={styles.close}/></button>
-                                <img src={woman_main} alt="Woman Main" />
-                                {savedMeditation.title}
-                               
-                            </div>
-    ))}
+                    {savedMeditations?.map((savedMeditation, i) => (
+  <div key={i} className={` ${styles.blockCommon}`}>
+    {savedMeditation && (
+      <button className={styles.button2} onClick={() => {handleRemove(savedMeditation?._id, savedMeditation?.meditationId)}}><img src={close} className={styles.close}/></button>
+    )}
+    <img src={woman_main} alt="Woman Main" />
+    {savedMeditation?.title || 'Untitled Meditation'}
+  </div>
+))}
     
   </div>
 

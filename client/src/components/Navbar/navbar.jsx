@@ -7,22 +7,31 @@ import chat from './images/chat.png'
 import profil from './images/profil.png'
 import calendar from './images/calendar.png'
 import books from './images/books.png'
-import logout from './images/logout.png'
+import logoutImg from './images/logout.png'
 import {useLocation} from 'react-router-dom'
-import { Link } from 'react-router-dom';
+import { Link , useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector } from 'react-redux';
-import { checkIsAuth } from '../../redux/features/auth/authSlice';
-function Main({ name }) {
-  const isAuth = useSelector(checkIsAuth)
-  const dispatch = useDispatch()
+import { checkIsAuth, logout } from '../../redux/features/auth/authSlice';
+function Navbar({ name }) {
+    const isAuth = true
+
+  // const isAuth = useSelector(checkIsAuth)
+  // console.log(isAuth)
+   const dispatch = useDispatch()
   const user = useSelector((state) => state.auth.user)
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
     // useEffect(() => {
     //     if (status) toast(status)
     //     if (isAuth) navigate(`/main/${user._id}`)
     //     //if (isAuth) navigate('/questions')
 
     // }, [status, isAuth, navigate])
+    const logoutHandler = () => {
+      dispatch(logout())
+      window.localStorage.removeItem('token')
+      console.log('Wylogowałeś się z systemu')
+      navigate('/logging')
+  }
     const location = useLocation();
     const { pathname } = location;
     const excludedPaths = ['/hello' , '/' , '/registration' , '/logging' , '/starttest' , '/endtest' , '/question1' , '/question2' , '/question3' , '/questions' ];
@@ -39,7 +48,9 @@ function Main({ name }) {
         <img src={logo2} alt="Logo" />
         <div className={styles.textOver}>
           <img src={home} alt="Home Icon" />
-          <Link to={`main/${user._id}`}><p>Główna</p></Link>
+          <Link to={`main/${user?._id}`}><p>Główna</p></Link>
+
+          {/* <Link to={`/main`}><p>Główna</p></Link> */}
         </div>
         <div className={styles.textOver}>
           <img src={music} alt="Music Icon" />
@@ -66,11 +77,12 @@ function Main({ name }) {
 )}
       
       <div className={styles.logoutText}>
-        <img src={logout} alt="Logout Icon" />
-          <p>Wyloguj się</p>
+        <img src={logoutImg} alt="Logout Icon" />
+        <button onClick={logoutHandler}>Wyloguj się</button>
+          {/* <p>Wyloguj się</p> */}
       </div>
      </div>
   );
 }
 
-export default Main;
+export default Navbar;

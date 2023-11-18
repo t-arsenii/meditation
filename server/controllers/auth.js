@@ -109,7 +109,10 @@ export const getMe =async (req, res) =>{
             { expiresIn: '30d' },
         )
 
-        res.status(200).json(user);
+        res.json({
+            user,
+            token,
+        })
 
     } catch (error) {
         res.json({

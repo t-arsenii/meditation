@@ -140,7 +140,7 @@ export const meditationSlice = createSlice({
         [removeSavedMeditation.fulfilled]: (state, action) => {
             state.loading = false
             state.savedMeditations = state.savedMeditations.filter(
-                (savedMeditations) => savedMeditations._id !== action.payload._id,
+                (savedMeditations) => savedMeditations?._id !== action.payload._id,
             )
         },
         [removeSavedMeditation.rejected]: (state) => {
