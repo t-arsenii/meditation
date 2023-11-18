@@ -20,14 +20,14 @@
     
     position: fixed;
     bottom: 20px; /* Відступ знизу */
-    left: 20px; /* Відступ зліва */
+    left: 10px; /* Відступ зліва */
     color: #fff; /* Колір тексту */
     font-size: 18px; /* Розмір шрифту */
     display: flex;
     align-items: center;
 }
 .logoutText img {
-    margin-right: 10px; /* Відступ між зображенням і текстом */
+    margin-right: 0px; /* Відступ між зображенням і текстом */
 }
 .sideText {
     position: absolute;
@@ -62,6 +62,12 @@
 a{
     text-decoration: none;
     color: #fff;
+}
+.buttonLog{
+   background: none;
+   border: none;
+   color: #fff;
+   font-size: 18px;
 }
 
 

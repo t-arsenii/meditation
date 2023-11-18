@@ -8,6 +8,7 @@
     justify-content: flex-start;
     height: 100vh;
     padding: 20px;
+    background: linear-gradient(90deg, #6100C2, #CA95FF);
   }
   
   .header {
