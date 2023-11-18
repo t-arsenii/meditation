@@ -1,3 +1,8 @@
+.bodyBlock{
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+}
 .oval {
     position: absolute;
     bottom: 0;

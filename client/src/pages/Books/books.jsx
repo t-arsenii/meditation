@@ -13,8 +13,7 @@ import { Link } from 'react-router-dom';
 function Books() {
   return (
     
-    <div>
-      <div className={styles.body}></div>
+    <div className={styles.bodyBlock}>
       <div className={styles.pageHeader}>
         Polecane książki
       </div>

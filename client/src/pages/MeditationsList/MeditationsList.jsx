@@ -31,20 +31,7 @@ export const MeditationsList = () => {
     localStorage.setItem('savedMeditationIds', JSON.stringify(savedMeditationIds));
   }, [savedMeditationIds]);
 
-    useEffect(() => {
-        dispatch(getMeditations());
-        console.log(state)
-    }, [dispatch]);
-
-    function onChecked(selectedBlock){
-      //console.log(selectedBlock)
-      setSelectedBlock(selectedBlock);//wybyraje medytacju
-      console.log(selectedBlock)
-      console.log(user)
  
-    }
-   
-    
     const saveMeditation = async (index) => {
       try {
         const params = { meditationId: index, userId: user };
@@ -68,7 +55,7 @@ export const MeditationsList = () => {
             setSelectedMeditationId(null);
           }
         } else {
-          console.error("Invalid format for saved meditations data:", response);
+          console.error('Invalid format for saved meditations data:', response);
         }
   
         console.log(state);
@@ -76,31 +63,41 @@ export const MeditationsList = () => {
         console.error(error);
       }
     };
-    
-    
-    
-    
-    
-    
+ 
     function handleStart(index){
       navigate(`/meditation/${index}`)
     }
+    
     useEffect(() => {
       if (savedMeditation) {
         setSavedMeditationIds(savedMeditation.map((m) => m.meditationId));
       }
     }, [savedMeditation]);
-    useEffect(() => {
-      // Оновити список збережених медитацій при завантаженні компонента
-      dispatch(getMeditations());
-    }, [dispatch]);
-    console.log('selectedBlock:', selectedBlock);
-console.log('savedMeditationIds:', savedMeditationIds);
 
+
+  
+
+  useEffect(() => {
+    // Зміни, щоб викликати getMeditations при завантаженні сторінки
+    const fetchData = async () => {
+      await dispatch(getMeditations());
+    };
+
+    fetchData(); // Викликати функцію при завантаженні компонента
+  }, [dispatch]);
+
+
+
+useEffect(() => {
+  if (savedMeditation) {
+    // No need to set savedMeditationIds directly
+    console.log('savedMeditation:', savedMeditation);
+  }
+}, [savedMeditation]);
 
     return (
-      <div>
-        <div className={styles.body}></div>
+      
+        <div className={styles.bodyBlock}>
         <div className={styles.blocksContainer}>
         <div className={styles.meditationall}>Dostępne medytacje</div>
           {meditations?.map((meditation, i) => (
@@ -139,8 +136,8 @@ console.log('savedMeditationIds:', savedMeditationIds);
               </div>
             </div>
           ))}
-        </div>
-      </div>
+        </div></div>
+     
     );
     
 }

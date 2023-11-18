@@ -11,7 +11,7 @@ const Hello = () => {
 
   
   return (
-    <div className={styles.body}>
+    <div className={styles.bodyBlock}>
       <div className={styles.oval}></div>
       <div className={styles.textContainer}>
         <p className={styles.welcomeText}>Witamy w SereneAstro</p>

@@ -4,7 +4,7 @@ import img1 from './images/img1.png';
 
 function StartTest() {
   return (
-    <div className={styles.body}>
+    <div className={styles.bodyBlock}>
       <div className={styles.oval}></div>
       <div className={styles.centeredContent}>
         <p>

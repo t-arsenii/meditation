@@ -1,7 +1,16 @@
 /* styles.module.css */
 
 /* Загальні стилі сторінки */
-
+.bodyBlock{
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background: linear-gradient(90deg, #6100C2, #CA95FF); 
+  justify-content: center;
+  align-items: center;
+  overflow:hidden;
+ 
+}
   
   .oval {
     position: absolute;
@@ -69,7 +78,9 @@
   .medetetion {
     border-bottom: 4px solid #471E70;
   }
-  
+  .selectMusic{
+    margin-left: 330px;
+  }
   .songsContainer {
     margin-top: 30px;
     margin-left: 50px;
@@ -77,7 +88,7 @@
   
   /* Стилі для окремих пісень */
   .song {
-    display: flex;
+   
     justify-content: space-between;
     width: 500px;
     margin-bottom: 20px;
@@ -194,8 +205,9 @@
  
   }
   .slider {
-    width: 100%;
+    width: 60%;
     margin-top: 30px;
+    margin-left: 340px;
   }
   
   .progressSlider {

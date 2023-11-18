@@ -1,6 +1,7 @@
 /* styles.module.css */
 
-body {
+.bodyBlock{
+ 
     margin: 0;
     padding: 0;
     height: 100vh;
@@ -9,7 +10,8 @@ body {
     justify-content: center;
     align-items: center;
     overflow: auto;
-  }
+  
+}
   .oval {
     position: absolute;
     bottom: 0;
