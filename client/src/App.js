@@ -63,7 +63,7 @@ function App() {
         <Route path='/questions' element={<Test />}/> 
         <Route path='/meditationsList'element={<MeditationsList/>}/>   
         <Route path='/questions' element={<Questions />}/> 
-        <Route path='/questions' element={<Test />}/> 
+        <Route path='/test' element={<Test />}/> 
         <Route path='/meditation/:meditationId'element={<Meditation/>}/>  
         <Route path='/program' element={<Program />}/>
 

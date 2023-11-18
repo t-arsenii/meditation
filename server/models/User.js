@@ -17,12 +17,11 @@ const UserSchema = new mongoose.Schema({
       ref: 'SavedMeditation'
     }],
     
-    result: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Result',
-      },
-    ],
+    result: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Result',
+      default: null, // Set the default value to null
+    }],
     mood: [
       {
         type: mongoose.Schema.Types.ObjectId,

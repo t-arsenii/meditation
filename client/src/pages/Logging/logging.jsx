@@ -5,7 +5,7 @@ import facebook from './images/facebook.png';
 import google from './images/google.png';
 import twitter from './images/twitter.png'
 import { useDispatch, useSelector } from 'react-redux'
-import { checkIsAuth, loginUser } from '../../redux/features/auth/authSlice'
+import { checkIsAuth, loginUser,checkIsResult } from '../../redux/features/auth/authSlice'
 import { toast } from 'react-toastify'
 
 function Logging() {
@@ -14,22 +14,31 @@ function Logging() {
 const state = useSelector((state)=> state)
     const { status } = useSelector((state) => state.auth)
     const isAuth = useSelector(checkIsAuth)
+    const isResult = useSelector(checkIsResult)
     const user = useSelector((state) => state.auth.user)
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
     useEffect(() => {
         //if (status) toast(status)
-        if (isAuth) navigate(`/main/${user._id}`)
-        //if (isAuth) navigate('/questions')
-       // if (isAuth) navigate(`/main`)
-
-    }, [status, isAuth, navigate])
+        
+       if (isAuth) {
+        if (isResult && user.result.length > 0) {
+          
+          const userId = user._id; 
+          navigate(`/main/${userId}`);
+        } else {
+          
+          console.log(isAuth, isResult);
+          navigate('/starttest');
+        }
+      }
+    }, [status, isAuth, isResult,navigate])
 
     const handleSubmit = () => {
         try {
             dispatch(loginUser({ email, password }))
-           // navigate('/hello')
+           
         } catch (error) {
             console.log(error)
         }
