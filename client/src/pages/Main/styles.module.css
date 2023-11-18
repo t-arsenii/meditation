@@ -1,9 +1,8 @@
 .bodyBlock{
     margin: 0;
     padding: 0;
-    height: 300vh;
     background: linear-gradient(90deg, #6100C2, #CA95FF);
-    
+    height: 250vh ;
     justify-content: center;
     align-items: center;
    
