@@ -1,6 +1,7 @@
  import { Router } from 'express'
-import { register, login, getMe } from '../controllers/auth.js'
+import { register, login, getMe , finishMeditation,upgrateLevel, addUserImage} from '../controllers/auth.js'
 import { checkAuth } from '../utils/checkAuth.js'
+
 const router = new Router()
 // Register
 // http://localhost:3002/api/auth/register
@@ -14,4 +15,7 @@ router.post('/login', login)
 // http://localhost:3002/api/auth/me
 router.get('/me', checkAuth, getMe)
 
+router.patch('/:userId/finishMeditation', finishMeditation);
+router.patch('/:userId/upgrateLevel', upgrateLevel);
+router.put('/addUserImage', addUserImage);
  export default router

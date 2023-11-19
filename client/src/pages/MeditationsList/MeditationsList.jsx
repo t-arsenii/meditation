@@ -8,12 +8,13 @@ import { insertSavedMeditations } from '../../redux/features/meditationSlice';
 import save from './images/save.png';
 import { Link , useNavigate} from 'react-router-dom';
 import { getSavedMeditations } from '../../redux/features/meditationSlice';
-
+import { upgrateLevel } from '../../redux/features/auth/authSlice';
 export const MeditationsList = () => {
   const state = useSelector(state => state)
   const {meditations, savedMeditation} = useSelector((state) => state.meditation);
   const [selectedBlock, setSelectedBlock] = useState(null);
   const user = useSelector((state) => state.auth.user?._id)
+  const userr = useSelector((state) => state.auth.user)
   const navigate = useNavigate()
   
   const dispatch = useDispatch();
@@ -95,6 +96,15 @@ useEffect(() => {
   }
 }, [savedMeditation]);
 
+
+useEffect(()=> {
+  if(userr?.finishedMeditations === 18){
+    console.log('W ifie')
+    console.log(userr?.finishedMeditations)
+    dispatch(upgrateLevel(user));
+    console.log(userr?.finishedMeditations)
+}},[userr?.finishedMeditations, dispatch]);
+console.log(state);
     return (
       
         <div className={styles.bodyBlock}>

@@ -11,7 +11,7 @@ import M2 from './audio/M2.MP3';
 import M3 from './audio/M3.MP3';
 import M4 from './audio/M4.MP3';
 import M5 from './audio/M5.MP3';
-
+import { updateFinishedMeditations , upgrateLevel} from '../../redux/features/auth/authSlice';
 
 const songsData = [
   {
@@ -34,9 +34,12 @@ const songsData = [
 
 
 function Meditation() {
+  const dispatch = useDispatch();
   const state = useSelector(state => state)
   const {meditations, savedMeditation} = useSelector((state) => state.meditation);
   const { meditationId } = useParams();
+  const userId = useSelector(state => state.auth.user?._id)
+ const user = useSelector(state => state.auth.user)
   console.log(state);
   console.log(meditationId);
   let yourAudioFile;
@@ -177,8 +180,10 @@ console.log(`AUDIO ${audio}`)
 
   const handleFinish = () => {
     setIsFinished(true);
-    navigate('/meditationsList');
+    dispatch(updateFinishedMeditations(userId));
     
+    console.log(user.finishedMeditations)
+    navigate('/meditationsList');
   };
 
   return (
@@ -188,7 +193,7 @@ console.log(`AUDIO ${audio}`)
         {cloudElements}
 
         <div className={styles.textOverlay}>
-          <h1>{meditationOne.title}</h1>
+          <h1>{meditationOne?.title}</h1>
         </div>
 
         <div className={styles.audioControls}>

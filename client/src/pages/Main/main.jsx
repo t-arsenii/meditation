@@ -76,7 +76,7 @@ const user = useSelector(state => state.auth.user)
     if (userId) {
       dispatch(getSavedMeditations(userId));
     }
-  }, [dispatch, userId, savedMeditations]);
+  }, [dispatch, savedMeditations]);
   // <MeditationItem i= {i} meditation={meditation}>
   //               </MeditationItem>
   return (
