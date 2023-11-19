@@ -31,20 +31,25 @@ function uploadImage(){
     <div className={styles.bodyBlock}>
      <div className={styles.profil}>Profil</div>
      <div className={styles.infoUser}>
-     <label htmlFor="fileInput" className={styles.customFileInput}>
-  Wybierz plik
-</label>
-<input
-  id="fileInput"
-  accept="image/*"
-  type="file"
-  onChange={covertToBase64}
-  className={styles.inputImg}
-/>
-            {image =="" || image==null?"":  <img width={100} height={100} src={image}/>}
-           <button onClick={uploadImage} className={styles.buttonImage}>Dodaj img</button>
+  
+            {/* {image =="" || image==null?"":  <img width={100} height={100} src={image}/>} */}
+           {/* <button onClick={uploadImage} className={styles.buttonImage}>Dodaj img</button> */}
 
-           {imageToDisplay =="" || imageToDisplay==null?"":  <img width={100} height={100} src={imageToDisplay}/>}
+           {imageToDisplay =="" || imageToDisplay==null?
+           <div>
+              <label htmlFor="fileInput" className={styles.customFileInput}>
+              Wybierz plik
+            </label>
+            <input
+              id="fileInput"
+              accept="image/*"
+              type="file"
+              onChange={covertToBase64}
+              className={styles.inputImg}
+            />
+           <button onClick={uploadImage} className={styles.buttonImage}>Dodaj img</button>
+            </div>
+           :  <img width={200} height={200} style={{ borderRadius: '80px' }} src={imageToDisplay}/>}
          <div className={styles.name}>
           <p>{user?.username }</p>
           <div className={styles.edit}><img  src={edit}/></div>

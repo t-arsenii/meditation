@@ -3,7 +3,7 @@ import authSlice from './features/auth/authSlice'
 import questionReducer from './features/question_reducer'
 import resultReducer from './features/result_reducer'
 import meditationSlice from './features/meditationSlice'
-import moodReducer from './features/mood_reducers'
+import moodSlice from './features/moodSlice'
 import programSlice from './features/programSlice'
 // const rootReducer = combineReducers({
 //     questions: questionReducer
@@ -15,7 +15,7 @@ export const store = configureStore ({
         questions: questionReducer,
         result: resultReducer,
         meditation: meditationSlice,
-        mood: moodReducer,
+        mood: moodSlice,
         program5Day: programSlice
     },
 })
