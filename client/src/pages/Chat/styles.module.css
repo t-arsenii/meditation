@@ -1,0 +1,84 @@
+.bodyBlock{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: linear-gradient(90deg, #6100C2, #CA95FF); 
+    justify-content: center;
+    align-items: center;
+    overflow:hidden;
+}
+.chat p{
+    justify-content: center;
+    text-align: center;
+    font-size: 3rem;
+    color: white;
+}
+.searchApp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+   
+  }
+.searchContainer {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 40px;
+    background: white;
+    width: 800px; /* Розмір контейнера, змініть на потрібний */
+    height: 30px;
+    justify-content: center;
+  }
+  
+  .searchIcon {
+    width: 40px; /* Ширина іконки */
+    height: auto;
+    margin: 0 10px; /* Відступи навколо іконки, змініть на потрібні */
+  }
+  
+  .searchInput {
+    flex: 1;
+    padding: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    color: #000; /* Колір тексту, змініть на потрібний */
+  }
+  .noneSMS{
+    justify-content: center;
+    text-align: center;
+    font-size: 1.5rem;
+    color: white;
+    margin-top: 40px;
+  }
+
+  .userSMS{
+    width: 800px;
+    height: 100px;
+    justify-content: center;
+    margin-left: 370px;
+    background-color: #471E70;
+    border-radius: 20px;
+    margin-top: 20px;
+  }
+.userBlock{
+    display: flex;
+    margin-left: 20px;
+}
+.userInfo{
+    margin-left: 90px;
+    font-size: 25px;
+}
+.userName{
+    color: white;
+}
+.userEndSMS {
+    margin-top: 10px;
+    color: #D1D1D1;
+}
+.smsData{
+    margin-left: 390px;
+    color: #D1D1D1;
+}
