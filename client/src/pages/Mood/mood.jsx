@@ -86,8 +86,8 @@ useEffect(() => {
   const tileContent = ({ date, view }) => {
     if (view === 'month') {
       const dateString = date.toDateString();
-      //const mood = moodData[dateString];
-      const mood = state.mood.moodData.date
+      const mood = moodData[dateString];
+     // const mood = state.mood.moodData.date
       if (mood === 'good') {
         return <div style={{ color: 'green' }}>😄</div>;
       } else if (mood === 'bad') {
