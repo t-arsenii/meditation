@@ -121,3 +121,57 @@ export const getMe =async (req, res) =>{
         )
     }
 }
+export const finishMeditation = async (req, res) => {
+    try {
+      const userId = req.params.userId;
+  
+      // Update the user's finishedMeditations field (you may want to increment it by 1)
+      const user = await User.findByIdAndUpdate(
+        userId,
+        { $inc: { finishedMeditations: 1 } }, // or use $set if you want to set a specific value
+        { new: true } // return the updated document
+      );
+  
+      res.json(user);
+    } catch (error) {
+      console.error('Error finishing meditation:', error);
+      res.status(500).json({ error: 'Error finishing meditation' });
+    }
+  };
+  export const upgrateLevel = async (req, res) => {
+    try {
+      const userId = req.params.userId;
+  
+      // Update the user's finishedMeditations field (you may want to increment it by 1)
+      const user = await User.findByIdAndUpdate(
+        userId,
+        { $inc: { level: 1 } }, // or use $set if you want to set a specific value
+        { new: true } // return the updated document
+      );
+  
+      res.json(user);
+    } catch (error) {
+      console.error('Error upgrating Level:', error);
+      res.status(500).json({ error: 'Error upgrating Level:' });
+    }
+  };
+  
+  export const addUserImage = async (req, res) => {
+    try {
+        const{userId, image} = req.body;
+      //const userId = req.params.userId;
+        console.log(image);
+        
+      // Update the user's finishedMeditations field (you may want to increment it by 1)
+      const user = await User.findByIdAndUpdate(
+        userId,
+        {  image: image } , // or use $set if you want to set a specific value
+        { new: true } // return the updated document
+      );
+  
+      res.json(user);
+    } catch (error) {
+      console.error('Error addUserImage:', error);
+      res.status(500).json({ error: 'Error addUserImage:' });
+    }
+  };

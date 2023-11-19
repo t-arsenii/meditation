@@ -53,7 +53,47 @@ export const registerUser = createAsyncThunk(
          console.log(error)
      }
  })
+ export const updateFinishedMeditations = createAsyncThunk(
+    'meditations/updateFinishedMeditations',
+    async (userId) => {
+      try {
+        const { data } = await axios.patch(`/auth/${userId}/finishMeditation`);
+        return data;
+      } catch (error) {
+        console.error('Error updating finished meditations:', error);
+        throw error;
+      }
+    }
+  );
+  export const upgrateLevel = createAsyncThunk(
+    'levels/upgrateLevel',
+    async (userId) => {
+      try {
+        const { data } = await axios.patch(`/auth/${userId}/upgrateLevel`);
+        return data;
+      } catch (error) {
+        console.error('Error upgrateLevel:', error);
+        throw error;
+      }
+    }
+  );
+  export const addUserImage = createAsyncThunk(
+    'auth/addUserImage',
+    async ({userId, image}) => {
+      try {
+        const { data } = await axios.put(`/auth/addUserImage`,  {
+            userId,
+            image,
+        });
+        return data;
+      } catch (error) {
+        console.error('Error addUserImage:', error);
+        throw error;
+      }
+    }
+  );
 
+  
 export const authSlice = createSlice({
     name: 'auth',
     initialState,
@@ -111,6 +151,51 @@ export const authSlice = createSlice({
              state.status = action.payload.message
              state.isLoading = false
          },
+         //updateFinishedMeditations
+         [updateFinishedMeditations.pending]: (state) => {
+            state.isLoading = true
+            state.status = null
+        },
+        [updateFinishedMeditations.fulfilled]: (state, action) => {
+            state.isLoading = false
+            state.status = null
+            state.user = action.payload
+            
+        },
+        [updateFinishedMeditations.rejectWithValue]: (state, action) => {
+            state.status = action.payload.message
+            state.isLoading = false
+        },
+         //upgrateLevel
+         [upgrateLevel.pending]: (state) => {
+            state.isLoading = true
+            state.status = null
+        },
+        [upgrateLevel.fulfilled]: (state, action) => {
+            state.isLoading = false
+            state.status = null
+            state.user = action.payload
+            
+        },
+        [upgrateLevel.rejectWithValue]: (state, action) => {
+            state.status = action.payload.message
+            state.isLoading = false
+        },
+         //addUserImage
+         [addUserImage.pending]: (state) => {
+            state.isLoading = true
+            state.status = null
+        },
+        [addUserImage.fulfilled]: (state, action) => {
+            state.isLoading = false
+            state.status = null
+            state.user = action.payload.user
+            
+        },
+        [addUserImage.rejectWithValue]: (state, action) => {
+            state.status = action.payload.message
+            state.isLoading = false
+        },
     },
 })
 

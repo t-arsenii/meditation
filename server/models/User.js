@@ -4,10 +4,11 @@ const UserSchema = new mongoose.Schema({
     email: String,
     password: String,
     username: String,
-    levels:  [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Levels'
-      }],
+    image: { type: String, default: '' },
+    level: {
+      type: Number,
+      default: 0, 
+    },
     rewards: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Reward'
@@ -28,6 +29,10 @@ const UserSchema = new mongoose.Schema({
         ref: 'Mood',
       },
     ],
+    finishedMeditations: {
+      type: Number,
+      default: 0, 
+    },
     
   });
 
