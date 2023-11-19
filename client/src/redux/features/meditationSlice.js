@@ -1,6 +1,7 @@
 //redux meditationSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from '../../utils/axios'
+
 const initialState = {
     meditations: [],
     savedMeditations: [], // Make sure it's initialized as an array

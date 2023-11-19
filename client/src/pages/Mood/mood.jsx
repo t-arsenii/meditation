@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import Calendar from 'react-calendar';
 import './Calendar.css';
 import Modal from 'react-modal';
@@ -7,16 +7,21 @@ import styles from './styles.module.css';
 import close from './images/close.png';
 import good from './images/good.png';
 import bad from './images/bad.png';
-import { fetchMoodData, selectMoodData, addMoodRecord } from '../../redux/features/moodSlice';
+import { addMoodRecord, fetchMoodData, selectMoodData, setError, setLoading, setMoodData } from '../../redux/features/moodSlice';
+import axiosInstance from '../../utils/axios';
+import { selectUserId } from '../../redux/features/auth/authSlice';
 
 
 function MoodCalendar() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedMood, setSelectedMood] = useState('');
-
+  const [moodData, setMoodData] = useState({});
+  
+  const moodEntry = moodData && moodData[selectedDate.toDateString()];
   // Rename state variable to avoid conflict
   const localMoodData = useState({});
+  
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -29,49 +34,53 @@ function MoodCalendar() {
   };
 
   const dispatch = useDispatch();
-  const moodData = useSelector(selectMoodData);
 
-  useEffect(() => {
-    dispatch(fetchMoodData());
-  }, [dispatch]);
+  const mood = moodEntry ? moodEntry.mood : null;
+  const isGoodMood = mood === 'good';
+  
 
-  const handleMoodSelection = (mood) => {
-    dispatch(addMoodRecord(selectedDate, mood));
+ 
+
+  const handleMoodSelection = async (mood) => {
+    dispatch(addMoodRecord({ date: selectedDate, mood: mood , userId}));
     closeModal();
   };
+  
+  
 
+  const userId = useSelector((state) => state.auth.userId);
+  console.log('UserId from Selector:', userId);
+
+  
   const saveMoodToDatabase = async () => {
-    try {
-      const response = await fetch('http://localhost:3002/api/addMood', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          date: selectedDate,
-          mood: selectedMood,
-        }),
-      });
+    
+  try {
+    const response = await axiosInstance.post('/addMood', {
+      userId,
+      date: selectedDate,
+      mood: selectedMood,
+    });
 
-      if (response.status === 201) {
-        console.log('Mood record added successfully');
-      } else {
-        console.error('Failed to add mood record');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    } finally {
-      closeModal();
+    if (response.status === 201) {
+      console.log('Mood record added successfully');
+    } else {
+      console.error('Failed to add mood record');
     }
-  };
+  } catch (error) {
+    console.error('Error:', error);
+  } finally {
+    closeModal();
+  }
+};
+  
+
+
+  
 
   const tileContent = ({ date, view }) => {
-    console.log('Data:', moodData); // Log moodData to see its value
-  
     if (view === 'month') {
-      const mood = moodData && moodData[date.toDateString()];
-  
-      console.log('Mood:', mood); // Log mood to see its value
+      const dateString = date.toDateString();
+      const mood = moodData[dateString];
   
       if (mood === 'good') {
         return <div style={{ color: 'green' }}>😄</div>;
@@ -82,9 +91,16 @@ function MoodCalendar() {
   
     return null;
   };
+  
+  
+  useEffect(() => {
+    dispatch(fetchMoodData());
+  }, [dispatch]);
+    
+  
 
   return (
-    <div>
+    <div className={styles.bodyBlock}>
       <div className={styles.body}></div>
       <div className={styles.back}></div>
       <div className={styles.pageHeader}>
@@ -102,6 +118,7 @@ function MoodCalendar() {
         contentLabel="Mood Record"
         shouldCloseOnOverlayClick={true}
         className={styles.customModal}
+        ariaHideApp={false}
       >
          <div className={styles.customModalContent}>
          <button onClick={closeModal} className= {styles.imageButton}><img  src={close}/></button>
@@ -113,7 +130,7 @@ function MoodCalendar() {
     src={good}
     alt="Dobry Nastrój"
     onClick={() => handleMoodSelection('good') && saveMoodToDatabase() }
-    className={moodData[selectedDate.toDateString()] === 'good' ? styles.selectedMood : ''}
+    className={isGoodMood ? styles.selectedMood : ''}
   />
   <img
     src={bad}
