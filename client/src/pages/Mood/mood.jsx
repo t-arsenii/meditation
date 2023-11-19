@@ -7,17 +7,18 @@ import styles from './styles.module.css';
 import close from './images/close.png';
 import good from './images/good.png';
 import bad from './images/bad.png';
-import { addMoodRecord, fetchMoodData, selectMoodData, setError, setLoading, setMoodData } from '../../redux/features/moodSlice';
-import axiosInstance from '../../utils/axios';
-import { selectUserId } from '../../redux/features/auth/authSlice';
-
+//import { addMoodRecord, fetchMoodData, selectMoodData, setError, setLoading, setMoodData, addMoodRecord } from '../../redux/features/moodSlice';
+//import axiosInstance from '../../utils/axios';
+//import { selectUserId } from '../../redux/features/auth/authSlice';
+import { addMoodRecord,getMoodData } from '../../redux/features/moodSlice';
 
 function MoodCalendar() {
+  const state = useSelector(state => state)
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedMood, setSelectedMood] = useState('');
-  const [moodData, setMoodData] = useState({});
-  
+  const [moodData, setMoodData] = useState([]);
+  const userId = useSelector(state => state.auth.user?._id)
   const moodEntry = moodData && moodData[selectedDate.toDateString()];
   // Rename state variable to avoid conflict
   const localMoodData = useState({});
@@ -42,46 +43,51 @@ function MoodCalendar() {
  
 
   const handleMoodSelection = async (mood) => {
-    dispatch(addMoodRecord({ date: selectedDate, mood: mood , userId}));
+    dispatch(addMoodRecord({ userId:userId ,date: selectedDate, mood: mood }));
     closeModal();
   };
   
   
 
-  const userId = useSelector((state) => state.auth.userId);
-  console.log('UserId from Selector:', userId);
+  // const userId = useSelector((state) => state.auth.userId);
+  // console.log('UserId from Selector:', userId);
 
   
-  const saveMoodToDatabase = async () => {
+  // const saveMoodToDatabase = async () => {
     
-  try {
-    const response = await axiosInstance.post('/addMood', {
-      userId,
-      date: selectedDate,
-      mood: selectedMood,
-    });
+//   try {
+//     const response = await axiosInstance.post('/addMood', {
+//       userId,
+//       date: selectedDate,
+//       mood: selectedMood,
+//     });
 
-    if (response.status === 201) {
-      console.log('Mood record added successfully');
-    } else {
-      console.error('Failed to add mood record');
-    }
-  } catch (error) {
-    console.error('Error:', error);
-  } finally {
-    closeModal();
-  }
-};
+//     if (response.status === 201) {
+//       console.log('Mood record added successfully');
+//     } else {
+//       console.error('Failed to add mood record');
+//     }
+//   } catch (error) {
+//     console.error('Error:', error);
+//   } finally {
+//     closeModal();
+//   }
+// };
   
-
+useEffect(() => {
+      if (userId) {
+        dispatch(getMoodData(userId));
+      }
+    }, [dispatch, userId]);
+    console.log(state);
 
   
 
   const tileContent = ({ date, view }) => {
     if (view === 'month') {
       const dateString = date.toDateString();
-      const mood = moodData[dateString];
-  
+      //const mood = moodData[dateString];
+      const mood = state.mood.moodData.date
       if (mood === 'good') {
         return <div style={{ color: 'green' }}>😄</div>;
       } else if (mood === 'bad') {
@@ -93,9 +99,9 @@ function MoodCalendar() {
   };
   
   
-  useEffect(() => {
-    dispatch(fetchMoodData());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchMoodData());
+  // }, [dispatch]);
     
   
 
@@ -129,7 +135,7 @@ function MoodCalendar() {
           <img
     src={good}
     alt="Dobry Nastrój"
-    onClick={() => handleMoodSelection('good') && saveMoodToDatabase() }
+    onClick={() => handleMoodSelection('good') }
     className={isGoodMood ? styles.selectedMood : ''}
   />
   <img
