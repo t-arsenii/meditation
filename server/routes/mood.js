@@ -3,6 +3,6 @@ import { addMoodRecord , getMoodData} from '../controllers/mood.js';
 const router = new Router()
 
 router.post('/addMood', addMoodRecord);
-router.get('/', getMoodData);
+router.get('/:userId/getmood', getMoodData);
 
 export default router

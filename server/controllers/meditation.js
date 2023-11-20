@@ -169,11 +169,12 @@ export const insertSavedMeditations = async (req, res) => {
       if (!user) {
         return res.status(404).json({ message: 'User not found' });
       }
-  
+      //console.log(`Data getmood`)
       const list = await Promise.all(
         user.savedMeditations.map((savedMeditation) => {
           return SavedMeditation.findById(savedMeditation._id);
         })
+
       );
   
       res.json(list);

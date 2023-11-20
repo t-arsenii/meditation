@@ -21,7 +21,7 @@ app.use('/api/auth', authRoute)
 app.use('/api/test', testRoute)
 app.use('/api', meditationRoute)
 app.use('/api', stepsRoute)
-app.use('/api' , moodRoute)
+app.use('/api/mood' , moodRoute)
 app.use('/api/programs',programRoute)
  async function start(){
     try {

@@ -10,7 +10,7 @@ export const addMoodRecord = createAsyncThunk(
   'mood/addMood',
   async ({userId, date, mood}) => {
       try {
-          const { data } = await axios.post('/addMood', {userId, date, mood})
+          const { data } = await axios.post('mood/addMood', {userId, date, mood})
           return data
       } catch (error) {
           console.log(error)
@@ -19,8 +19,8 @@ export const addMoodRecord = createAsyncThunk(
 )
 export const getMoodData = createAsyncThunk('mood/getMood', async (userId) => {
   try {
-    const { data } = await axios.get(`/?userId=${userId}`);
-    //console.log(`Data ${data}`)
+    const { data } = await axios.get(`mood/${userId}/getmood`);
+    // console.log(`Data getmood`)
     return data;
   } catch (error) {
     console.log(error);
@@ -115,31 +115,31 @@ const moodSlice = createSlice({
   extraReducers: {
     [addMoodRecord.pending]: (state) => {
       state.isLoading = true
-      state.status = null
+      //state.status = null
   },
   [addMoodRecord.fulfilled]: (state, action) => {
       state.isLoading = false
-      state.status = action.payload.message
+     // state.status = action.payload.message
       state.moodData = action.payload
      
   },
   [addMoodRecord.rejectWithValue]: (state, action) => {
-      state.status = action.payload.message
+      //state.status = action.payload.message
       state.isLoading = false
   },
   ///Get Mood
   [getMoodData.pending]: (state) => {
     state.isLoading = true
-    state.status = null
+   // state.status = null
 },
 [getMoodData.fulfilled]: (state, action) => {
     state.isLoading = false
-    state.status = action.payload.message
-    state.moodData = action.payload
+    //state.status = action.payload?.message
+    state.moodData = action?.payload
     
 },
 [getMoodData.rejectWithValue]: (state, action) => {
-    state.status = action.payload.message
+   // state.status = action.payload.message
     state.isLoading = false
 },
   },

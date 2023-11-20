@@ -26,9 +26,9 @@ import User from "../models/User.js";
 export const addMoodRecord = async (req, res) => {
   try {
     
-    //const moodModel = await Mood.findById(req.body.moodId);
     const {userId, date, mood} = req.body
     const user = await User.findById(userId);
+    //const moodModel = await Mood.findById(req.body.userId);
     if (!user) {
       throw new Error('User not found. Meditation not saved.');
   } 
@@ -42,7 +42,8 @@ export const addMoodRecord = async (req, res) => {
     await User.findByIdAndUpdate(userId, {
       $push: { mood: newSavedMood },
   });
-  res.json(newSavedMood);
+ 
+  res.json({ msg: 'Data Saved Successfully...!' });
   console.log(newSavedMood);
   } catch (error) {
     console.error('Error in controllers Mood:', error.message);
@@ -53,12 +54,14 @@ export const addMoodRecord = async (req, res) => {
 
 export const getMoodData = async (req, res) => {
   try {
-    const user = await User.findById(req.query.userId);
+    const user = await User.findById(req.params.userId);
       if (!user) {
         return res.status(404).json({ message: 'User not found' });
       }
+      //console.log(`Data getmood`)
       const list = await Promise.all(
         user.mood.map((mood) => {
+          console.log(mood._id)
           return Mood.findById(mood._id);
         })
       );
