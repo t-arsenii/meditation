@@ -114,16 +114,19 @@ const moodSlice = createSlice({
     },
   extraReducers: {
     [addMoodRecord.pending]: (state) => {
+      console.log('Pending State:', state);
       state.isLoading = true
       //state.status = null
   },
   [addMoodRecord.fulfilled]: (state, action) => {
+    console.log('Fulfilled State:', state);
       state.isLoading = false
      // state.status = action.payload.message
       state.moodData = action.payload
      
   },
   [addMoodRecord.rejectWithValue]: (state, action) => {
+    console.log('Rejected State:', state);
       //state.status = action.payload.message
       state.isLoading = false
   },
