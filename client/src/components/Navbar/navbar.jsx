@@ -12,6 +12,7 @@ import {useLocation} from 'react-router-dom'
 import { Link , useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector } from 'react-redux';
 import { checkIsAuth, logout } from '../../redux/features/auth/authSlice';
+
 function Navbar({ name }) {
     const isAuth = true
 
