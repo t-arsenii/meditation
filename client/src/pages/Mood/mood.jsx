@@ -48,7 +48,7 @@ function MoodCalendar() {
  
  
 
-  const prepareChartData = () => {
+ const prepareChartData = () => {
     const moodEntries = Object.values(moodData);
     const labels = moodEntries.map(entry => new Date(entry.date).toLocaleDateString());
     const moodValues = moodEntries.map(entry => entry.mood === 'good' ? 1 : 0); // Assign numeric values for mood
@@ -68,15 +68,15 @@ function MoodCalendar() {
   };
   
   const tileContent = ({ date, view }) => {
-    if (view === 'month') {
+    if (view === 'month' ) {
       const dateString = date.toISOString();
       
       // Convert moodData to an array
-      const moodDataArray = Object.values(moodData);
+      const moodDataArray = Object.values(moodData) || [];
       
       // Use find on the array
-      const moodEntry = moodDataArray.find(entry => entry.date === dateString);
-  
+      const moodEntry = moodDataArray.find(entry => entry && entry.date === dateString);
+
       if (moodEntry) {
         const mood = moodEntry.mood;
         const isUserEntry = moodEntry.userId === userId;
