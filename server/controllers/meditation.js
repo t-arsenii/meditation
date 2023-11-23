@@ -144,6 +144,7 @@ export const insertSavedMeditations = async (req, res) => {
           description: meditation.description,
           meditationId: meditation._id,
           userId: user._id,
+          img: meditation.img,
       });
 
       await newSavedMeditation.save();

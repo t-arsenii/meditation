@@ -113,7 +113,7 @@ console.log(state);
           {meditations?.map((meditation, i) => (
             <div className={styles.block} key={i}>
               <div className={styles.leftSide}>
-                <img src={woman_main} alt="Meditation" />
+              <img src={`http://localhost:3002/images/${meditation?.img}`} alt={`Image for option `} />
               </div>
               <div className={styles.rightSide}>
                 <p  className={styles.title}>{meditation?.title}</p>

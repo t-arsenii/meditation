@@ -71,13 +71,19 @@ export default function Questions({onChecked}) {
                           // Dodaj tutaj swoją dodatkową funkcjonalność onClick
                         }}
                     >
-                       <img src={imageArray1[i]} alt={`Image for option ${i}`} />
+                    
+                    
+                       {/* <img src={imageArray1[i]} alt={`Image for option ${i}`} /> */}
+                      {/* <p> {questions?.images[i]}</p> */}
+                      <img src={`http://localhost:3002/images/${questions?.images[i]}`} alt={`Image for option ${i}`} /> 
                         <p className='text-primary'>{q}</p>
                         
                         <div className='check checked'></div>
                     </div>
                   ))
                 }
+                                     
+
             </div>
             <div className={styles.centeredButtonContainer}>
             </div>

@@ -128,7 +128,8 @@ const user = useSelector(state => state.auth.user)
     {savedMeditation && (
       <button className={styles.button2} onClick={() => {handleRemove(savedMeditation?._id, savedMeditation?.meditationId)}}><img src={close} className={styles.close}/></button>
     )}
-    <img src={woman_main} alt="Woman Main" />
+  <img src={`http://localhost:3002/images/${savedMeditation?.img}`} alt={`Image for option `} />
+
     {savedMeditation?.title || 'Untitled Meditation'}
   </div>
 ))}
