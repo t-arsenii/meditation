@@ -1,9 +1,10 @@
 // routes/chat.js
 
-import express from 'express';
+
+import { Router } from 'express'
 import { sendMessage, getMessages , getUsers} from '../controllers/chat.js';
 
-const router = express.Router();
+const router = Router();
 
 // Routes for chat operations
 router.post('/send', sendMessage);

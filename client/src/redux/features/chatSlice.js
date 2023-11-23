@@ -7,7 +7,7 @@ export const fetchUsers = createAsyncThunk(
     'chat/users',
     async () => {
       try {
-        const { data } = await axios.get('/users');
+        const { data } = await axios.get('chat/users');
         return data;
       } catch (error) {
         console.error(error);
