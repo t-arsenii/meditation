@@ -18,6 +18,7 @@ export const fetchUsers = createAsyncThunk(
   
 const initialState = {
     messages: [], 
+    users:[]
   };
 
   const chatSlice = createSlice({
@@ -30,6 +31,24 @@ const initialState = {
       setMessages(state, action) {
         state.messages = action.payload;
       },
+    },
+    extraReducers: {
+      //Get all users
+      [fetchUsers.pending]: (state) => {
+       // state.isLoading = true
+       // state.status = null
+    },
+    [fetchUsers.fulfilled]: (state, action) => {
+        //state.isLoading = false
+        //state.status = action.payload?.message
+        state.users = action.payload
+        
+    },
+    [fetchUsers.rejectWithValue]: (state, action) => {
+       // state.status = action.payload.message
+       // state.isLoading = false
+    },
+
     },
   });
   

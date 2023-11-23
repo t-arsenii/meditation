@@ -2,14 +2,20 @@ import Chat from "../models/Chat.js";
 import User from "../models/User.js";
 
 export const getUsers = async (req, res) => {
-    try {
-      console.log("W getUsers")
-      const users = await User.find({}, 'username');
-      res.status(200).json({ users });
-    } catch (error) {
-      res.status(500).json({ message: 'Failed to retrieve users', error: error.message });
-    }
-  };
+  try {
+    const users = await User.find({}, 'username');
+
+    // Extract the array of users from the result
+    const usersArray = users.map((user) => ({
+      _id: user._id,
+      username: user.username,
+    }));
+
+    res.status(200).json(usersArray);
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to retrieve users', error: error.message });
+  }
+};
 
 export const sendMessage = async (req, res) => {
     try {

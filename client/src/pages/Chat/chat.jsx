@@ -8,6 +8,7 @@ function Chat() {
 
   const dispatch = useDispatch();
   const messages = useSelector((state) => state.chat.messages);
+  const state = useSelector((state)=> state)
   const [newMessage, setNewMessage] = useState('');
   const [selectedUser, setSelectedUser] = useState(null);
   const handleSendMessage = () => {
@@ -19,17 +20,17 @@ function Chat() {
     }
   };
  // const dispatch = useDispatch();
-  const users = useSelector((state) => state.users); // Assuming users are stored in Redux state
+  const users = useSelector((state) => state.chat.users); // Assuming users are stored in Redux state
 
   useEffect(() => {
     dispatch(fetchUsers()); // Dispatch the fetchUsers action on component mount
   }, [dispatch]);
 
   console.log(users);
-
+  console.log(state)
   return (
     <div className={styles.bodyBlock}>
-      <div className={styles.chat}>
+  /* <div className={styles.chat}>
         <p>Czat</p>
       </div>
       <div className={styles.searchApp}>
@@ -47,6 +48,7 @@ function Chat() {
       <select onChange={(e) => setSelectedUser(e.target.value)}>
           <option value="">Select a user</option>
           {users && users.length > 0 ? (
+            
             users.map((user) => (
               <option key={user.id} value={user.id}>
                 {user.username}
@@ -77,6 +79,7 @@ function Chat() {
   users.map((user) => (
     <option key={user.id} value={user.id}>
       {user.username}
+      
     </option>
   ))
 ) : (
@@ -106,11 +109,14 @@ function Chat() {
         <p>No users available</p>
       )}
     </div>
-    </div>
-    
+    </div> 
 
+<h1>TESTIJU</h1>
 
-      
+{users.map((user,i) => (
+            // <li key={user.id}>{user.username}</li>
+            <p>{user?.username}</p>
+          ))}
     </div>
   );
 }
