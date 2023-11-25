@@ -29,6 +29,7 @@ import Questions from './pages/Questions/questions';
 import Test from './pages/Test/Test';
 import { MeditationsList } from './pages/MeditationsList/MeditationsList';
 import { getMe } from './redux/features/auth/authSlice';
+import Messenger from './pages/Messenger/messenger';
 function App() {
   
   const dispatch = useDispatch()
@@ -57,6 +58,8 @@ function App() {
         <Route path='/mood' element={<MoodCalendar />}/>
         <Route path='/music' element={<Music />}/> 
         <Route path='/chat' element={<Chat />}/> 
+        <Route path='/messenger' element={<Messenger />}/> 
+
         <Route path='/profil' element={<Profil />}/> 
         <Route path='/musicunfastened' element={<MusicUnfastened />}/> 
         <Route  path='/animation' element={ <Animation />}/>

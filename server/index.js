@@ -8,6 +8,8 @@ import stepsRoute from './routes/steps.js'
 import moodRoute from './routes/mood.js'
 import programRoute from './routes/program.js'
 import chatRoute from './routes/chat.js'
+import conversationRoute from './routes/conversations.js'
+import messageRoute from './routes/message.js'
 import dotenv from 'dotenv';
 dotenv.config();
 const app = express()
@@ -24,7 +26,8 @@ app.use('/api', meditationRoute)
 app.use('/api', stepsRoute)
 app.use('/api/mood' , moodRoute)
 app.use('/api/programs',programRoute)
-app.use('/api/chat', chatRoute)
+app.use('/api/conversations', conversationRoute)
+app.use('/api/message', messageRoute)
  async function start(){
     try {
         await mongoose.connect('mongodb+srv://test:test123@cluster0.chbpm7k.mongodb.net/')

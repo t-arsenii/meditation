@@ -1,13 +1,25 @@
+//redux chatSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from '../../utils/axios'
-
-
 
 export const fetchUsers = createAsyncThunk(
     'chat/users',
     async () => {
       try {
         const { data } = await axios.get('chat/users');
+        return data;
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
+    }
+  );
+
+  export const fetchMessages = createAsyncThunk(
+    'chat/messages',
+    async ({ sender, receiver }) => {
+      try {
+        const { data } = await axios.get(`chat/messages?sender=${sender}&receiver=${receiver}`);
         return data;
       } catch (error) {
         console.error(error);

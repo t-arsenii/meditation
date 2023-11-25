@@ -1,3 +1,4 @@
+//controllers chat.js
 import Chat from "../models/Chat.js";
 import User from "../models/User.js";
 

@@ -82,3 +82,24 @@
     margin-left: 390px;
     color: #D1D1D1;
 }
+.searchResults{
+ 
+  width: 700px; /* Розмір контейнера, змініть на потрібний */
+  
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+}
+.result {
+  padding: 10px;
+  cursor: pointer;
+}
+.result:hover {
+  background-color: #f9f9f9;
+}
+.chatWindow{
+  background-color: #471E70;
+  width: 500px;
+  height: 100px;
+  margin-left: 500px;
+  cursor: pointer;
+}

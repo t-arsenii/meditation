@@ -1,36 +1,60 @@
-import { useState, useEffect }  from 'react'
+import { useState, useEffect } from 'react';
 import styles from './styles.module.css';
 import Search from './images/Search.png';
 import { useDispatch, useSelector } from 'react-redux';
-import { addMessage, setMessages , fetchUsers} from '../../redux/features/chatSlice';
+import { addMessage, setMessages, fetchUsers } from '../../redux/features/chatSlice';
+import { useNavigate } from 'react-router-dom';
+
 
 function Chat() {
-
   const dispatch = useDispatch();
   const messages = useSelector((state) => state.chat.messages);
-  const state = useSelector((state)=> state)
-  const [newMessage, setNewMessage] = useState('');
+  const users = useSelector((state) => state.chat.users);
+  const [searchInput, setSearchInput] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
-  const handleSendMessage = () => {
-    if (newMessage.trim() !== '' && selectedUser) {
-      dispatch(addMessage({ content: newMessage, sender: 'currentUserId', receiver: selectedUser.id }));
-      setNewMessage('');
-    } else {
-      // Handle error or display a message indicating the need to select a user
-    }
-  };
- // const dispatch = useDispatch();
-  const users = useSelector((state) => state.chat.users); // Assuming users are stored in Redux state
+  const [selectedUsers, setSelectedUsers] = useState(() => {
+  const storedUsers = localStorage.getItem('selectedUsers');
+  return storedUsers ? JSON.parse(storedUsers) : [];
+});
+const [activeChatUser, setActiveChatUser] = useState(null);
+const navigate = useNavigate();
 
+useEffect(() => {
+  // Save selectedUsers to local storage whenever it changes
+  localStorage.setItem('selectedUsers', JSON.stringify(selectedUsers));
+}, [selectedUsers]);
+
+  const handleSearch = (input) => {
+    setSearchInput(input);
+    const filteredUsers = users.filter((user) =>
+      user.username.toLowerCase().includes(input.toLowerCase())
+    );
+    setSearchResults(filteredUsers);
+  };
+
+  const startChatWithUser = (user) => {
+    setSelectedUsers([...selectedUsers, user]); // Add user to selected users
+    // You may want to dispatch an action to fetch messages between logged-in user and selected user here
+  };
+  const removeChat = (userToRemove) => {
+    const updatedUsers = selectedUsers.filter(user => user._id !== userToRemove._id);
+    setSelectedUsers(updatedUsers);
+  }; 
+  const openChatWithUser = (user) => {
+    setActiveChatUser(user);
+    // You may want to dispatch an action to fetch messages between logged-in user and selected user here
+  };
+  const navigateToChatPage = (userId) => {
+    navigate(`/individual/${userId}`); // Navigate to individual chat page
+  };
   useEffect(() => {
     dispatch(fetchUsers()); // Dispatch the fetchUsers action on component mount
   }, [dispatch]);
 
-  console.log(users);
-  console.log(state)
   return (
     <div className={styles.bodyBlock}>
-  /* <div className={styles.chat}>
+      <div className={styles.chat}>
         <p>Czat</p>
       </div>
       <div className={styles.searchApp}>
@@ -40,83 +64,46 @@ function Chat() {
             type="text"
             placeholder="Wyszukaj osób"
             className={styles.searchInput}
+            value={searchInput}
+            onChange={(e) => handleSearch(e.target.value)}
           />
         </div>
-      </div>
-      <div className={styles.noneSMS}>Brak powiadomień</div>
-      <div className={styles.userSMS}>
-      <select onChange={(e) => setSelectedUser(e.target.value)}>
-          <option value="">Select a user</option>
-          {users && users.length > 0 ? (
-            
-            users.map((user) => (
-              <option key={user.id} value={user.id}>
+        {searchInput && (
+          <div className={styles.searchResults} style={{ backgroundColor: searchResults.length > 0 ? 'white' : 'transparent' }}>
+            {searchResults.map((user) => (
+              <div
+                key={user._id}
+                className={styles.result}
+                onClick={() => startChatWithUser(user)} // Handle click to start chat with the user
+              >
                 {user.username}
-              </option>
-            ))
-          ) : (
-            <option value="">No users available</option>
-          )}
-        </select>
-
-        {messages ? (
-        messages.map((message, index) => (
-            <div className={styles.userBlock} key={index}>
-            <div className={styles.userImg}>img</div>
-            <div className={styles.userInfo}>
-              <div className={styles.userName}>{message.sender}</div>
-              <div className={styles.userEndSMS}>{message.content}</div>
-            </div>
-            <div className={styles.smsData}>
-              <p>{message.timestamp}</p>
-            </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+      {selectedUsers.length > 0 ? (
+        selectedUsers.map((selectedUser) => (
+          <div
+          key={selectedUser._id}
+          className={styles.chatWindow}
+          style={{ backgroundColor: 'purple' }}
+          onClick={() => navigateToChatPage(selectedUser._id)} // Navigate to individual chat page on click
+        >
+            <p>{selectedUser.username}</p>
+            <button onClick={() => removeChat(selectedUser)}>Close Chat</button>
+            {/* Render chat messages or input field here */}
           </div>
         ))
-        ) : (
-          <p>No messages available</p>
-        )}
-         {users && users.length > 0 ? (
-  users.map((user) => (
-    <option key={user.id} value={user.id}>
-      {user.username}
-      
-    </option>
-  ))
-) : (
-  <option value="">No users available</option>
-)}
-
-
-         <div className={styles.sendMessage}>
-          <input
-            type="text"
-            placeholder="Type your message..."
-            value={newMessage}
-            onChange={(e) => setNewMessage(e.target.value)}
-          />
-          <button onClick={handleSendMessage}>Send</button>
-        </div>
-
-        <div className={styles.allUsers}>
-      <h2>All Users</h2>
-      {users && users.length > 0 ? (
-        <ul>
-          {users.map((user) => (
-            <li key={user.id}>{user.username}</li>
-          ))}
-        </ul>
       ) : (
-        <p>No users available</p>
+        <div className={styles.noneSMS}>Brak powiadomień</div>
       )}
-    </div>
-    </div> 
-
-<h1>TESTIJU</h1>
-
-{users.map((user,i) => (
-            // <li key={user.id}>{user.username}</li>
-            <p>{user?.username}</p>
-          ))}
+      {activeChatUser && (
+        <div className={styles.chatWindow} style={{ backgroundColor: 'purple' }}>
+          <p>Chatting with: {activeChatUser.username}</p>
+          {/* Render chat messages or input field here */}
+        </div>
+      )}
     </div>
   );
 }
