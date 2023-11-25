@@ -5,7 +5,7 @@ import Message from '../../components/Message/Message'
 import ChatOnline from '../../components/ChatOnline/ChatOnline'
 import { useDispatch, useSelector} from 'react-redux'
 import { useEffect , useState } from 'react'
-import axios from "axios"
+import axios from '../../utils/axios';
 
 export default function Messenger(){
   
@@ -18,7 +18,7 @@ export default function Messenger(){
      const getConversations = async ()=>{
       try{
       const res = await axios.get(`/conversations/${userId}`)
-      //setConversations(res.data)
+      setConversations(res.data)
       console.log(res)
     }catch(err){
       console.log(err)
