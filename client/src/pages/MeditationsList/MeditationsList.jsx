@@ -97,13 +97,34 @@ useEffect(() => {
 }, [savedMeditation]);
 
 
-useEffect(()=> {
-  if(userr?.finishedMeditations === 18){
-    console.log('W ifie')
-    console.log(userr?.finishedMeditations)
+useEffect(() => {
+  const finishedMeditations = userr?.finishedMeditations;
+const level =  userr?.level;
+  console.log('Finished Meditations:', finishedMeditations);
+
+  if (finishedMeditations === 2 || finishedMeditations === 5 || finishedMeditations === 9 || finishedMeditations === 14 || 
+    finishedMeditations === 20 || finishedMeditations === 28 || finishedMeditations === 38 || finishedMeditations === 50 ||
+     finishedMeditations === 65 || finishedMeditations === 75 || finishedMeditations === 100) {
+    // console.log('W ifie');
+    // console.log(finishedMeditations);
+if(finishedMeditations === 2 && level === 1 || finishedMeditations === 5 && level === 2 ||
+  finishedMeditations === 9 && level === 3 || finishedMeditations === 14 && level === 4 ||
+   finishedMeditations === 20 && level === 5|| finishedMeditations === 28 && level === 6|| 
+   finishedMeditations === 38 && level === 7|| finishedMeditations === 50 && level === 8 || 
+  finishedMeditations === 65 && level === 9 || finishedMeditations === 75 && level === 10 || 
+  finishedMeditations === 100 && level === 11){
+    console.log(`Twój poziom jest już upgrate  wcześniej: ${userr?.level}`);
+  }else{
     dispatch(upgrateLevel(user));
-    console.log(userr?.finishedMeditations)
-}},[userr?.finishedMeditations, dispatch]);
+  }
+    // Dispatch the action
+    
+   } else {
+  //   console.log(`Twój poziom jest taki sam jak wcześniej: ${userr?.level}`);
+   }
+}, [userr?.finishedMeditations, dispatch]);
+
+
 console.log(state);
     return (
       

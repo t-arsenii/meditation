@@ -148,7 +148,7 @@ export const finishMeditation = async (req, res) => {
         { $inc: { level: 1 } }, // or use $set if you want to set a specific value
         { new: true } // return the updated document
       );
-  
+  console.log(user.level)
       res.json(user);
     } catch (error) {
       console.error('Error upgrating Level:', error);

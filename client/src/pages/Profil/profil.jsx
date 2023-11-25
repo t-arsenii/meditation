@@ -70,7 +70,9 @@ function uploadImage(){
                <div className={styles.level}>{user?.level}</div>
             </div>
             <div className={styles.achievementFinish}>
+              
               <div className={styles.finish}>{user?.finishedMeditations}</div>
+              
             </div>
             </div>
      </div>
