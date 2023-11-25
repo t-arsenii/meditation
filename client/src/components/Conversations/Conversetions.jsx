@@ -1,10 +1,29 @@
 import styles from './styles.module.css'
+import {useState , useEffect} from 'react'
+import axios from '../../utils/axios';
 
-export default function Conversetion({conversation}){
+export default function Conversetion({conversation , currentUser}){
+    const [user,setUser] = useState(null)
+
+    useEffect(()=>{
+        const friendId = conversation.members.find(m=> m !== currentUser._id )
+
+        const getUser = async ()=>{
+            try{
+            const res = await axios(`/users?userId=${friendId}`)
+            setUser(res.data)
+            console.log(res)
+        }catch(err){
+            console.log(err)
+        }
+
+        };
+        getUser()
+    },[currentUser , conversation])
+    
     return(
         <div className={styles.conversation}>
-             <img  className={styles.conversationImg} src='https://www.jtrholidays.com/static/img/bucket/Tours/UAE/Dubai/Theme-Park/IMG-World-of-Adventure/IMG-World-of-Adventure-03.jpg'/>
-             <span className={styles.conversationName}>John</span>
+             <span className={styles.conversationName}>{user && user.username}</span>
         </div>
     )
 }

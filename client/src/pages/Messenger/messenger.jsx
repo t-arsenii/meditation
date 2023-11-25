@@ -12,7 +12,7 @@ export default function Messenger(){
   const user = useSelector(state => state.auth.user)
   const userId = useSelector(state => state.auth.user?._id)
   
-  const [conversetions , setConversations] = useState([])
+  const [conversations , setConversations] = useState([])
 
   useEffect(() =>{
      const getConversations = async ()=>{
@@ -34,9 +34,9 @@ export default function Messenger(){
         <div className={styles.messenger}>
                <div className={styles.chatMenu}>
                    <div className={styles.chatMenuWrapper}>
-                   <input placeholder="Search for friends" className="chatMenuInput" />
-                   {conversetions.map(c=>(
-                        <Conversetion  conversetions={c}/>
+                   <input placeholder="Search for friends" className={styles.chatMenuInput} />
+                   {conversations.map(c=>(
+                        <Conversetion  conversation={c} currentUser={user}/>
                    ))}
 
                    
