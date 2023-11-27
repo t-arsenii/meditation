@@ -58,7 +58,7 @@ function App() {
         <Route path='/mood' element={<MoodCalendar />}/>
         <Route path='/music' element={<Music />}/> 
         <Route path='/chat' element={<Chat />}/> 
-        <Route path='/messenger' element={<Messenger />}/> 
+        <Route path='/messenger/:userId' element={<Messenger />}/> 
 
         <Route path='/profil' element={<Profil />}/> 
         <Route path='/musicunfastened' element={<MusicUnfastened />}/> 

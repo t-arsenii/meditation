@@ -46,7 +46,7 @@ useEffect(() => {
     // You may want to dispatch an action to fetch messages between logged-in user and selected user here
   };
   const navigateToChatPage = (userId) => {
-    navigate(`/individual/${userId}`); // Navigate to individual chat page
+    navigate(`/messenger/${userId}`); // Navigate to individual chat page
   };
   useEffect(() => {
     dispatch(fetchUsers()); // Dispatch the fetchUsers action on component mount

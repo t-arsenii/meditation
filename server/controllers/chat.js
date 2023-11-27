@@ -1,55 +1,56 @@
 //controllers chat.js
 import Chat from "../models/Chat.js";
 import User from "../models/User.js";
+import { io } from "../index.js"
+import { connectedUsers } from "../events/socket.js";
+export const startChat = async (req, res) =>
+{
+  const { userA, userB } = req.body;
 
-export const getUsers = async (req, res) => {
-  try {
-    const users = await User.find({}, 'username');
+  try
+  {
+    let chatId = await findExistingChat(userA, userB);
 
-    // Extract the array of users from the result
-    const usersArray = users.map((user) => ({
-      _id: user._id,
-      username: user.username,
-    }));
+    if (!chatId)
+    {
+      chatId = await createNewChat(userA, userB);
 
-    res.status(200).json(usersArray);
-  } catch (error) {
-    res.status(500).json({ message: 'Failed to retrieve users', error: error.message });
+      if (chatId)
+      {
+        io.to(connectedUsers[userA]).emit('new-chat', chatId);
+        io.to(connectedUsers[userB]).emit('new-chat', chatId);
+      }
+    }
+
+    res.status(200).json({ chatId });
+  } catch (error)
+  {
+    res.status(500).json({ error: 'Failed to start chat' });
   }
 };
+export const fetchUserChats = async (req, res) =>
+{
+  const { userId } = req.params;
+  console.log(userId)
+  try
+  {
+    const userChats = await Chat.find({ users: userId });
+    const chatIds = userChats.map((chat) => chat._id);
+    res.status(200).json({ chatIds });
+  } catch (error)
+  {
+    res.status(500).json({ error: 'Failed to fetch user chats' });
+  }
+};
+const findExistingChat = async (userA, userB) =>
+{
+  const chat = await Chat.findOne({ users: { $all: [userA, userB] } });
+  return chat ? chat._id : null;
+};
 
-export const sendMessage = async (req, res) => {
-    try {
-      const { sender, receiver, message } = req.body;
-  
-      // Create a new message using the Chat model
-      const newMessage = new Chat({ sender, receiver, message });
-  
-      // Save the message to the database
-      await newMessage.save();
-  
-      res.status(201).json({ message: 'Message sent successfully' });
-    } catch (error) {
-      res.status(500).json({ message: 'Failed to send message', error: error.message });
-    }
-  };
-  
-  export const getMessages = async (req, res) => {
-    try {
-      const { sender, receiver } = req.query;
-  
-      // Retrieve messages based on sender and receiver from the database
-      const messages = await Chat.find({
-        $or: [
-          { sender: sender, receiver: receiver },
-          { sender: receiver, receiver: sender },
-        ],
-      })
-      .populate('sender', 'username') // Populate sender field with username
-      .populate('receiver', 'username'); // Populate receiver field with username
-  
-      res.status(200).json({ messages });
-    } catch (error) {
-      res.status(500).json({ message: 'Failed to retrieve messages', error: error.message });
-    }
-  };
+const createNewChat = async (userA, userB) =>
+{
+  const chat = new Chat({ users: [userA, userB] });
+  await chat.save();
+  return chat._id;
+};
