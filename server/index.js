@@ -29,15 +29,15 @@ app.use(cors())
 app.use(express.json({ limit: '10mb' }));
 app.use('/images', express.static('data/images'));
 //Routes
+app.use('/api/chat', chatRoute)
+app.use('/api/message', messageRoute)
 app.use('/api/auth', authRoute)
 app.use('/api/test', testRoute)
-app.use('/api', meditationRoute)
-app.use('/api', stepsRoute)
 app.use('/api/mood', moodRoute)
 app.use('/api/programs', programRoute)
-app.use('/api/message', messageRoute)
 app.use('/api/reward', RewardRoute)
-app.use('/api/chat', chatRoute)
+app.use('/api', meditationRoute)
+app.use('/api', stepsRoute)
 async function start()
 {
     try

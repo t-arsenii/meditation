@@ -13,44 +13,65 @@ export const startChat = async (req, res) =>
 
     if (!chatId)
     {
-      chatId = await createNewChat(userA, userB);
-
-      if (chatId)
+      const chat = new Chat({ users: [userA, userB] });
+      const newChat = await chat.save();
+      if (newChat)
       {
-        io.to(connectedUsers[userA]).emit('new-chat', chatId);
-        io.to(connectedUsers[userB]).emit('new-chat', chatId);
+        await newChat.populate({
+          path: 'users',
+          select: 'username'
+        });
+        io.to(connectedUsers[userA]).emit('new-chat', newChat);
+        io.to(connectedUsers[userB]).emit('new-chat', newChat);
       }
     }
 
-    res.status(200).json({ chatId });
+    res.status(200).json(chatId);
   } catch (error)
   {
+    console.log(error.message)
     res.status(500).json({ error: 'Failed to start chat' });
   }
 };
 export const fetchUserChats = async (req, res) =>
 {
-  const { userId } = req.params;
-  console.log(userId)
   try
   {
-    const userChats = await Chat.find({ users: userId });
-    const chatIds = userChats.map((chat) => chat._id);
-    res.status(200).json({ chatIds });
+    const userId = req.userId;
+    const userChats = await Chat.find({ users: userId }).populate({
+      path: 'users',
+      select: 'username'
+    });
+
+    res.status(200).json(userChats);
   } catch (error)
   {
     res.status(500).json({ error: 'Failed to fetch user chats' });
   }
 };
+export const fetchUsers = async (req, res) =>
+{
+  try
+  {
+    const userId = req.userId;
+
+    const users = await User.find({ _id: { $ne: userId } }, 'username');
+
+    const usersArray = users.map((user) => ({
+      _id: user._id,
+      username: user.username,
+    }));
+
+    res.status(200).json(usersArray);
+  } catch (error)
+  {
+    console.log(error.message)
+    res.status(500).json({ message: 'Failed to retrieve users', error: error.message });
+  }
+};
+
 const findExistingChat = async (userA, userB) =>
 {
   const chat = await Chat.findOne({ users: { $all: [userA, userB] } });
   return chat ? chat._id : null;
-};
-
-const createNewChat = async (userA, userB) =>
-{
-  const chat = new Chat({ users: [userA, userB] });
-  await chat.save();
-  return chat._id;
 };

@@ -2,15 +2,16 @@ import User from "../models/User.js"
 import Message from "../models/Message.js"
 export const connectedUsers = {};
 import { io } from "../index.js"
+import jwt from 'jsonwebtoken'
 export function handleSocketEvents()
 {
     io.on('connection', (socket) =>
     {
         socket.auth = false;
-        socket.on("authenticate", async (_id) =>
+        socket.on("authenticate", async (token) =>
         {
-            // const { _id } = jwt.verify(token, process.env.JWT_SECRET);
-            const user = await User.findById(_id).exec();
+            const { id } = jwt.verify(token, process.env.JWT_SECRET);
+            const user = await User.findById(id).exec();
             if (!user)
             {
                 socket.emit("error", { message: "No user found" });
@@ -18,10 +19,15 @@ export function handleSocketEvents()
             }
             socket.auth = true;
             socket.user = user;
-            connectedUsers[_id] = socket.id;
+            connectedUsers[id] = socket.id;
+            console.log("user authenticated")
         });
         socket.on('join-chat', (chatId) =>
         {
+            if (!socket.auth)
+            {
+                console.error("User not authenticated");
+            }
             socket.join(chatId);
         });
 
@@ -31,11 +37,22 @@ export function handleSocketEvents()
             {
                 console.error("User not authenticated");
             }
+            if (!message)
+            {
+                console.error("message is not provided");
+                return;
+            }
+            if (message === '')
+            {
+                console.error("message can't be empty");
+                return;
+            }
             const userId = socket.user._id;
-            const newMessage = new Message({ chatId, userId, message });
+            console.log(chatId)
+            const newMessage = new Message({ chatId: chatId, sender: userId, text: message });
             await newMessage.save();
 
-            socket.to(chatId).emit('new-message', { newMessage, userId });
+            io.to(chatId).emit('new-message', newMessage);
         });
         socket.on('disconnect', () =>
         {

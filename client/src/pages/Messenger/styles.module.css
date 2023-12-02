@@ -23,6 +23,8 @@
     flex-direction: column;
     justify-content: space-between;
     position: relative;
+    width: 30%;
+    margin: 0 auto;
   }
   
   .chatBoxTop {
